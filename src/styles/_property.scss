@@ -1,0 +1,14 @@
+
+$base-color-light: #ffb4d9;
+$base-color-dark: #0a903d;
+
+
+
+
+[data-theme="dark"] {
+  color: $base-color-dark;
+}
+
+[data-theme="light"] {
+  color: $base-color-light;
+}

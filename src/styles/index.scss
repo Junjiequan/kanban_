@@ -1,4 +1,9 @@
-@import "./property";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "property";
+@import "reset";
 
 body {
   margin: 0;

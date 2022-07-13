@@ -10,7 +10,7 @@ const App = () => {
     <div className='App' data-theme={colorTheme}>
       <button className='' onClick={handleColorTheme}>
         {'NAH,....NOT TODAY '}
-        Click to change color
+        Click to change color.
       </button>
       <div className=''>Hello</div>
     </div>

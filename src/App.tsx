@@ -7,7 +7,6 @@ const App = () => {
     return colorTheme === 'light' ? setColorTheme('dark') : setColorTheme('light');
   };
 
-
   return (
     <div className='App' data-theme={colorTheme}>
       <button className='' onClick={handleColorTheme}>

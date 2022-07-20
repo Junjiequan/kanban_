@@ -1,19 +1,20 @@
 import { useState } from 'react';
+import SideBar from './layout/SideBar';
+import Board from './layout/Board';
 import './App.scss';
 
 const App = () => {
-  const [colorTheme, setColorTheme] = useState('light');
+  const [colorTheme, setColorTheme] = useState('dark');
   const handleColorTheme = () => {
-    return colorTheme === 'light' ? setColorTheme('dark') : setColorTheme('light');
+    return colorTheme === 'dark' ? setColorTheme('light') : setColorTheme('dark');
   };
 
   return (
-    <div className='App' data-theme={colorTheme}>
-      <button className='' onClick={handleColorTheme}>
-        {'NAH,....NOT TODAY '}
-        Click to change color.
-      </button>
-      <div className=''>Hello</div>
+    <div className={`App ${colorTheme}`}>
+      <button onClick={handleColorTheme}>He</button>
+
+      <SideBar />
+      <Board />
     </div>
   );
 };

@@ -1,14 +1,32 @@
+//color variables
+$light:(
+  base-color-light: #ff9ecf,
+  base-color-dark: #60cf8b,
+  white: rgb(254, 254, 254),
+  black: rgb(33, 27, 33),
+);
 
-$base-color-light: #ffb4d9;
-$base-color-dark: #0a903d;
+$dark:(
+  base-color-light: #a52d69,
+  base-color-dark: #082011,
+  white: rgb(251, 5, 5),
+  black: rgb(143, 40, 141),
+);
 
 
+//device width
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width:1024px;
 
-
-[data-theme="dark"] {
-  color: $base-color-dark;
+@mixin tablet {
+  @media (max-width:#{$tablet-width}){
+    @content;
+  }
 }
 
-[data-theme="light"] {
-  color: $base-color-light;
+@mixin mobile {
+  @media (max-width:#{$mobile-width}){
+    @content;
+  }
 }

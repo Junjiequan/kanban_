@@ -1,0 +1,17 @@
+@import './property';
+
+.dark {
+  @each $name, $color in $dark{
+      --color-#{""+$name} : #{$color};
+  }
+};
+
+.light {
+  @each $name, $color in $light{
+      --color-#{""+$name} : #{$color};
+  }
+};
+
+@function color($getColor){
+  @return var(--color-#{$getColor})
+}

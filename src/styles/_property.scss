@@ -1,5 +1,22 @@
+//space variables
+$margin-small: 1rem;
+$margin-medium: 1.5rem;   
+$margin-large: 2rem;  
+
+//font variables
+$font-12: 0.75rem;
+$font-15: 0.9375rem; 
+$font-18: 1.125rem; 
+$font-19: 1.1875rem;
+$font-23: 1.4375rem; 
+$font-24: 1.5rem; 
+$font-30: 1.875rem; 
+
 //color variables
-$white: rgb(18, 5, 48);
+$white: #ffffff;
+$darkBlue: #635FC7;
+$mediumGray: #828FA3;
+
 
 $light:(
   base-color-dark: #60cf8b,
@@ -30,3 +47,4 @@ $desktop-width:1024px;
     @content;
   }
 }
+

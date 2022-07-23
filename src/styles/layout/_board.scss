@@ -5,13 +5,9 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  background: gray;
-  color: color(black);
   @include tablet {
-    background: rgb(121, 40, 40);
   }
 
   @include mobile {
-    background: rgb(109, 136, 199);
   }
 }

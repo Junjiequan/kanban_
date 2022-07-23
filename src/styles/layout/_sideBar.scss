@@ -1,18 +1,20 @@
 @import "../function";
+@import "../property";
 
 
 .SideBar {
   display: flex;
   flex-direction: column;
   width: 18.75rem;
-  background: black;
-  color:  color(white);
 
   @include tablet {
-    background: color(white);
   }
 
   @include mobile {
-    background: purple;
+  }
+
+  &__Logo {
+    height: 6rem;
+    margin: $margin-large 0 0 $margin-large;
   }
 }

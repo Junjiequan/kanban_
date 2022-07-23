@@ -1,0 +1,59 @@
+@import "../property";
+
+.SideNav {
+  background: lightgray;
+}
+
+.SideNav__head {
+  font-size: $font-12;
+  padding-left: $margin-large;
+}
+
+.SideNav__tab {
+  display: flex;
+  align-items: center;
+  padding-left: $margin-large;
+  width: 17.25rem;
+  height: 3rem;
+  position: relative;
+  color:  $mediumGray;
+  font-weight: bold;
+  background: transparent;
+  transition: color .2s ease;
+
+  & > svg {
+    margin-right:$margin-small;
+  }
+
+  &::before {
+    transition: background-color .1s ease;
+    content: '';
+    z-index:-1;
+    display: flex;
+    background-color: transparent;
+    position:absolute;
+    left:0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 25px 25px 0;
+  }
+
+  &:hover:not(&--addNew),
+  &:focus:not(&--addNew) {
+    color: $white;
+
+    &::before {
+      content: '';
+      background-color: $darkBlue;
+
+    }
+  }
+
+  &--addNew {
+    color:$darkBlue;
+    transition: opacity .2s ease;
+    &:hover{
+      opacity: .6;
+    }
+  }
+}

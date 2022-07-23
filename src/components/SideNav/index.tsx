@@ -7,7 +7,7 @@ const SideNav = ({ themeChange }: any) => {
   return (
     <div className='SideNav'>
       <div className='SideNav__top'>
-        <div className='SideNav__head'>ALL BOARDS {fakeData.length}</div>
+        <div className='SideNav__head'>ALL BOARDS ({fakeData.length})</div>
 
         <div>
           {fakeData.map((tab, index) => (

@@ -1,12 +1,15 @@
 @import "../property";
 
 .SideNav {
-  background: lightgray;
+  color: $mediumGray;
+  font-weight: bold;
 }
 
 .SideNav__head {
+  letter-spacing: 2.4px;
   font-size: $font-12;
   padding-left: $margin-large;
+  margin-bottom: $margin-small;
 }
 
 .SideNav__tab {
@@ -14,13 +17,12 @@
   align-items: center;
   padding-left: $margin-large;
   width: 17.25rem;
-  height: 3rem;
+  height: 2.8rem;
+  margin-bottom:.2rem;
   position: relative;
-  color:  $mediumGray;
-  font-weight: bold;
   background: transparent;
   transition: color .2s ease;
-
+  color: inherit;
   & > svg {
     margin-right:$margin-small;
   }
@@ -38,8 +40,16 @@
     border-radius: 0 25px 25px 0;
   }
 
-  &:hover:not(&--addNew),
-  &:focus:not(&--addNew) {
+  &:hover:not(&--addNew, &--active) {
+    color: $white;
+
+    &::before {
+      content: '';
+      background-color: $lightBlue;
+
+    }
+  }
+  &--active {
     color: $white;
 
     &::before {

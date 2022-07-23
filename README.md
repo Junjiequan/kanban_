@@ -1,4 +1,3 @@
-
 ## The challenge
 
 Your challenge is to build out this task management app and get it looking as close to the design as possible.
@@ -34,3 +33,9 @@ Your users should be able to:
 - Tasks
   - Adding a new task adds it to the bottom of the relevant column.
   - Updating a task's status will move the task to the relevant column. If you're taking on the drag and drop bonus, dragging a task to a different column will also update the status.
+
+## TODO
+
+- re-organize layout:
+  - Logo with Launch bar
+  - side nav with content

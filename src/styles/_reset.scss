@@ -36,4 +36,8 @@ button {
   border: inherit;
   outline: inherit;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid #dd9951;
+  }
 }

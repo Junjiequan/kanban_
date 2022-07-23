@@ -16,19 +16,19 @@ $font-30: 1.875rem;
 $white: #ffffff;
 $darkBlue: #635FC7;
 $lightBlue: #A8A4FF;
+$lightGray: #F4F7FD;
 $mediumGray: #828FA3;
-
+$darkGray: #2B2C37;
+$veryDarkGray: #20212C;
 
 $light:(
-  base-color-dark: #60cf8b,
-  white: rgb(254, 254, 254),
-  black: rgb(33, 27, 33),
+  sideBar: $white,
+  themeSwitchBox: $lightGray
 );
 
 $dark:(
-  base-color-dark: #082011,
-  white: rgb(251, 5, 5),
-  black: rgb(143, 40, 141),
+  sideBar: $darkGray,
+  themeSwitchBox: $veryDarkGray
 );
 
 

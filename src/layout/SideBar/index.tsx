@@ -4,9 +4,10 @@ import LogoLight from '../../assets/logo-light.svg';
 import LogoMobile from '../../assets/logo-mobile.svg';
 import SideNav from '../../components/SideNav';
 
-const SideBar = ({ themeChange }: any) => {
-  const colorTheme = true;
-  const LogoImg = colorTheme ? LogoDark : LogoLight;
+const SideBar = (props: any) => {
+  const { themeChange, colorTheme } = props;
+
+  const LogoImg = colorTheme === 'dark' ? LogoLight : LogoDark;
 
   return (
     <div className='SideBar'>

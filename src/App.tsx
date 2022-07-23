@@ -11,8 +11,7 @@ const App = () => {
 
   return (
     <div className={`App ${colorTheme}`}>
-      {/* <button onClick={handleColorTheme}>He</button> */}
-      <SideBar themeChange={handleColorTheme} />
+      <SideBar themeChange={handleColorTheme} colorTheme={colorTheme} />
       <Board />
     </div>
   );

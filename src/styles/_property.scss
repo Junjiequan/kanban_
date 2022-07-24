@@ -1,9 +1,12 @@
-//space variables
+//space 
 $margin-small: 1rem;
 $margin-medium: 1.5rem;   
 $margin-large: 2rem;  
 
-//font variables
+//opacity
+$hover: .6; 
+
+//font 
 $font-12: 0.75rem;
 $font-15: 0.9375rem; 
 $font-18: 1.125rem; 
@@ -12,22 +15,31 @@ $font-23: 1.4375rem;
 $font-24: 1.5rem; 
 $font-30: 1.875rem; 
 
-//color variables
+//color 
+$black: #000000;
 $white: #ffffff;
 $darkBlue: #635FC7;
 $lightBlue: #A8A4FF;
 $lightGray: #F4F7FD;
+$lightGrayLine: #E4EBFA;
 $mediumGray: #828FA3;
 $darkGray: #2B2C37;
+$darkGrayLine: #3E3F4E;
 $veryDarkGray: #20212C;
 
 $light:(
-  sideBar: $white,
+  borderLine:$lightGrayLine,
+  main: $white,
+  title: $black,
+  board:$white,
   themeSwitchBox: $lightGray
 );
 
 $dark:(
-  sideBar: $darkGray,
+  borderLine:$darkGrayLine,
+  main: $darkGray,
+  title: $white,
+  board:$veryDarkGray,
   themeSwitchBox: $veryDarkGray
 );
 

@@ -1,10 +1,11 @@
 @import "property";
 @import "reset";
 @import "function";
+@import "typography";
 
 // Layout
-@import "./layout/sideBar";
-@import "./layout/board";
+@import "./layout/header";
+@import "./layout/main";
 
 //Components
 @import "./components/sideNav";

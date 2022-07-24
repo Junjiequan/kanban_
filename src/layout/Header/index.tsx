@@ -1,23 +1,22 @@
-import React from 'react';
+import Launch from '../../components/Launch';
 import LogoDark from '../../assets/logo-dark.svg';
 import LogoLight from '../../assets/logo-light.svg';
 import LogoMobile from '../../assets/logo-mobile.svg';
-import SideNav from '../../components/SideNav';
 
-const SideBar = (props: any) => {
-  const { themeChange, colorTheme } = props;
+const Header = (props: any) => {
+  const { colorTheme } = props;
 
   const LogoImg = colorTheme === 'dark' ? LogoLight : LogoDark;
 
   return (
-    <div className='SideBar'>
-      <picture className='SideBar__Logo'>
+    <div className='Header'>
+      <picture className='Header__Logo' onClick={() => alert('jump to main')}>
         <source srcSet={LogoMobile} media='(max-width: 480px)' />
         <img src={LogoImg} />
       </picture>
-      <SideNav themeChange={themeChange} />
+      <Launch />
     </div>
   );
 };
 
-export default SideBar;
+export default Header;

@@ -1,10 +1,13 @@
 @import "../property";
 
 
-.Board {
+.Main {
   display: flex;
-  width: 100%;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background: color(board);
   @include tablet {
   }
 

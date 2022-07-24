@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import SideBar from './layout/SideBar';
-import Board from './layout/Board';
+import Header from './layout/Header';
+import Main from './layout/Main';
 import './App.scss';
 
 const App = () => {
@@ -11,8 +11,8 @@ const App = () => {
 
   return (
     <div className={`App ${colorTheme}`}>
-      <SideBar themeChange={handleColorTheme} colorTheme={colorTheme} />
-      <Board />
+      <Header themeChange={handleColorTheme} colorTheme={colorTheme} />
+      <Main themeChange={handleColorTheme} />
     </div>
   );
 };

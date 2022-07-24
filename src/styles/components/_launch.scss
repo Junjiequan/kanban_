@@ -1,6 +1,11 @@
 @import "../property";
 
 .Launch {
-  background: red;
-  color: white;
+  display: flex;
+  width: 100%;
+  background: color(main);
+  padding: $margin-large 0 0 $margin-medium;
+  border-bottom: 1px solid color(borderLine);
+  color: color(title);
 }
+

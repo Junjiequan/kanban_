@@ -1,0 +1,23 @@
+@import "../function";
+@import "../property";
+
+
+.Header {
+  display: flex;
+  width: 100%;
+  height: 6rem;
+  background: color(main);
+  @include tablet {
+  }
+
+  @include mobile {
+  }
+
+  &__Logo {
+    min-width: 18.75rem;
+    border-right: 1px solid color(borderLine);
+    border-bottom: 1px solid color(borderLine);
+    padding: $margin-large 0 3.375rem $margin-large;
+    cursor: pointer;
+  }
+}

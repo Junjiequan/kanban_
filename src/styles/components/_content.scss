@@ -1,10 +1,20 @@
-.Content {
+
+ .Content {
   display: flex;
   min-width:100%;
   height: 100%;
   color: $white;
   transition: transform .2s ease;
+  padding: $margin-medium $margin-large;
+
   &__full {
     transform: translateX(-18.75rem);
   }
+}
+.Content__column {
+  display: flex;
+  margin-right: $margin-large;
+  width: 30rem;
+  height: 100%;
+  border: 1px solid gray;
 }

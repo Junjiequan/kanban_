@@ -1,0 +1,10 @@
+.Content {
+  display: flex;
+  min-width:100%;
+  height: 100%;
+  color: $white;
+  transition: transform .2s ease;
+  &__full {
+    transform: translateX(-18.75rem);
+  }
+}

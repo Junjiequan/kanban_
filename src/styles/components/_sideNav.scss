@@ -7,11 +7,20 @@
   color: $mediumGray;
   background: color(main);
   font-weight: bold;
-  width: 18.75rem;
+  min-width: 18.75rem;
   height: 100%;
+  left:0;
   padding-top: 1rem;
   padding-bottom: $margin-large;
   border-right: 1px solid color(borderLine);
+  transition: transform .2s ease;
+
+  &__isMobile {
+    visibility:hidden;
+  }
+  &__hide {
+    transform: translateX(-100%);
+  }
 }
 
 .SideNav__head {
@@ -101,7 +110,7 @@
 
   &--ball {
     position: absolute;
-    transition: all .2s ease;
+    transition: left .2s ease;
     width: 14px;
     height: 14px;
     background: $white;
@@ -109,7 +118,7 @@
   }
 }
 
-.SideNav__hide {
+.SideNav__hideButton {
   font-size: $font-15;
   color: $mediumGray;
   display: flex;

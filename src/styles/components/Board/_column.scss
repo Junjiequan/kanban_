@@ -1,0 +1,45 @@
+
+.Column {
+  display: flex;
+  flex-direction: column;
+  margin-right: $margin-large;
+  width: 17.5rem;
+  height: 100%;
+  color: color(title);
+}
+
+.Column__title {
+  display: flex;
+  align-items: center;
+  margin-bottom:$margin-medium;
+  font-size: $font-12;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: $mediumGray;
+}
+
+.Column__title-ball {
+  display: flex;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin-right: 12px;
+
+  &--0 {
+    background: #49C4E5;
+  }
+  &--1 {
+    background: #8471F2;
+  }
+  &--2 {
+    background: #67E2AE;
+  }
+  &--3 {
+    background: #e5a449;
+  }
+}
+
+.Column__container {
+  
+}

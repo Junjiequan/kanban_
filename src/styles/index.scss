@@ -11,4 +11,8 @@
 //Components
 @import "./components/sideNav";
 @import "./components//launch";
-@import "./components/content";
+
+//Components/Board
+@import "./components/Board/board";
+@import "./components/Board/column";
+@import "./components/Board/card";

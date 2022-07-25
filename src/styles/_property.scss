@@ -26,8 +26,11 @@ $mediumGray: #828FA3;
 $darkGray: #2B2C37;
 $darkGrayLine: #3E3F4E;
 $veryDarkGray: #20212C;
+$cardShadow: rgba(54, 78, 126,0.101545);
+
 
 $light:(
+  bg: $lightGray,
   borderLine:$lightGrayLine,
   main: $white,
   title: $black,
@@ -36,6 +39,7 @@ $light:(
 );
 
 $dark:(
+  bg:$veryDarkGray,
   borderLine:$darkGrayLine,
   main: $darkGray,
   title: $white,

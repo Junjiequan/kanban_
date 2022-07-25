@@ -8,6 +8,17 @@ const Column = (props: any) => {
       </div>
       <div className='Column__container'>
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </div>
   );

@@ -1,0 +1,20 @@
+
+.Launch {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  background: color(main);
+  padding: $margin-large;
+  border-bottom: 1px solid color(borderLine);
+  color: color(title);
+}
+
+.Launch__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.Launch__button-ellipsis {
+  margin-left: $margin-medium;
+}

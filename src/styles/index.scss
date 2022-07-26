@@ -9,10 +9,12 @@
 @import "./layout/main";
 
 //Components
-@import "./components/sideNav";
-@import "./components//launch";
-
-//Components/Board
+@import "./components/SideNav/sideNav";
+@import "./components/Launch/launch";
 @import "./components/Board/board";
 @import "./components/Board/column";
 @import "./components/Board/card";
+
+
+//standard
+@import "./standard/button"

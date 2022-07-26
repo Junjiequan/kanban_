@@ -14,9 +14,9 @@ const Modals = (props: any) => {
       {props.modal.ViewTask && <ViewTask {...props} />}
       {props.modal.AddNewTask && <AddNewTask {...props} />}
       {props.modal.AddBoard && <AddBoard {...props} />}
-      {props.modal.AddNewTask && <EdlitTask {...props} />}
-      {props.modal.EdlitTask && <EditBoard {...props} />}
-      {props.modal.EditBoard && <AddBoard {...props} />}
+      {props.modal.AddNewTask && <AddNewTask {...props} />}
+      {props.modal.EdlitTask && <EdlitTask {...props} />}
+      {props.modal.EditBoard && <EditBoard {...props} />}
       {props.modal.DeleteBoard && <DeleteBoard {...props} />}
       {props.modal.DeleteTask && <DeleteTask {...props} />}
     </>

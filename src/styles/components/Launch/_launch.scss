@@ -1,11 +1,12 @@
 
 .Launch {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: fit-content;
+  height: 100%;
   background: color(main);
-  padding: $margin-large;
+  padding: 0 $margin-large;
   border-bottom: 1px solid color(borderLine);
   color: color(title);
 }

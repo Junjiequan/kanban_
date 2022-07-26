@@ -7,12 +7,14 @@ export interface IThemeChange {
   themeChange: () => void;
 }
 
+// interface ModalDetail {}
+
 export interface IModal {
-  ViewTask?: boolean;
-  AddNewTask?: boolean;
-  AddBoard?: boolean;
-  EdlitTask?: boolean;
-  EditBoard?: boolean;
+  ViewTask?: boolean | any;
+  AddNewTask?: boolean | any;
+  AddBoard?: boolean | any;
+  EdlitTask?: boolean | any;
+  EditBoard?: boolean | any;
   DeleteBoard?: boolean;
   DeleteTask?: boolean;
 }

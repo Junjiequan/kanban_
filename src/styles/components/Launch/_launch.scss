@@ -16,5 +16,17 @@
 }
 
 .Launch__button-ellipsis {
-  margin-left: $margin-medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: $margin-small;
+  width: 22px;
+  height: 38px;
+  border-radius: 10px;
+  opacity: 1;
+  color: $mediumGray;
+  transition: background-color .2s ease,color .2s ease;
+  &:hover {
+    background: color(ellipsis);
+  }
 }

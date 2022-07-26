@@ -38,6 +38,7 @@ $light:(
   board:$white,
   themeSwitchBox: $lightGray,
   addButton: $veryLightBlue,
+  ellipsis: $lightGrayLine,
 );
 
 $dark:(
@@ -48,6 +49,8 @@ $dark:(
   board:$veryDarkGray,
   themeSwitchBox: $veryDarkGray,
   addButton: $white,
+  ellipsis: $veryDarkGray,
+  
 );
 
 

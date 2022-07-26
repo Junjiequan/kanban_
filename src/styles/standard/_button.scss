@@ -8,9 +8,13 @@
   border-radius: 30px;
   color: $white;
   font-size: $font-15;
+  transition: background-color .2s ease;
 
   &--withTheme {
-    color:$darkBlue;
     background: color(addButton);
+  }
+
+  &:hover{
+    background: $lightBlue;
   }
 }

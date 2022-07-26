@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import Header from './layout/Header';
 import Main from './layout/Main';
 import boardData from './data/data.json';
+import Modals from './components/Modals';
 import './App.scss';
 
 const App = () => {
   const [data, setData] = useState(boardData.boards);
-
+  const [modal, setModal] = useState();
   const [colorTheme, setColorTheme] = useState('dark');
   const handleColorTheme = () => {
     return colorTheme === 'dark' ? setColorTheme('light') : setColorTheme('dark');
@@ -32,8 +33,9 @@ const App = () => {
   // }, []);
   return (
     <div className={`App ${colorTheme}`}>
-      <Header themeChange={handleColorTheme} colorTheme={colorTheme} />
+      <Header themeChange={handleColorTheme} colorTheme={colorTheme} setModal={setModal} />
       <Main themeChange={handleColorTheme} />
+      <Modals modal={modal} setModal={setModal} />
     </div>
   );
 };

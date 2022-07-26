@@ -1,3 +1,4 @@
+// fundamentals
 @import "./property";
 @import "./reset";
 @import "./function";
@@ -15,6 +16,6 @@
 @import "./components/Board/column";
 @import "./components/Board/card";
 
-
 //standard
-@import "./standard/button"
+@import "./standard/button";
+@import "./standard/modal"

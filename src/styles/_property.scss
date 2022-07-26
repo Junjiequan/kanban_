@@ -28,13 +28,15 @@ $darkGray: #2B2C37;
 $darkGrayLine: #3E3F4E;
 $veryDarkGray: #20212C;
 $cardShadow: rgba(54, 78, 126,0.101545);
-
+$overlay: rgba(0,0,0,0.5);
 
 $light:(
   bg: $lightGray,
+  scroll:$mediumGray,
   borderLine:$lightGrayLine,
   main: $white,
   title: $black,
+  subTitle: $mediumGray,
   board:$white,
   themeSwitchBox: $lightGray,
   addButton: $veryLightBlue,
@@ -43,9 +45,11 @@ $light:(
 
 $dark:(
   bg:$veryDarkGray,
+  scroll:$darkGrayLine,
   borderLine:$darkGrayLine,
   main: $darkGray,
   title: $white,
+  subTitle: $white,
   board:$veryDarkGray,
   themeSwitchBox: $veryDarkGray,
   addButton: $white,

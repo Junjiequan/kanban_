@@ -8,6 +8,7 @@
   color: $white;
   transition: left .2s ease;
   padding: $margin-medium $margin-large;
+  cursor: move;
 
   &__full {
     left: 0;

@@ -9,12 +9,13 @@
   font-weight: bold;
   min-width: 18.75rem;
   height: calc(100% - 6rem);
+  z-index:2;
   left:0;
   padding-top: 1rem;
   padding-bottom: $margin-large;
   border-right: 1px solid color(borderLine);
   transition: transform .2s ease;
-
+  cursor: default;
   &__isMobile {
     visibility:hidden;
   }

@@ -11,8 +11,7 @@
   padding: $margin-medium $margin-small;
   margin-bottom: $margin-medium;
   transition: filter .2s ease;
-  cursor: pointer;
-
+  cursor: grab;
   &:hover {
     filter: opacity(45%);
   }

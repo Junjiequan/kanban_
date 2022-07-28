@@ -10,15 +10,31 @@ export interface IThemeChange {
 // interface ModalDetail {}
 
 export interface IModal {
-  ViewTask?: boolean | any;
-  AddNewTask?: boolean | any;
-  AddBoard?: boolean | any;
-  EdlitTask?: boolean | any;
-  EditBoard?: boolean | any;
+  ViewTask?: boolean | Record<string, never>;
+  AddNewTask?: boolean | Record<string, never>;
+  AddBoard?: boolean | Record<string, never>;
+  EdlitTask?: boolean | Record<string, never>;
+  EditBoard?: boolean | Record<string, never>;
   DeleteBoard?: boolean;
   DeleteTask?: boolean;
 }
 
 export interface DataState {
-  data: any;
+  data: LocalData | Record<string, never>;
+}
+
+export interface LocalData {
+  name: string;
+  columns?: {
+    name: string;
+    tasks: {
+      title: string;
+      description: string;
+      status: string;
+      subtasks?: {
+        title: string;
+        isCompleted: boolean;
+      }[];
+    }[];
+  }[];
 }

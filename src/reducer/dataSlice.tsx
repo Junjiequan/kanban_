@@ -1,10 +1,9 @@
 import {
-  AnyAction,
   // createAsyncThunk,
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { type DataState } from '..//data/type';
+import { type LocalData, type DataState } from '../data/type';
 
 const initialState: DataState = {
   data: {},
@@ -14,10 +13,10 @@ export const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    getLocalData: (state, action: any) => {
+    getLocalData: (state, action: PayloadAction<LocalData>) => {
       return { ...state, data: action.payload };
     },
-    getData: (state) => state.data,
+    getData: (state) => state,
   },
 });
 

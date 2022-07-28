@@ -10,8 +10,8 @@ import { AppDispatch, RootState } from './store';
 
 const App = () => {
   const [modal, setModal] = useState<IModal>({});
-  const data = useSelector((state: RootState) => state.data.data);
-  const dispatch: any = useDispatch<AppDispatch>();
+  // const data = useSelector((state: RootState) => state.data.data);
+  const dispatch = useDispatch<AppDispatch>();
   const [colorTheme, setColorTheme] = useState('dark');
   const handleColorTheme = () => {
     return colorTheme === 'dark' ? setColorTheme('light') : setColorTheme('dark');
@@ -30,7 +30,7 @@ const App = () => {
     const fetchData = async () => {
       try {
         const response = await import('./data/data.json');
-        const data: any = response.boards[0];
+        const data = response.boards[0];
         dispatch(getLocalData(data));
       } catch (err) {
         console.log(err);

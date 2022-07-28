@@ -42,13 +42,12 @@
 }
 
 .Column__container {
-  height: 100%;
+  height: 100vh;
 
   &--empty{
     border: 1px solid $mediumGrayOpacity;
     border-radius: 6px;
   }
-
 }
 
 .Column__addNewButton {

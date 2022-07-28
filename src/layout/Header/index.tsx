@@ -2,8 +2,14 @@ import Launch from '../../components/Launch';
 import LogoDark from '../../assets/logo-dark.svg';
 import LogoLight from '../../assets/logo-light.svg';
 import LogoMobile from '../../assets/logo-mobile.svg';
+import type { IModal } from '../../data/type';
 
-const Header = (props: any) => {
+interface HeaderProps {
+  setModal: (value: IModal) => void;
+  colorTheme: string;
+}
+
+const Header = (props: HeaderProps) => {
   const { colorTheme, setModal } = props;
 
   const LogoImg = colorTheme === 'dark' ? LogoLight : LogoDark;

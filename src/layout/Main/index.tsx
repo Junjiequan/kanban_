@@ -3,9 +3,12 @@ import Board from '../../components/Board';
 import SideNav from '../../components/SideNav';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { IconShow } from '../../data/icons';
-import { type IThemeChange } from '../../data/type';
 
-const Main = (props: IThemeChange) => {
+interface MainProps {
+  themeChange: () => void;
+}
+
+const Main = (props: MainProps) => {
   const { themeChange } = props;
   const [hideSideNav, setHideSideNav] = useState<boolean>(false);
 

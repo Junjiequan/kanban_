@@ -4,9 +4,6 @@ export interface ITab {
   addNew?: boolean;
   defaultTab?: boolean;
 }
-export interface IThemeChange {
-  themeChange: () => void;
-}
 
 // interface ModalDetail {}
 

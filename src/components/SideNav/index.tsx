@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { type IThemeChange } from '../../data/type';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { IconHide, IconMoon, IconSun } from '../../data/icons';
 
 import Tab from './Tab';
 import { useAppSelector } from '../../hooks/useRedux';
 
-const SideNav = (props: any) => {
+interface SideNavProps {
+  themeChange: () => void;
+  toggleOnHide: () => void;
+  hideSideNav: boolean;
+}
+
+const SideNav = (props: SideNavProps) => {
   const { themeChange, hideSideNav, toggleOnHide } = props;
   const [toggled, setToggled] = useState<boolean>(false);
 
   const board = useAppSelector((state) => state.data.data);
-  const tab = useAppSelector((state) => state.boardTab);
 
   const mobileQuery = useMediaQuery('(max-width: 480px)');
 

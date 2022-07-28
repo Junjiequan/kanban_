@@ -1,7 +1,11 @@
 import React from 'react';
 import type { ITask, ISubTask } from '../../data/type';
 
-const Card = (props: { cardData: ITask }) => {
+interface CardProps {
+  cardData: ITask;
+}
+
+const Card = (props: CardProps) => {
   const { cardData } = props;
   const countCompleted = cardData.subtasks?.filter((item) => item.isCompleted === true);
 

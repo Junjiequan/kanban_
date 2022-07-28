@@ -2,12 +2,12 @@ import React from 'react';
 import Card from './Card';
 import type { IColumn } from '../../data/type';
 
-export interface ColumnProp {
+interface ColumnProps {
   columnData: IColumn | undefined;
   ballColor: number;
 }
 
-const Column = (props: ColumnProp) => {
+const Column = (props: ColumnProps) => {
   const { columnData, ballColor } = props;
 
   if (!columnData) {

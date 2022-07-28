@@ -3,7 +3,11 @@ import { useAppSelector } from '../../hooks/useRedux';
 import Column from './Column';
 import type { IColumn } from '../../data/type';
 
-const Board = (props: any) => {
+interface BoardProps {
+  hideSideNav: boolean;
+}
+
+const Board = (props: BoardProps) => {
   const { hideSideNav } = props;
   const board = useAppSelector((state) => state.data.data);
   const currentTab = useAppSelector((state) => state.boardTab);

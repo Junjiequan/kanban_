@@ -18,3 +18,7 @@ export interface IModal {
   DeleteBoard?: boolean;
   DeleteTask?: boolean;
 }
+
+export interface DataState {
+  data: any;
+}

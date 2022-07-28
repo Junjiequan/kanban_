@@ -2,16 +2,14 @@ import { useState, useEffect } from 'react';
 import Header from './layout/Header';
 import Main from './layout/Main';
 import Modals from './components/Modals';
-import { type IModal } from './data/type';
+import type { IModal } from './data/type';
 import './App.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { getLocalData } from './reducer/dataSlice';
-import { AppDispatch, RootState } from './store';
+import { useAppDispatch } from './hooks/useRedux';
 
 const App = () => {
   const [modal, setModal] = useState<IModal>({});
-  // const data = useSelector((state: RootState) => state.data.data);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [colorTheme, setColorTheme] = useState('dark');
   const handleColorTheme = () => {
     return colorTheme === 'dark' ? setColorTheme('light') : setColorTheme('dark');

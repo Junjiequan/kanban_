@@ -23,18 +23,28 @@ export interface DataState {
   data: LocalData | Record<string, never>;
 }
 
+/**
+ * @desc Column data below
+ */
+
+export interface ISubTask {
+  title?: string;
+  isCompleted?: boolean;
+}
+
+export interface ITask {
+  title?: string;
+  description?: string;
+  status?: string;
+  subtasks?: ISubTask[];
+}
+
+export interface IColumn {
+  name?: string;
+  tasks?: ITask[];
+}
+
 export interface LocalData {
   name: string;
-  columns?: {
-    name: string;
-    tasks: {
-      title: string;
-      description: string;
-      status: string;
-      subtasks?: {
-        title: string;
-        isCompleted: boolean;
-      }[];
-    }[];
-  }[];
+  columns?: IColumn[];
 }

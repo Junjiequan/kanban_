@@ -3,7 +3,7 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { type LocalData, type DataState } from '../data/type';
+import type { LocalData, DataState } from '../data/type';
 
 const initialState: DataState = {
   data: {},

@@ -3,17 +3,21 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import type { LocalData, DataState } from '../data/type';
+import type { IBoard } from '../data/type';
+
+export interface DataState {
+  data: IBoard[];
+}
 
 const initialState: DataState = {
-  data: {},
+  data: [],
 };
 
 export const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    getLocalData: (state, action: PayloadAction<LocalData>) => {
+    getLocalData: (state, action: PayloadAction<IBoard[]>) => {
       return { ...state, data: action.payload };
     },
     getData: (state) => state,

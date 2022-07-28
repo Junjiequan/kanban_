@@ -1,4 +1,5 @@
 //space 
+$margin-tiny: .5rem;
 $margin-small: 1rem;
 $margin-medium: 1.5rem;   
 $margin-large: 2rem;  
@@ -23,12 +24,14 @@ $veryLightBlue:#f0effa;
 $lightBlue: #A8A4FF;
 $lightGray: #F4F7FD;
 $lightGrayLine: #E4EBFA;
-$mediumGray: #828FA3;
+$mediumGray: #828fa3;
 $darkGray: #2B2C37;
 $darkGrayLine: #3E3F4E;
 $veryDarkGray: #20212C;
 $cardShadow: rgba(54, 78, 126,0.101545);
 $overlay: rgba(0,0,0,0.5);
+$mediumGrayOpacity: rgba(130,143,163,0.4);
+$mediumGrayGradient: linear-gradient(to bottom, rgba(121, 132, 147, 0.2),rgba(130,143,163,0.1), rgba(130,143,163,0));
 
 $light:(
   bg: $lightGray,

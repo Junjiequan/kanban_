@@ -1,10 +1,16 @@
 import React from 'react';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { type ITab } from '../../data/type';
 import { IconBoard } from '../../data/icons';
+import { useAppSelector } from '../../hooks/useRedux';
+import { setTab } from '../../reducer/boardTabSlice';
 
 const Tab = (props: ITab) => {
-  const { tab, addNew } = props;
-  const active = tab === 'Roadmap';
+  const { tab, addNew, defaultTab } = props;
+  const dispatch = useAppDispatch();
+  const currentTab = useAppSelector((state) => state.boardTab);
+
+  const active = currentTab ? currentTab === tab : defaultTab;
 
   if (addNew) {
     return (
@@ -14,7 +20,7 @@ const Tab = (props: ITab) => {
     );
   }
   return (
-    <button className={`SideNav__tab ${active ? 'SideNav__tab--active' : ''}`}>
+    <button className={`SideNav__tab ${active ? 'SideNav__tab--active' : ''}`} onClick={() => dispatch(setTab(tab))}>
       <IconBoard />
       {tab}
     </button>

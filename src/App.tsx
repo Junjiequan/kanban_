@@ -28,7 +28,7 @@ const App = () => {
     const fetchData = async () => {
       try {
         const response = await import('./data/data.json');
-        const data = response.boards[0];
+        const data = response.boards;
         dispatch(getLocalData(data));
       } catch (err) {
         console.log(err);

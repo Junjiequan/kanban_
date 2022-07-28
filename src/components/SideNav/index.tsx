@@ -4,14 +4,16 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import { IconHide, IconMoon, IconSun } from '../../data/icons';
 
 import Tab from './Tab';
+import { useAppSelector } from '../../hooks/useRedux';
 
 const SideNav = (props: any) => {
   const { themeChange, hideSideNav, toggleOnHide } = props;
   const [toggled, setToggled] = useState<boolean>(false);
 
-  const mobileQuery = useMediaQuery('(max-width: 480px)');
+  const board = useAppSelector((state) => state.data.data);
+  const tab = useAppSelector((state) => state.boardTab);
 
-  const fakeData: string[] = ['Platform Launch', 'Marketing Plan', 'Roadmap'];
+  const mobileQuery = useMediaQuery('(max-width: 480px)');
 
   const handleThemeToggle = () => {
     themeChange();
@@ -23,11 +25,11 @@ const SideNav = (props: any) => {
   return (
     <div className={`SideNav ${isMobile} ${onHide}`}>
       <div className='SideNav__top'>
-        <div className='SideNav__head'>ALL BOARDS ({fakeData.length})</div>
+        <div className='SideNav__head'>ALL BOARDS ({board.length})</div>
 
         <div>
-          {fakeData.map((tab, index) => (
-            <Tab key={index} tab={tab} />
+          {board.map((tab, index) => (
+            <Tab key={index} tab={tab.name} defaultTab={index === 0} />
           ))}
         </div>
         <Tab addNew />

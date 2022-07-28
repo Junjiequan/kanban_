@@ -24,7 +24,8 @@
 .Card__title {
   font-size: $font-15;
   font-weight: bold;
-  color: color(title)
+  color: color(title);
+  margin-bottom: $margin-tiny;
 }
 
 .Card__count {

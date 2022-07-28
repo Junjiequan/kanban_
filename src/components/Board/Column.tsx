@@ -1,24 +1,35 @@
 import React from 'react';
 import Card from './Card';
-const Column = (props: any) => {
+import type { IColumn } from '../../data/type';
+
+export interface ColumnProp {
+  columnData: IColumn | undefined;
+  ballColor: number;
+}
+
+const Column = (props: ColumnProp) => {
+  const { columnData, ballColor } = props;
+
+  if (!columnData) {
+    return (
+      <div className='Column'>
+        <div className='Column__title'>&nbsp;</div>
+        <button className='Column__addNewButton' onClick={() => console.log('clicked')}>
+          + New Column
+        </button>
+      </div>
+    );
+  }
   return (
     <div className='Column'>
       <div className='Column__title'>
-        <span className={`Column__title-ball Column__title-ball--${0}`}></span>Todo(4)
+        <span className={`Column__title-ball Column__title-ball--${ballColor}`}></span>
+        {columnData.name}({columnData.tasks?.length})
       </div>
-      <div className='Column__container'>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <div className={`Column__container ${columnData.tasks?.length ? '' : 'Column__container--empty'}`}>
+        {columnData.tasks?.map((cardData) => {
+          return <Card key={cardData.title} cardData={cardData} />;
+        })}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ export interface ITab {
   key?: number;
   tab?: string;
   addNew?: boolean;
+  defaultTab?: boolean;
 }
 export interface IThemeChange {
   themeChange: () => void;
@@ -17,10 +18,6 @@ export interface IModal {
   EditBoard?: boolean | Record<string, never>;
   DeleteBoard?: boolean;
   DeleteTask?: boolean;
-}
-
-export interface DataState {
-  data: LocalData | Record<string, never>;
 }
 
 /**
@@ -44,7 +41,7 @@ export interface IColumn {
   tasks?: ITask[];
 }
 
-export interface LocalData {
-  name: string;
+export interface IBoard {
+  name?: string;
   columns?: IColumn[];
 }

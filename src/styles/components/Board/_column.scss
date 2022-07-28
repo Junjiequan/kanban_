@@ -42,5 +42,23 @@
 }
 
 .Column__container {
-  
+  height: 100%;
+
+  &--empty{
+    border: 1px solid $mediumGrayOpacity;
+    border-radius: 6px;
+  }
+
+}
+
+.Column__addNewButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-24;
+  font-weight: bold;
+  color: $mediumGray;
+  background: $mediumGrayGradient;
+  height: 100%;
+  border-radius: 6px;
 }

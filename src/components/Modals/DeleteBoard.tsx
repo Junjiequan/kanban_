@@ -1,7 +1,12 @@
 import React from 'react';
 import { IModal } from '../../data/type';
+import Modal from '../../standard/Modal';
 const DeleteBoard = (props: IModal) => {
-  return <div>DeleteBoard</div>;
+  return (
+    <Modal>
+      <>DeleteBoard</>
+    </Modal>
+  );
 };
 
 export default DeleteBoard;

@@ -1,8 +1,13 @@
 import React from 'react';
+import Modal from '../../standard/Modal';
 import { IModal } from '../../data/type';
 
 const EditBoard = (props: IModal) => {
-  return <div>EditBoard</div>;
+  return (
+    <Modal>
+      <>Edit</>
+    </Modal>
+  );
 };
 
 export default EditBoard;

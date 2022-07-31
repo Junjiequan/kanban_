@@ -9,9 +9,19 @@ export interface ITab {
 //   nothing: '';
 // }
 
+export type modalTypes =
+  | 'ViewTask'
+  | 'AddBoard'
+  | 'AddNewTask'
+  | 'EdlitTask'
+  | 'EditBoard'
+  | 'DeleteBoard'
+  | 'DeleteTask'
+  | '';
+
 export interface IModal {
-  ModalType: string;
-  ModalDetail?: Record<string, never> | undefined;
+  ModalType: modalTypes;
+  ModalDetail?: Record<string, never> | any;
 }
 
 /**

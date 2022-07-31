@@ -5,12 +5,11 @@ import LogoMobile from '../../assets/logo-mobile.svg';
 import type { IModal } from '../../data/type';
 
 interface HeaderProps {
-  setModal: (value: IModal) => void;
   colorTheme: string;
 }
 
 const Header = (props: HeaderProps) => {
-  const { colorTheme, setModal } = props;
+  const { colorTheme } = props;
 
   const LogoImg = colorTheme === 'dark' ? LogoLight : LogoDark;
 
@@ -20,7 +19,7 @@ const Header = (props: HeaderProps) => {
         <source srcSet={LogoMobile} media='(max-width: 480px)' />
         <img src={LogoImg} />
       </picture>
-      <Launch setModal={setModal} />
+      <Launch />
     </div>
   );
 };

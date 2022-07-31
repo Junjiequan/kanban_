@@ -1,17 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { IModal } from '../data/type';
 
 // TODO optimize initialstate for modal??
-const initialState = '';
+const initialState: IModal = {
+  ModalType: '',
+  ModalDetail: {},
+};
 
 export const ModalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action: PayloadAction<string | undefined>) => {
-      return action.payload;
+    openModal: (state, action: PayloadAction<string>) => {
+      return { ...state, ModalType: action.payload };
     },
-    closeModal: (state: any, action: PayloadAction<undefined>) => {
-      return undefined;
+    closeModal: (state) => {
+      return {
+        ...state,
+        ModalType: '',
+      };
     },
   },
 });

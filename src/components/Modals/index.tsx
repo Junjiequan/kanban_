@@ -6,19 +6,19 @@ import EdlitTask from './EdlitTask';
 import EditBoard from './EditBoard';
 import DeleteBoard from './DeleteBoard';
 import DeleteTask from './DeleteTask';
+import { useAppSelector } from '../../hooks/useRedux';
 
-const Modals = (props: any) => {
-  if (!props.modal) return null;
+const Modals = () => {
+  const getModal = useAppSelector((state) => state.modal);
   return (
     <>
-      {props.modal.ViewTask && <ViewTask {...props} />}
-      {props.modal.AddNewTask && <AddNewTask {...props} />}
-      {props.modal.AddBoard && <AddBoard {...props} />}
-      {props.modal.AddNewTask && <AddNewTask {...props} />}
-      {props.modal.EdlitTask && <EdlitTask {...props} />}
-      {props.modal.EditBoard && <EditBoard {...props} />}
-      {props.modal.DeleteBoard && <DeleteBoard {...props} />}
-      {props.modal.DeleteTask && <DeleteTask {...props} />}
+      {getModal.ModalType === 'ViewTask' && <ViewTask {...getModal} />}
+      {getModal.ModalType === 'AddBoard' && <AddBoard {...getModal} />}
+      {getModal.ModalType === 'AddNewTask' && <AddNewTask {...getModal} />}
+      {getModal.ModalType === 'EdlitTask' && <EdlitTask {...getModal} />}
+      {getModal.ModalType === 'EditBoard' && <EditBoard {...getModal} />}
+      {getModal.ModalType === 'DeleteBoard' && <DeleteBoard {...getModal} />}
+      {getModal.ModalType === 'DeleteTask' && <DeleteTask {...getModal} />}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
+import { IModal } from '../../data/type';
 
-const AddNewTask = () => {
+const AddNewTask = (props: IModal) => {
   return <div>AddNewTask</div>;
 };
 

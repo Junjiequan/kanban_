@@ -1,12 +1,25 @@
 import React from 'react';
 import Modal from '../../standard/Modal';
+import { IModal } from '../../data/type';
 
-const ViewTask = (props: any) => {
-  // const { detail } = props;
-
+const ViewTask = (props: IModal) => {
+  const { ModalDetail } = props;
   return (
-    <Modal {...props}>
-      ViewTask <button onClick={() => console.log('hello fucker')}>asdas</button>
+    <Modal>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'start',
+          width: '100%',
+          border: '1px solid red',
+        }}
+      >
+        ViewTask <button onClick={() => console.log('hello fucker')}>asdas</button>
+        asdjoiasdijosad
+        <br />
+        asdasdasd
+      </div>
     </Modal>
   );
 };

@@ -5,16 +5,13 @@ export interface ITab {
   defaultTab?: boolean;
 }
 
-// interface ModalDetail {}
+// interface ModalDetail {
+//   nothing: '';
+// }
 
 export interface IModal {
-  ViewTask?: boolean | Record<string, never>;
-  AddNewTask?: boolean | Record<string, never>;
-  AddBoard?: boolean | Record<string, never>;
-  EdlitTask?: boolean | Record<string, never>;
-  EditBoard?: boolean | Record<string, never>;
-  DeleteBoard?: boolean;
-  DeleteTask?: boolean;
+  ModalType: string;
+  ModalDetail?: Record<string, never> | undefined;
 }
 
 /**

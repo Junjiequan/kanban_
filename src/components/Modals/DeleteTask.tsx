@@ -1,6 +1,7 @@
 import React from 'react';
+import { IModal } from '../../data/type';
 
-const DeleteTask = () => {
+const DeleteTask = (props: IModal) => {
   return <div>DeleteTask</div>;
 };
 

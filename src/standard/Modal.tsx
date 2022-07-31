@@ -1,10 +1,12 @@
 import React from 'react';
+import { useAppDispatch } from '../hooks/useRedux';
+import { closeModal } from '../reducer/modalSlice';
 
-const Modal = (props: any) => {
-  const { modal, closeModal } = props;
-  if (!modal) return null;
+const Modal = (props: { children: JSX.Element }) => {
+  const dispatch = useAppDispatch();
+
   return (
-    <div className='Overlay' onClick={() => closeModal()}>
+    <div className='Overlay' onClick={() => dispatch(closeModal())}>
       <div className='Modal' onClick={(e) => e.stopPropagation()}>
         {props.children}
       </div>

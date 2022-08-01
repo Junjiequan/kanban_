@@ -12,7 +12,7 @@ const Launch = () => {
       <div className='Launch__buttons'>
         <Button onClick={() => dispatch(openModal({ ModalType: 'AddNewTask' }))}> + Add New task </Button>
         <DropDown
-          text={'task'}
+          text={'Board'}
           onEdit={() => dispatch(openModal({ ModalType: 'EditBoard' }))}
           onDelete={() => dispatch(openModal({ ModalType: 'DeleteBoard' }))}
         />

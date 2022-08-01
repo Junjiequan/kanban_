@@ -5,7 +5,7 @@ import { IModal } from '../../data/type';
 const EditBoard = (props: IModal) => {
   return (
     <Modal>
-      <>Edit</>
+      <>Edit Board</>
     </Modal>
   );
 };

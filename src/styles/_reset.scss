@@ -41,3 +41,9 @@ button {
     outline: 2px solid #dd9951;
   }
 }
+
+input[type="checkbox"] {
+  &:focus-visible {
+    outline: 2px solid #dd9951;
+  }
+}

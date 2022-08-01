@@ -21,6 +21,10 @@
     background: $darkBlue;
     border-radius: 0 25px 25px 0;
     animation: fadeIn .3s ease-in;
+    transition: background-color .2s ease;
+    &:hover {
+      background: $lightBlue;
+    }
   }
 
   &::-webkit-scrollbar {

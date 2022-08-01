@@ -1,9 +1,9 @@
-import React from 'react';
 import Modal from '../../standard/Modal';
 import { IModal } from '../../data/type';
 import DropDown from '../../standard/DropDown';
 import { openModal } from '../../reducer/modalSlice';
 import { useAppDispatch } from '../../hooks/useRedux';
+import CheckBox from '../../standard/CheckBox';
 
 const ViewTask = (props: IModal) => {
   const { ModalDetail } = props;
@@ -13,22 +13,23 @@ const ViewTask = (props: IModal) => {
   return (
     <Modal>
       <div className='ViewTask'>
-        <div className='ViewTask__title'>
-          <h1>{ModalDetail.title} </h1>
+        <div className='ViewTask__top'>
+          <p className='ViewTask__title'>{ModalDetail.title} </p>
           <DropDown
             text='task'
             onEdit={() => dispatch(openModal({ ModalType: 'EditTask' }))}
             onDelete={() => dispatch(openModal({ ModalType: 'DeleteTask' }))}
           />
         </div>
-        <p>{ModalDetail.description}</p>
-        <p>
-          {' '}
-          {countCompleted?.length} of {ModalDetail.subtasks?.length} subtasks
+        <p className='ViewTask__desc'>{ModalDetail.description ? ModalDetail.description : 'No description'}</p>
+        <p className='ViewTask__subtasks'>
+          Subtasks ({countCompleted?.length} of {ModalDetail.subtasks?.length})
         </p>
-        {ModalDetail.subtasks.map((i: any, index: number) => (
-          <div key={index}>{i.title}</div>
-        ))}
+        <div className='ViewTasks__checkBox-container'>
+          {ModalDetail.subtasks.map((i: any, index: number) => (
+            <CheckBox key={index} task={i.title} />
+          ))}
+        </div>
         <div>
           Current Status <br /> {ModalDetail.status}
         </div>

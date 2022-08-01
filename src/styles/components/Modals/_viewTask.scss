@@ -5,11 +5,35 @@
   flex-direction: column;
   align-items: start;
   position: relative;
+
 }
 
-.ViewTask__title {
+.ViewTask__top {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: $margin-large;
+  margin-bottom: $margin-tiny;
+}
+
+.ViewTask__title {
+  font-size: $font-18;
+}
+.ViewTask__desc {
+  font-size: $font-13;
+  color: $mediumGray;
+  line-height: 23px;
+}
+
+.ViewTask__subtasks {
+  margin-top: $margin-medium;
+  color: color(subTitle);
+  font-size: $font-12;
+  margin-bottom: $margin-small;
+}
+
+.ViewTasks__checkBox-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: $margin-small;
 }

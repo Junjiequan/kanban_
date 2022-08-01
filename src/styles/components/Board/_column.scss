@@ -60,4 +60,9 @@
   background: $mediumGrayGradient;
   height: 100%;
   border-radius: 6px;
+  transition: color .2s ease;
+
+  &:hover {
+    color:$darkBlue;
+  }
 }

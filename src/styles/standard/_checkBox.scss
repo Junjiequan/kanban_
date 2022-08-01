@@ -1,0 +1,51 @@
+
+.CheckBox {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: color(themeSwitchBox);
+  border-radius: 8px;
+  margin-bottom: $margin-tiny;
+  font-size: $font-12;
+
+  & > input[type="checkbox"] {
+    appearance: none;
+    display: grid;
+    place-content: center;
+    background-color: color(main);
+    margin-right: $margin-small;
+    min-width: 1rem;
+    height: 1rem;
+    border: 1px solid $mediumGrayOpacity;
+    border-radius: 2px;
+    transition: background-color .2s ease-in-out  border .2s ease-in-out;
+    &:checked {
+      border: 0;
+      background-color: $darkBlue;
+    }
+  }
+
+  & > input[type="checkbox"]::before {
+    content: "";
+    width: .625rem;
+    height: .625rem;
+    transform-origin: bottom left;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    background-color: $white;
+  }
+
+  & > input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  & > input[type="checkbox"]:focus-visible {
+    outline-offset: max(2px, 0.15em);
+  }
+
+  & > input[type="checkbox"]:disabled {
+    color: $lightGray;
+    cursor: not-allowed;
+  }
+}

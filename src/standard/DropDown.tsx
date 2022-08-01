@@ -19,18 +19,16 @@ const DropDown = (props: DropDownProps) => {
 
   const handleOnEdit = () => {
     onEdit();
-    setOpenDropDown(false);
   };
 
   const handleOnDelete = () => {
-    setOpenDropDown(false);
     onDelete();
   };
 
   useOnClickOutside(dropDownRef, handleClickOutside);
 
   return (
-    <button ref={dropDownRef} className='DropDown__button-ellipsis' onClick={() => setOpenDropDown((prev) => !prev)}>
+    <div ref={dropDownRef} className='DropDown__button-ellipsis' onClick={() => setOpenDropDown((prev) => !prev)}>
       <IconEllipsis />
       {openDronDown && (
         <div className='DropDown'>
@@ -42,7 +40,7 @@ const DropDown = (props: DropDownProps) => {
           </button>
         </div>
       )}
-    </button>
+    </div>
   );
 };
 

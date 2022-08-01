@@ -7,6 +7,7 @@
   border-radius: 8px;
   margin-bottom: $margin-tiny;
   font-size: $font-12;
+  cursor: pointer;
 
   & > input[type="checkbox"] {
     appearance: none;

@@ -5,7 +5,7 @@ import { IModal } from '../../data/type';
 const AddBoard = (props: IModal) => {
   return (
     <Modal {...props}>
-      <>asd</>
+      <>Create New Board</>
     </Modal>
   );
 };

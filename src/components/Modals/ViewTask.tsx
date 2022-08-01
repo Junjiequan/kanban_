@@ -5,7 +5,7 @@ import { IModal } from '../../data/type';
 const ViewTask = (props: IModal) => {
   const { ModalDetail } = props;
   const countCompleted = ModalDetail.subtasks?.filter((item: any) => item.isCompleted === true);
-
+  if (!Object.keys(ModalDetail).length) return null;
   return (
     <Modal>
       <div

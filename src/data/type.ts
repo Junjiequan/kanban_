@@ -13,7 +13,7 @@ export type modalTypes =
   | 'ViewTask'
   | 'AddBoard'
   | 'AddNewTask'
-  | 'EdlitTask'
+  | 'EditTask'
   | 'EditBoard'
   | 'DeleteBoard'
   | 'DeleteTask'

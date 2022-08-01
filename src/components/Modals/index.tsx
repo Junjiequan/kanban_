@@ -2,7 +2,7 @@ import React from 'react';
 import ViewTask from './ViewTask';
 import AddBoard from './AddBoard';
 import AddNewTask from './AddNewTask';
-import EdlitTask from './EdlitTask';
+import EditTask from './EditTask';
 import EditBoard from './EditBoard';
 import DeleteBoard from './DeleteBoard';
 import DeleteTask from './DeleteTask';
@@ -15,7 +15,7 @@ const Modals = () => {
       {getModal.ModalType === 'ViewTask' && <ViewTask {...getModal} />}
       {getModal.ModalType === 'AddBoard' && <AddBoard {...getModal} />}
       {getModal.ModalType === 'AddNewTask' && <AddNewTask {...getModal} />}
-      {getModal.ModalType === 'EdlitTask' && <EdlitTask {...getModal} />}
+      {getModal.ModalType === 'EditTask' && <EditTask {...getModal} />}
       {getModal.ModalType === 'EditBoard' && <EditBoard {...getModal} />}
       {getModal.ModalType === 'DeleteBoard' && <DeleteBoard {...getModal} />}
       {getModal.ModalType === 'DeleteTask' && <DeleteTask {...getModal} />}

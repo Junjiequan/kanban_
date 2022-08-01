@@ -20,10 +20,15 @@ export const dataSlice = createSlice({
     getLocalData: (state, action: PayloadAction<IBoard[]>) => {
       return { ...state, data: action.payload };
     },
-    getData: (state) => state,
+    addBoard: (state) => state,
+    addTask: (state) => state,
+    addColumn: (state) => state,
+    editBoard: (state) => state,
+    deleteBoard: (state) => state,
+    deleteTask: (state) => state,
   },
 });
 
-export const { getData, getLocalData } = dataSlice.actions;
+export const { getLocalData, addBoard } = dataSlice.actions;
 
 export default dataSlice.reducer;

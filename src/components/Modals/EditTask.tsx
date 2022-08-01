@@ -2,12 +2,12 @@ import React from 'react';
 import { IModal } from '../../data/type';
 import Modal from '../../standard/Modal';
 
-const EdlitTask = (props: IModal) => {
+const EditTask = (props: IModal) => {
   return (
     <Modal>
-      <>EdlitTask</>
+      <>Edit Task</>
     </Modal>
   );
 };
 
-export default EdlitTask;
+export default EditTask;

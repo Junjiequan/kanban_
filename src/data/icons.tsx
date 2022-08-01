@@ -54,7 +54,7 @@ export const IconMoon = ({ color = 'currentColor' }: Icon) => {
 };
 export const IconEllipsis = () => {
   return (
-    <svg width='5' height='20' xmlns='http://www.w3.org/2000/svg'>
+    <svg width='5' height='20' xmlns='http://www.w3.org/2000/svg' style={{ pointerEvents: 'none' }}>
       <g fill='currentColor' fillRule='evenodd'>
         <circle cx='2.308' cy='2.308' r='2.308' />
         <circle cx='2.308' cy='10' r='2.308' />

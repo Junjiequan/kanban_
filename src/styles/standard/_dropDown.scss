@@ -1,6 +1,6 @@
 .DropDown {
   position: absolute;
-  top: 8%;
+  top: 110%;
   right: 2%;
   z-index: 5;
   display: flex;
@@ -11,7 +11,9 @@
   background: white; 
   padding: $margin-small;
   border-radius: 8px;
-  animation: fadeIn .5s ease; 
+  animation: fadeIn .3s ease; 
+  border: 1px solid $lightGray;
+  box-shadow: 2px 4px 6px $cardShadow;
 }
 
 .DropDown__text {
@@ -19,5 +21,22 @@
   &--warning {
     margin-top: $margin-tiny;
     color: $red;
+  }
+}
+
+.DropDown__button-ellipsis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: $margin-small;
+  position: relative;
+  width: 22px;
+  height: 38px;
+  border-radius: 10px;
+  opacity: 1;
+  color: $mediumGray;
+  transition: background-color .2s ease,color .2s ease;
+  &:hover {
+    background: color(ellipsis);
   }
 }

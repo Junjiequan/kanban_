@@ -1,24 +1,19 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import { useState, useRef } from 'react';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import { IconEllipsis } from '../data/icons';
 
 interface DropDownProps {
   text: string;
-  setOpenDropDown: Dispatch<SetStateAction<boolean>>;
   onEdit: () => void;
   onDelete: () => void;
 }
 
 const DropDown = (props: DropDownProps) => {
+  const { text, onEdit, onDelete } = props;
+  const [openDronDown, setOpenDropDown] = useState(false);
   const dropDownRef = useRef(null);
-  const { text, setOpenDropDown, onEdit, onDelete } = props;
 
-  const handleClickOutside = (e: MouseEvent) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: Object is possibly 'null'
-    const isToggleButton = e.target.attributes['data-dropdown-toggle'];
-    //click dropdown toggle button do nothing
-    if (isToggleButton) return;
-
+  const handleClickOutside = () => {
     setOpenDropDown(false);
   };
 
@@ -35,14 +30,19 @@ const DropDown = (props: DropDownProps) => {
   useOnClickOutside(dropDownRef, handleClickOutside);
 
   return (
-    <div ref={dropDownRef} className='DropDown'>
-      <button className='DropDown__text' onClick={handleOnEdit}>
-        Edit {text}
-      </button>
-      <button className='DropDown__text DropDown__text--warning' onClick={handleOnDelete}>
-        Delete {text}
-      </button>
-    </div>
+    <button ref={dropDownRef} className='DropDown__button-ellipsis' onClick={() => setOpenDropDown((prev) => !prev)}>
+      <IconEllipsis />
+      {openDronDown && (
+        <div className='DropDown'>
+          <button className='DropDown__text' onClick={handleOnEdit}>
+            Edit {text}
+          </button>
+          <button className='DropDown__text DropDown__text--warning' onClick={handleOnDelete}>
+            Delete {text}
+          </button>
+        </div>
+      )}
+    </button>
   );
 };
 

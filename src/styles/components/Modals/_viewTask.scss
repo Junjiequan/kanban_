@@ -18,22 +18,40 @@
 .ViewTask__title {
   font-size: $font-18;
 }
+
 .ViewTask__desc {
   font-size: $font-13;
   color: $mediumGray;
   line-height: 23px;
 }
 
-.ViewTask__subtasks {
+.ViewTask__checkBox {
   margin-top: $margin-medium;
-  color: color(subTitle);
-  font-size: $font-12;
-  margin-bottom: $margin-small;
-}
-
-.ViewTasks__checkBox-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: $margin-small;
 }
+
+.ViewTask__checkBox-title {
+  color: color(subTitle);
+  font-size: $font-12;
+  margin-bottom: $margin-small;
+}
+
+.ViewTask__status {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ViewTask__status-title {
+  font-size: $font-12;
+  color: color(subTitle);
+  margin-bottom: $margin-small;
+}
+
+
+.ViewTask__status-dropdown {
+}
+

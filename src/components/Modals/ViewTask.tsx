@@ -22,16 +22,23 @@ const ViewTask = (props: IModal) => {
           />
         </div>
         <p className='ViewTask__desc'>{ModalDetail.description ? ModalDetail.description : 'No description'}</p>
-        <p className='ViewTask__subtasks'>
-          Subtasks ({countCompleted?.length} of {ModalDetail.subtasks?.length})
-        </p>
-        <div className='ViewTasks__checkBox-container'>
+
+        <div className='ViewTask__checkBox'>
+          <p className='ViewTask__checkBox-title'>
+            Subtasks ({countCompleted?.length} of {ModalDetail.subtasks?.length})
+          </p>
           {ModalDetail.subtasks.map((i: any, index: number) => (
             <CheckBox key={index} task={i.title} />
           ))}
         </div>
-        <div>
-          Current Status <br /> {ModalDetail.status}
+        <div className='ViewTask__status'>
+          <p className='ViewTask__status-title'>Current Status</p>
+          {/* TODO - Make this component */}
+          <select className='ViewTask__status-dropdown'>
+            <option>Todo</option>
+            <option>Doing</option>
+            <option>Done</option>
+          </select>
         </div>
       </div>
     </Modal>

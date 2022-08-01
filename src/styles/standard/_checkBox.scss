@@ -3,19 +3,25 @@
   display: flex;
   align-items: center;
   padding: 0.75rem;
-  background: $darkBlueOpacity;
+  background: color(themeSwitchBox);
   border-radius: 8px;
   margin-bottom: $margin-tiny;
   font-size: $font-12;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
-  transition: all .2s ease-in-out;
+  text-decoration: line-through;
+  text-decoration-color: transparent;
+  transition: all .2s ease;
 
   &--checked {
     background: color(themeSwitchBox);
-    text-decoration: line-through;
     color: color(checked);
+    text-decoration-color: currentColor;
+  }
+
+  &:hover {
+    background: $darkBlueOpacity;
   }
 
   & > input[type="checkbox"] {

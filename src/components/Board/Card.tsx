@@ -1,5 +1,4 @@
-import React from 'react';
-import type { ITask, ISubTask } from '../../data/type';
+import type { ITask } from '../../data/type';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { openModal } from '../../reducer/modalSlice';
 
@@ -13,16 +12,12 @@ const Card = (props: CardProps) => {
   const countCompleted = cardData.subtasks?.filter((item) => item.isCompleted === true);
 
   return (
-    <div
-      className='Card'
-      tabIndex={0}
-      onClick={() => dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: cardData }))}
-    >
+    <button className='Card' onClick={() => dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: cardData }))}>
       <div className='Card__title'>{cardData.title}</div>
       <div className='Card__count'>
         {countCompleted?.length} of {cardData.subtasks?.length} subtasks
       </div>
-    </div>
+    </button>
   );
 };
 

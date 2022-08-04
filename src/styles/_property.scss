@@ -36,6 +36,7 @@ $mediumGrayOpacity: rgba(130,143,163,0.4);
 $mediumGrayGradient: linear-gradient(to bottom, rgba(121, 132, 147, 0.2),rgba(130,143,163,0.1), rgba(130,143,163,0));
 $darkBlueOpacity: rgba(99, 95, 199,0.25);
 
+
 $light:(
   bg: $lightGray,
   scroll:$mediumGray,
@@ -83,3 +84,7 @@ $desktop-width: 1024px;
   }
 }
 
+@mixin boxShadow {
+  border: 1px solid color(bg);
+  box-shadow: 0 0 8px $cardShadow;
+}

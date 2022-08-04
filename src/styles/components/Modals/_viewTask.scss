@@ -2,10 +2,10 @@
 .ViewTask {
   display: flex;
   width: 100%;
+  height: fit-content;
   flex-direction: column;
   align-items: start;
   position: relative;
-
 }
 
 .ViewTask__top {
@@ -53,5 +53,6 @@
 
 
 .ViewTask__status-dropdown {
+  display: flex;
 }
 

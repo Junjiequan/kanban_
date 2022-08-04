@@ -4,11 +4,13 @@ import DropDown from '../../standard/DropDown';
 import { openModal } from '../../reducer/modalSlice';
 import { useAppDispatch } from '../../hooks/useRedux';
 import CheckBox from '../../standard/CheckBox';
+import SelectDropDown from '../../standard/SelectDropDown';
 
 const ViewTask = (props: IModal) => {
   const { ModalDetail } = props;
   const dispatch = useAppDispatch();
   const countCompleted = ModalDetail.subtasks?.filter((item: any) => item.isCompleted === true);
+  const status = ['todso', 'doinng', 'done'];
   if (!Object.keys(ModalDetail).length) return null;
   return (
     <Modal>
@@ -19,6 +21,7 @@ const ViewTask = (props: IModal) => {
             text='task'
             onEdit={() => dispatch(openModal({ ModalType: 'EditTask' }))}
             onDelete={() => dispatch(openModal({ ModalType: 'DeleteTask' }))}
+            direction={'right'}
           />
         </div>
         <p className='ViewTask__desc'>{ModalDetail.description ? ModalDetail.description : 'No description'}</p>
@@ -34,11 +37,9 @@ const ViewTask = (props: IModal) => {
         <div className='ViewTask__status'>
           <p className='ViewTask__status-title'>Current Status</p>
           {/* TODO - Make this component */}
-          <select className='ViewTask__status-dropdown'>
-            <option>Todo</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
+          <div className='ViewTask__status-dropdown'>
+            <SelectDropDown status={status} />
+          </div>
         </div>
       </div>
     </Modal>

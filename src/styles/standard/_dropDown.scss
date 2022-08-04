@@ -1,13 +1,19 @@
 .DropDown {
+  z-index: 5;
+  display: flex;
+  position: relative;
+  height: fit-content;
+}
+
+
+.DropDown__wrapper {
   position: absolute;
   top: 130%;
   right: 0;
-  z-index: 5;
   display: flex;
   align-items: start;
   flex-direction: column;
   width: 12rem;
-  height: fit-content;
   background: color(board); 
   padding: $margin-small;
   border-radius: 8px;
@@ -15,7 +21,7 @@
   @include boxShadow;
 
   &--right {
-    left:-200%;
+    left:-150%;
   }
 }
 
@@ -41,7 +47,7 @@
   align-items: center;
   margin-left: $margin-small;
   position: relative;
-  width: 22px;
+  min-width: 22px;
   height: 38px;
   border-radius: 10px;
   opacity: 1;

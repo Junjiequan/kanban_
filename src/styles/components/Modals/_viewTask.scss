@@ -36,6 +36,7 @@
 .ViewTask__checkBox-title {
   color: color(subTitle);
   font-size: $font-12;
+  font-weight: bold;
   margin-bottom: $margin-small;
 }
 
@@ -47,8 +48,9 @@
 
 .ViewTask__status-title {
   font-size: $font-12;
+  font-weight: bold;
   color: color(subTitle);
-  margin-bottom: $margin-small;
+  margin-bottom: $margin-tiny;
 }
 
 

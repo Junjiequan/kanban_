@@ -7,14 +7,23 @@
 .SelectDropDown__trigger{
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  justify-content: space-between;
   color: color(title);
   font-size: $font-13;
   background: transparent;
   border-radius: 4px;
-  border: 1px solid $mediumGrayOpacity;
+  border: 2px solid $mediumGrayOpacity;
   padding: $margin-tiny $margin-small;
   text-transform: capitalize;
+  transition: border .2s ease;
+
+  &:focus {
+    border-color: $darkBlue;
+  }
+
+  &-icon {
+    transition: transform .3s ease;
+  }
 }
 
 .SelectDropDown__wrapper {

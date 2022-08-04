@@ -36,7 +36,6 @@ const ViewTask = (props: IModal) => {
         </div>
         <div className='ViewTask__status'>
           <p className='ViewTask__status-title'>Current Status</p>
-          {/* TODO - Make this component */}
           <div className='ViewTask__status-dropdown'>
             <SelectDropDown status={status} />
           </div>

@@ -1,5 +1,6 @@
-import { useState, useRef, Fragment } from 'react';
+import { useState, useRef } from 'react';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import { ChevronDown } from '../data/icons';
 
 const SelectDropDown = (props: { status: string[] }) => {
   const { status } = props;
@@ -34,6 +35,9 @@ const SelectDropDown = (props: { status: string[] }) => {
     <div className='SelectDropDown' ref={selectDropDownRef}>
       <button className='SelectDropDown__trigger' onClick={handleOpenDropDown}>
         {currentStatus}
+        <span className='SelectDropDown__trigger-icon' style={openDropDown ? { transform: 'rotate(180deg)' } : {}}>
+          <ChevronDown />
+        </span>
       </button>
       {openDropDown && (
         <div className='SelectDropDown__wrapper'>

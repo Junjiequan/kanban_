@@ -15,27 +15,31 @@ const DropDown = (props: DropDownProps) => {
   const { text, onEdit, onDelete, direction } = props;
   const [openDronDown, setOpenDropDown] = useState(false);
   const dropDownRef = useRef(null);
-  const BoxDirection = direction ? `DropDown--${direction}` : '';
+  const BoxDirection = direction ? `DropDown__wrapper--${direction}` : '';
 
   const handleClickOutside = () => {
     setOpenDropDown(false);
   };
 
   const handleOnEdit = () => {
+    setOpenDropDown(false);
     onEdit();
   };
 
   const handleOnDelete = () => {
+    setOpenDropDown(false);
     onDelete();
   };
 
   useOnClickOutside(dropDownRef, handleClickOutside);
 
   return (
-    <div ref={dropDownRef} className='DropDown__button-ellipsis' onClick={() => setOpenDropDown((prev) => !prev)}>
-      <IconEllipsis />
+    <div className='DropDown' ref={dropDownRef}>
+      <button tabIndex={0} className='DropDown__button-ellipsis' onClick={() => setOpenDropDown((prev) => !prev)}>
+        <IconEllipsis />
+      </button>
       {openDronDown && (
-        <div className={`DropDown ${BoxDirection}`}>
+        <div className={`DropDown__wrapper ${BoxDirection}`}>
           <button className='DropDown__text' onClick={handleOnEdit}>
             Edit {text}
           </button>

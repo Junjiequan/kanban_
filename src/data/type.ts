@@ -5,10 +5,6 @@ export interface ITab {
   defaultTab?: boolean;
 }
 
-// interface ModalDetail {
-//   nothing: '';
-// }
-
 export type modalTypes =
   | 'ViewTask'
   | 'AddBoard'
@@ -22,6 +18,7 @@ export type modalTypes =
 export interface IModal {
   ModalType: modalTypes;
   ModalDetail?: Record<string, never> | any;
+  Status?: string[];
 }
 
 /**

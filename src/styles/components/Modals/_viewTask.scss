@@ -8,50 +8,48 @@
   position: relative;
 }
 
-.ViewTask__top {
+.ViewTask__topWrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-bottom: $margin-tiny;
 }
 
-.ViewTask__title {
-  font-size: $font-18;
-}
 
-.ViewTask__desc {
+
+.ViewTask__descWrapper {
   font-size: $font-13;
   color: $mediumGray;
   line-height: 23px;
 }
 
-.ViewTask__checkBox {
+.ViewTask__subtaskWrapper {
   margin-top: $margin-medium;
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: $margin-small;
+  margin-bottom: $margin-tiny;
 }
 
-.ViewTask__checkBox-title {
-  color: color(subTitle);
+.ViewTask__sub-title {
   font-size: $font-12;
   font-weight: bold;
+  color: color(subTitle);
   margin-bottom: $margin-small;
 }
 
-.ViewTask__status {
+.ViewTask__statusWrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.ViewTask__status-title {
-  font-size: $font-12;
-  font-weight: bold;
-  color: color(subTitle);
-  margin-bottom: $margin-tiny;
-}
+// .ViewTask__status-title {
+//   font-size: $font-12;
+//   font-weight: bold;
+//   color: color(subTitle);
+//   margin-bottom: $margin-tiny;
+// }
 
 
 .ViewTask__status-dropdown {

@@ -35,15 +35,20 @@ const DropDown = (props: DropDownProps) => {
 
   return (
     <div className='DropDown' ref={dropDownRef}>
-      <button tabIndex={0} className='DropDown__button-ellipsis' onClick={() => setOpenDropDown((prev) => !prev)}>
+      <button
+        type='button'
+        tabIndex={0}
+        className='DropDown__button-ellipsis'
+        onClick={() => setOpenDropDown((prev) => !prev)}
+      >
         <IconEllipsis />
       </button>
       {openDronDown && (
         <div className={`DropDown__wrapper ${BoxDirection}`}>
-          <button className='DropDown__text' onClick={handleOnEdit}>
+          <button type='button' className='DropDown__text' onClick={handleOnEdit}>
             Edit {text}
           </button>
-          <button className='DropDown__text DropDown__text--warning' onClick={handleOnDelete}>
+          <button type='button' className='DropDown__text DropDown__text--warning' onClick={handleOnDelete}>
             Delete {text}
           </button>
         </div>

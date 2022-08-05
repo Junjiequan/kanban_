@@ -30,6 +30,6 @@
       "@typescript-eslint/no-non-null-assertion": "off",
       "quotes": ["error", "single"],
       // "indent": ["error", 2],
-      "semi":["error","always"]
+      "semi":["error","always"],
     }
 }

@@ -1,0 +1,18 @@
+
+.AddNewTask {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  text-align: left;
+}
+
+.AddNewTask__sub-title {
+  font-size: $font-12;
+  font-weight: bold;
+  color: color(subTitle);
+  margin-bottom: $margin-small;
+}
+
+.AddNewTask__statusWrapper {
+  position: relative;
+}

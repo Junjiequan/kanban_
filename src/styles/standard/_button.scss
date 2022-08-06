@@ -1,6 +1,7 @@
 
 .Button {
   display: flex;
+  justify-content: center;
   width: 100%;
   height: auto;
   background: $darkBlue;
@@ -8,13 +9,25 @@
   border-radius: 30px;
   color: $white;
   font-size: $font-15;
-  transition: background-color .2s ease;
+  font-weight: bold;
+  transition: all .2s ease;
 
-  &--withTheme {
-    background: color(addButton);
+  &--small {
+    font-size: $font-13;
+    padding:$margin-tiny $margin-large;
   }
 
-  &:hover{
+  &--theme {
+    border-radius: 20px;
+    color:$darkBlue;
+    background: color(addButton);
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+
+  &:hover:not(&--theme){
     background: $lightBlue;
   }
 }

@@ -88,3 +88,19 @@ $desktop-width: 1024px;
   border: 1px solid color(bg);
   box-shadow: 0 0 8px $cardShadow;
 }
+
+@mixin inputStandard {
+  & input,
+  & textArea {
+    background: transparent;
+    color: color(title);
+    font-size: $font-13;
+    padding: $margin-tiny $margin-small;
+    border-radius: 4px;
+    border: 2px solid $mediumGrayOpacity;
+    transition: border .2s ease;
+    &:focus-visible {
+      border-color: $darkBlue;
+    }
+  }
+}

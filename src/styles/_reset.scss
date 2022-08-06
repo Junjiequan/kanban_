@@ -24,11 +24,12 @@ body {
 
 ol, ul{
   list-style: none;
+  padding: 0;
 }
 
-input{
-  -webkit-appearance: none;
-  border-radius: 0;
+input,textarea {
+  border:0;
+  outline: 0;
 }
 
 button {
@@ -47,3 +48,4 @@ input[type="checkbox"] {
     outline: 2px solid #dd9951;
   }
 }
+

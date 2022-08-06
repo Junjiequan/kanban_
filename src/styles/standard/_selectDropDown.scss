@@ -18,6 +18,7 @@
   transition: border .2s ease;
 
   &:focus {
+    outline:0;
     border-color: $darkBlue;
   }
 

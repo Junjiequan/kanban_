@@ -4,15 +4,68 @@
   width: 100%;
   flex-direction: column;
   text-align: left;
+  @include inputStandard;
+}
+
+.AddNewTask__topWrapper {
+  margin-bottom: $margin-small;
 }
 
 .AddNewTask__sub-title {
   font-size: $font-12;
   font-weight: bold;
   color: color(subTitle);
+  margin-bottom: $margin-tiny;
+}
+
+.AddNewTask__boxWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   margin-bottom: $margin-small;
 }
 
-.AddNewTask__statusWrapper {
+.AddNewTask__description {
+  resize:none;
+
+  &::-webkit-scrollbar {
+    width: .5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background:rgba($color: #000000, $alpha: 0.3); 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: color(scroll); 
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background:$darkBlue;
+  }
+}
+
+.AddNewTask__status {
   position: relative;
+  margin-bottom: $margin-medium;
+}
+
+.AddNewTask__subtaskUl {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.AddNewTask__subtaskLi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AddNewTask__subtask__input {
+  display: flex;
+  width: 100%;
+  margin-bottom: $margin-tiny;
+  margin-right: $margin-tiny;
 }

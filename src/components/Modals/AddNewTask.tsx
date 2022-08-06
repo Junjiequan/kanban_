@@ -3,15 +3,16 @@ import { IModal } from '../../data/type';
 import SelectDropDown from '../../standard/SelectDropDown';
 import Modal from '../../standard/Modal';
 import { FormEvent } from 'react';
+import Button from '../../standard/Button';
+import { Cross } from '../../data/icons';
 
 const AddNewTask = (props: IModal) => {
   const { Status } = props;
   const status = ['todo', 'doing', 'done'];
-
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    subtasks: '',
+    subtasks: ['', ''],
     status: status[0],
   });
 
@@ -19,13 +20,30 @@ const AddNewTask = (props: IModal) => {
     setNewTask({ ...newTask, status: value });
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log('form', newTask);
+  };
+
+  const handleAddNewSubTask = () => {
+    const subTask = newTask.subtasks.slice();
+    subTask.push('');
+    setNewTask({ ...newTask, subtasks: subTask });
+  };
+  const handleDeleteSubTask = (index: number) => {
+    if (newTask.subtasks.length > 1) {
+      newTask.subtasks.splice(index, 1);
+    }
+    setNewTask({ ...newTask, subtasks: newTask.subtasks });
+  };
+
+  const onSubtasksChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    const subTask = newTask.subtasks.slice();
+    subTask[index] = e.target.value;
+    setNewTask({ ...newTask, subtasks: subTask });
   };
 
   return (
@@ -34,23 +52,51 @@ const AddNewTask = (props: IModal) => {
         <div className='AddNewTask__topWrapper'>
           <h2>Add New Task</h2>
         </div>
-        <div className='AddNewTask__titleWrapper'>
+        <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Title</p>
-          <input type='text' name='title' onChange={handleInputChange} />
+          <input type='text' value={newTask.title} name='title' onChange={handleInputChange} />
         </div>
-        <div className='AddNewTask__descriptionWrapper'>
+        <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Description</p>
-          <input type='text' name='description' onChange={handleInputChange} />
+          <textarea
+            className='AddNewTask__description'
+            value={newTask.description}
+            rows={4}
+            name='description'
+            onChange={handleInputChange}
+          />
         </div>
-        <div className='AddNewTask__subtaskWrapper'>
+        <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Subtasks</p>
-          <input type='text' name='subtasks' onChange={handleInputChange} />
+          <ul className='AddNewTask__subtaskUl'>
+            {newTask.subtasks.map((item: string, index: number) => {
+              return (
+                <li className='AddNewTask__subtaskLi' key={index}>
+                  <input
+                    className='AddNewTask__subtask__input'
+                    type='text'
+                    value={newTask.subtasks[index]}
+                    onChange={(e) => onSubtasksChange(e, index)}
+                  />
+                  <button className='' onClick={() => handleDeleteSubTask(index)}>
+                    <Cross />
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <Button small colorTheme onClick={handleAddNewSubTask} style={{ marginTop: '0.5rem' }}>
+            + Add New Subtask
+          </Button>
         </div>
-        <div className='AddNewTask__statusWrapper'>
+        <div className='AddNewTask__boxWrapper AddNewTask__status'>
+          <p className='AddNewTask__sub-title'>Status</p>
           <SelectDropDown status={status} currentStatus={newTask.status} onSetCurrentStatus={onSetCurrentStatus} />
         </div>
-        <div className='AddNewTask__submitWrapper'>
-          <button type='submit'>submit</button>
+        <div className='AddNewTask__boxWrapper'>
+          <Button small type='submit'>
+            Create Task
+          </Button>
         </div>
       </form>
     </Modal>

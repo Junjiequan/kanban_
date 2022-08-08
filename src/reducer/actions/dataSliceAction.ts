@@ -11,12 +11,12 @@ export const onAddTask = (state: DataState, action: AnyAction) => {
   const { board, newTask } = action.payload;
   const data = current(state.data);
 
-  const exist = data.find((item: IBoard) => item.name === board);
+  const exist = data.find((item) => item.name === board);
 
   if (exist) {
-    const targetBoardIndex = data.findIndex((item: IBoard) => item.name === board);
+    const targetBoardIndex = data.findIndex((item) => item.name === board);
     const targetColumnIndex = exist?.columns!.findIndex(
-      (item: IColumn) => item.name!.toLowerCase() === newTask.status.toLowerCase()
+      (item) => item.name!.toLowerCase() === newTask.status.toLowerCase()
     );
 
     const newState = produce(data, (draftState: any) => {

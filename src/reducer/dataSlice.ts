@@ -1,9 +1,8 @@
 import {
   // createAsyncThunk,
   createSlice,
-  PayloadAction,
 } from '@reduxjs/toolkit';
-import { onAddTask } from './actions/dataSliceAction';
+import { onAddTask, onGetLocalData } from './actions/dataSliceAction';
 import type { IBoard } from '../data/type';
 
 export interface DataState {
@@ -18,13 +17,9 @@ export const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    getLocalData: (state, action: PayloadAction<IBoard[]>) => {
-      return { ...state, data: action.payload };
-    },
+    getLocalData: onGetLocalData,
     addBoard: (state) => state,
-    addTask: (state: any, action: PayloadAction<string | Record<string, any>>) => {
-      return { ...state, data: onAddTask(state.data, action.payload) };
-    },
+    addTask: onAddTask,
     addColumn: (state) => state,
     editBoard: (state) => state,
     deleteBoard: (state) => state,

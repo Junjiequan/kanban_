@@ -13,10 +13,9 @@ export const onAddTask = (state: IBoard, action: any) => {
       (item: IColumn) => item.name!.toLowerCase() === action.newTask.status.toLowerCase()
     );
 
-    const newState = produce<IBoard>(data, (draftState: any) => {
+    const newState = produce(data, (draftState: any) => {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.push(newTask);
     });
-    // console.log('-----', result);
     return newState;
   }
 };

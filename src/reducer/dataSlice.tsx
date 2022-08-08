@@ -22,7 +22,7 @@ export const dataSlice = createSlice({
       return { ...state, data: action.payload };
     },
     addBoard: (state) => state,
-    addTask: (state: any, action: PayloadAction<string>) => {
+    addTask: (state: any, action: PayloadAction<string | Record<string, any>>) => {
       return { ...state, data: onAddTask(state.data, action.payload) };
     },
     addColumn: (state) => state,

@@ -3,6 +3,7 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
+import { onAddTask } from './actions/dataSliceAction';
 import type { IBoard } from '../data/type';
 
 export interface DataState {
@@ -21,7 +22,9 @@ export const dataSlice = createSlice({
       return { ...state, data: action.payload };
     },
     addBoard: (state) => state,
-    addTask: (state) => state,
+    addTask: (state: any, action: PayloadAction<string>) => {
+      return { ...state, data: onAddTask(state.data, action.payload) };
+    },
     addColumn: (state) => state,
     editBoard: (state) => state,
     deleteBoard: (state) => state,
@@ -29,6 +32,6 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { getLocalData, addBoard } = dataSlice.actions;
+export const { getLocalData, addBoard, addTask } = dataSlice.actions;
 
 export default dataSlice.reducer;

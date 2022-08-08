@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../hooks/useRedux';
 import { IModal } from '../../data/type';
 import SelectDropDown from '../../standard/SelectDropDown';
 import Modal from '../../standard/Modal';
@@ -6,16 +7,19 @@ import { FormEvent } from 'react';
 import Button from '../../standard/Button';
 import { Cross } from '../../data/icons';
 
+import { addTask } from '../../reducer/dataSlice';
+
 const AddNewTask = (props: IModal) => {
   const { Status } = props;
+  const dispatch = useAppDispatch();
   const status = ['todo', 'doing', 'done'];
+  const boardTab = useAppSelector((state) => state.boardTab);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
     subtasks: ['', ''],
     status: status[0],
   });
-
   const onSetCurrentStatus = (value: string) => {
     setNewTask({ ...newTask, status: value });
   };
@@ -26,6 +30,11 @@ const AddNewTask = (props: IModal) => {
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (!newTask.title || !newTask.description) {
+      alert('TODO - add form validation');
+      return;
+    }
+    dispatch(addTask({ board: boardTab, newTask: newTask }));
   };
 
   const handleAddNewSubTask = () => {
@@ -33,6 +42,7 @@ const AddNewTask = (props: IModal) => {
     subTask.push('');
     setNewTask({ ...newTask, subtasks: subTask });
   };
+
   const handleDeleteSubTask = (index: number) => {
     if (newTask.subtasks.length > 1) {
       newTask.subtasks.splice(index, 1);

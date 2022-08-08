@@ -43,6 +43,8 @@ export interface IColumn {
 }
 
 export interface IBoard {
+  findIndex(arg0: (item: IBoard) => boolean): number;
+  find(arg0: (item: IBoard) => boolean): Record<string, any>;
   name?: string;
   columns?: IColumn[];
 }

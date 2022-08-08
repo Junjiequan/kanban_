@@ -5,6 +5,7 @@ import Modals from './components/Modals';
 import { getLocalData } from './reducer/dataSlice';
 import { closeModal } from './reducer/modalSlice';
 import { useAppDispatch } from './hooks/useRedux';
+import { setTab } from './reducer/boardTabSlice';
 import './App.scss';
 
 const App = () => {
@@ -28,7 +29,9 @@ const App = () => {
       try {
         const response = await import('./data/data.json');
         const data = response.boards;
+
         dispatch(getLocalData(data));
+        if (data[0].name) dispatch(setTab(data[0]?.name));
       } catch (err) {
         console.log(err);
       }

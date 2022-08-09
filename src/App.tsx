@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from './layout/Header';
 import Main from './layout/Main';
 import Modals from './components/Modals';
-import { getLocalData } from './reducer/dataSlice';
+import { getLocalData, setBoardtStatus } from './reducer/dataSlice';
 import { closeModal } from './reducer/modalSlice';
 import { useAppDispatch } from './hooks/useRedux';
 import { setTab } from './reducer/boardTabSlice';
@@ -31,7 +31,10 @@ const App = () => {
         const data = response.boards;
 
         dispatch(getLocalData(data));
-        if (data[0].name) dispatch(setTab(data[0]?.name));
+        if (data[0].name) {
+          dispatch(setTab(data[0]?.name));
+          dispatch(setBoardtStatus(data[0]?.name));
+        }
       } catch (err) {
         console.log(err);
       }

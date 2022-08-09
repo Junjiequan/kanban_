@@ -2,15 +2,17 @@ import {
   // createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit';
-import { onAddTask, onEditTask, onGetLocalData } from './actions/dataSliceAction';
+import { onAddTask, onEditTask, onGetLocalData, onSetBoardtStatus } from './actions/dataSliceAction';
 import type { IBoard } from '../data/type';
 
 export interface DataState {
   data: IBoard[];
+  currentBoardStatus: string[] | any;
 }
 
 const initialState: DataState = {
   data: [],
+  currentBoardStatus: [],
 };
 
 export const dataSlice = createSlice({
@@ -19,6 +21,7 @@ export const dataSlice = createSlice({
   reducers: {
     //example: (state, action) => return {...state, action.payload}
     getLocalData: (state, action) => onGetLocalData(state, action),
+    setBoardtStatus: (state, action) => onSetBoardtStatus(state, action),
     addBoard: (state) => state,
     addTask: (state, action) => onAddTask(state, action),
     addColumn: (state) => state,
@@ -29,6 +32,6 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { getLocalData, addBoard, addTask, editTask } = dataSlice.actions;
+export const { getLocalData, setBoardtStatus, addBoard, addTask, editTask } = dataSlice.actions;
 
 export default dataSlice.reducer;

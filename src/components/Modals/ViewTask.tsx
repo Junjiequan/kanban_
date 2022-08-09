@@ -1,21 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../../standard/Modal';
 import { IModal, ISubTask } from '../../data/type';
 import DropDown from '../../standard/DropDown';
 import { openModal } from '../../reducer/modalSlice';
-import { useAppDispatch } from '../../hooks/useRedux';
+import { editTask } from '../../reducer/dataSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import CheckBox from '../../standard/CheckBox';
 import SelectDropDown from '../../standard/SelectDropDown';
 
 const ViewTask = (props: IModal) => {
-  const { ModalDetail } = props;
-  const status = ['todo', 'doing', 'done'];
-  const [currentStatus, setCurrentStatus] = useState(status[0]);
+  const { ModalDetail, boardTab } = props;
+
   const dispatch = useAppDispatch();
+  const [newTask, setNewTask] = useState({
+    title: ModalDetail.title,
+    description: ModalDetail.description,
+    subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
+    status: ModalDetail.status,
+  });
+  const boardData = useAppSelector((state) => state.data);
+  const boardStatus = boardData.currentBoardStatus;
+
+  //TODO high priority - fix a way to refresh old task always
+  const taskDetail = boardData.data
+    .filter((board: any) => board.name === boardTab)[0]
+    .columns!.filter((column: any) => column.name.toLowerCase() === newTask.status.toLowerCase())[0]
+    .tasks!.filter((task: any) => task.title === newTask.title)[0];
+
   const countCompleted = ModalDetail.subtasks?.filter((item: any) => item.isCompleted === true);
+
   const onSetCurrentStatus = (value: string) => {
-    setCurrentStatus(value);
+    //TODO change modal status  - add it with drag and drop
+    setNewTask({ ...newTask, status: value });
   };
+
+  useEffect(() => {
+    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: taskDetail }));
+  }, [newTask.status]);
+
   if (!Object.keys(ModalDetail).length) return null;
   return (
     <Modal>
@@ -43,7 +65,11 @@ const ViewTask = (props: IModal) => {
         <div className='ViewTask__statusWrapper'>
           <p className='ViewTask__sub-title'>Current Status</p>
           <div className='ViewTask__status-dropdown'>
-            <SelectDropDown status={status} currentStatus={currentStatus} onSetCurrentStatus={onSetCurrentStatus} />
+            <SelectDropDown
+              status={boardStatus}
+              currentStatus={newTask.status ? newTask.status : boardStatus[0]}
+              onSetCurrentStatus={onSetCurrentStatus}
+            />
           </div>
         </div>
       </div>

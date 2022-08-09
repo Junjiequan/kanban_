@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { type ITab } from '../../data/type';
 import { IconBoard } from '../../data/icons';
+import { setBoardtStatus } from '../../reducer/dataSlice';
 import { useAppSelector } from '../../hooks/useRedux';
 import { setTab } from '../../reducer/boardTabSlice';
 import { openModal } from '../../reducer/modalSlice';
@@ -11,6 +12,12 @@ const Tab = (props: ITab) => {
   const dispatch = useAppDispatch();
   const currentTab = useAppSelector((state) => state.boardTab);
   const active = currentTab ? currentTab === tab : defaultTab;
+
+  const handleClickTab = (tab: string | undefined) => {
+    if (!tab) return;
+    dispatch(setTab(tab));
+    dispatch(setBoardtStatus(tab));
+  };
 
   if (addNew) {
     return (
@@ -23,7 +30,7 @@ const Tab = (props: ITab) => {
     );
   }
   return (
-    <button className={`SideNav__tab ${active ? 'SideNav__tab--active' : ''}`} onClick={() => dispatch(setTab(tab))}>
+    <button className={`SideNav__tab ${active ? 'SideNav__tab--active' : ''}`} onClick={() => handleClickTab(tab)}>
       <IconBoard />
       {tab}
     </button>

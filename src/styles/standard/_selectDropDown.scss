@@ -2,6 +2,7 @@
 .SelectDropDown {
   display: flex;
   width: 100%;
+  position: relative;
 }
 
 .SelectDropDown__trigger{
@@ -34,7 +35,9 @@
   width: 100%;
   flex-direction: column;
   height: fit-content;
-  bottom: -7.5rem;
+  top:0;
+  bottom: 0;
+  transform: translateY(3rem);
   border-radius: 4px;
   padding: $margin-small;
   background: color(board);

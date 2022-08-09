@@ -19,6 +19,7 @@ export interface IModal {
   ModalType: modalTypes;
   ModalDetail?: Record<string, never> | any;
   Status?: string[];
+  boardTab?: string;
 }
 
 /**
@@ -34,7 +35,7 @@ export interface ITask {
   title?: string;
   description?: string;
   status?: string;
-  subtasks: ISubTask[];
+  subtasks?: ISubTask[];
 }
 
 export interface IColumn {

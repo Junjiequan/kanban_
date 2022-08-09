@@ -25,8 +25,8 @@ const SelectDropDown = (props: SelectDropDownProps) => {
   };
 
   const handleSetCurrentStatus = (status: string) => {
-    setOpenDropDown(false);
     onSetCurrentStatus(status);
+    setOpenDropDown(false);
   };
 
   const handleClickOutside = () => {

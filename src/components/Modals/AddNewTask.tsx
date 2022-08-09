@@ -9,15 +9,14 @@ import { Cross } from '../../data/icons';
 import { addTask } from '../../reducer/dataSlice';
 
 const AddNewTask = (props: IModal) => {
-  const { Status } = props;
+  const { boardTab } = props;
   const dispatch = useAppDispatch();
-  const status = ['todo', 'doing', 'done'];
-  const boardTab = useAppSelector((state) => state.boardTab);
+  const boardStatus = useAppSelector((state) => state.data.currentBoardStatus);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
     subtasks: [{ title: '', isCompleted: false }],
-    status: status[0],
+    status: boardStatus[0],
   });
   const onSetCurrentStatus = (value: string) => {
     setNewTask({ ...newTask, status: value });
@@ -98,7 +97,11 @@ const AddNewTask = (props: IModal) => {
         </div>
         <div className='AddNewTask__boxWrapper AddNewTask__status'>
           <p className='AddNewTask__sub-title'>Status</p>
-          <SelectDropDown status={status} currentStatus={newTask.status} onSetCurrentStatus={onSetCurrentStatus} />
+          <SelectDropDown
+            status={boardStatus}
+            currentStatus={newTask.status ? newTask.status : boardStatus[0]}
+            onSetCurrentStatus={onSetCurrentStatus}
+          />
         </div>
         <div className='AddNewTask__boxWrapper'>
           <Button small type='submit'>

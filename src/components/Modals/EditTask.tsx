@@ -8,14 +8,13 @@ import Button from '../../standard/Button';
 import SelectDropDown from '../../standard/SelectDropDown';
 
 const EditTask = (props: IModal) => {
-  const { ModalDetail } = props;
+  const { ModalDetail, boardTab } = props;
   const dispatch = useAppDispatch();
-  const status = ['todo', 'doing', 'done'];
-  const boardTab = useAppSelector((state) => state.boardTab);
+  const boardStatus = useAppSelector((state) => state.data.currentBoardStatus);
   const [newTask, setNewTask] = useState({
     title: ModalDetail.title,
     description: ModalDetail.description,
-    subtasks: [...ModalDetail.subtasks],
+    subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
     status: ModalDetail.status,
   });
 
@@ -33,6 +32,7 @@ const EditTask = (props: IModal) => {
       alert('TODO - add form validation');
       return;
     }
+
     dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
   };
 
@@ -50,6 +50,7 @@ const EditTask = (props: IModal) => {
   const onSubtasksChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const subTask = newTask.subtasks.slice();
     subTask[index].title = e.target.value;
+
     setNewTask({ ...newTask, subtasks: subTask });
   };
 
@@ -98,7 +99,11 @@ const EditTask = (props: IModal) => {
         </div>
         <div className='AddNewTask__boxWrapper AddNewTask__status'>
           <p className='AddNewTask__sub-title'>Status</p>
-          <SelectDropDown status={status} currentStatus={newTask.status} onSetCurrentStatus={onSetCurrentStatus} />
+          <SelectDropDown
+            status={boardStatus}
+            currentStatus={newTask.status ? newTask.status : boardStatus[0]}
+            onSetCurrentStatus={onSetCurrentStatus}
+          />
         </div>
         <div className='AddNewTask__boxWrapper'>
           <Button small type='submit'>

@@ -2,7 +2,7 @@ import {
   // createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit';
-import { onAddTask, onGetLocalData } from './actions/dataSliceAction';
+import { onAddTask, onEditTask, onGetLocalData } from './actions/dataSliceAction';
 import type { IBoard } from '../data/type';
 
 export interface DataState {
@@ -22,7 +22,7 @@ export const dataSlice = createSlice({
     addBoard: (state) => state,
     addTask: (state, action) => onAddTask(state, action),
     addColumn: (state) => state,
-    editTask: (state, action) => state,
+    editTask: (state, action) => onEditTask(state, action),
     editBoard: (state) => state,
     deleteBoard: (state) => state,
     deleteTask: (state) => state,

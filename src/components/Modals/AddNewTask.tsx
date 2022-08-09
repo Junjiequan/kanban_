@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/useRedux';
-import { IModal } from '../../data/type';
+import { IModal, ISubTask } from '../../data/type';
 import SelectDropDown from '../../standard/SelectDropDown';
 import Modal from '../../standard/Modal';
 import Button from '../../standard/Button';
@@ -16,7 +16,10 @@ const AddNewTask = (props: IModal) => {
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    subtasks: ['', ''],
+    subtasks: [
+      { title: '', isCompleted: false },
+      { title: '', isCompleted: false },
+    ],
     status: status[0],
   });
   const onSetCurrentStatus = (value: string) => {
@@ -38,7 +41,7 @@ const AddNewTask = (props: IModal) => {
 
   const handleAddNewSubTask = () => {
     const subTask = newTask.subtasks.slice();
-    subTask.push('');
+    subTask.push({ title: '', isCompleted: false });
     setNewTask({ ...newTask, subtasks: subTask });
   };
 
@@ -51,7 +54,7 @@ const AddNewTask = (props: IModal) => {
 
   const onSubtasksChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const subTask = newTask.subtasks.slice();
-    subTask[index] = e.target.value;
+    subTask[index].title = e.target.value;
     setNewTask({ ...newTask, subtasks: subTask });
   };
 
@@ -78,13 +81,13 @@ const AddNewTask = (props: IModal) => {
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Subtasks</p>
           <ul className='AddNewTask__subtaskUl'>
-            {newTask.subtasks.map((item: string, index: number) => {
+            {newTask.subtasks.map((item: ISubTask, index: number) => {
               return (
                 <li className='AddNewTask__subtaskLi' key={index}>
                   <input
                     className='AddNewTask__subtask__input'
                     type='text'
-                    value={newTask.subtasks[index]}
+                    value={newTask.subtasks[index].title}
                     onChange={(e) => onSubtasksChange(e, index)}
                   />
                   <button className='' onClick={() => handleDeleteSubTask(index)}>

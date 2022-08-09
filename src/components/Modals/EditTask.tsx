@@ -9,14 +9,13 @@ import SelectDropDown from '../../standard/SelectDropDown';
 
 const EditTask = (props: IModal) => {
   const { ModalDetail } = props;
-  console.log(ModalDetail);
   const dispatch = useAppDispatch();
   const status = ['todo', 'doing', 'done'];
   const boardTab = useAppSelector((state) => state.boardTab);
   const [newTask, setNewTask] = useState({
     title: ModalDetail.title,
     description: ModalDetail.description,
-    subtasks: ModalDetail.subtasks.map((item: ISubTask) => item.title),
+    subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
     status: ModalDetail.status,
   });
   const onSetCurrentStatus = (value: string) => {
@@ -33,7 +32,7 @@ const EditTask = (props: IModal) => {
       // alert('TODO - add form validation');
       return;
     }
-    dispatch(editTask({ currentBoard: boardTab, newTask: newTask }));
+    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
   };
 
   const handleAddNewSubTask = () => {
@@ -78,13 +77,13 @@ const EditTask = (props: IModal) => {
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Subtasks</p>
           <ul className='AddNewTask__subtaskUl'>
-            {newTask.subtasks.map((item: string, index: number) => {
+            {newTask.subtasks.map((item: ISubTask, index: number) => {
               return (
                 <li className='AddNewTask__subtaskLi' key={index}>
                   <input
                     className='AddNewTask__subtask__input'
                     type='text'
-                    value={newTask.subtasks[index]}
+                    value={newTask.subtasks[index].title}
                     onChange={(e) => onSubtasksChange(e, index)}
                   />
                   <button className='' onClick={() => handleDeleteSubTask(index)}>

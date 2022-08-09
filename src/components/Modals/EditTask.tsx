@@ -37,7 +37,7 @@ const EditTask = (props: IModal) => {
 
   const handleAddNewSubTask = () => {
     const subTask = newTask.subtasks.slice();
-    subTask.push('');
+    subTask.push({ title: '', isCompleted: false });
     setNewTask({ ...newTask, subtasks: subTask });
   };
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from '../../standard/Modal';
-import { IModal } from '../../data/type';
+import { IModal, ISubTask } from '../../data/type';
 import DropDown from '../../standard/DropDown';
 import { openModal } from '../../reducer/modalSlice';
 import { useAppDispatch } from '../../hooks/useRedux';
@@ -35,8 +35,8 @@ const ViewTask = (props: IModal) => {
           <p className='ViewTask__sub-title'>
             Subtasks ({countCompleted?.length} of {ModalDetail.subtasks?.length})
           </p>
-          {ModalDetail.subtasks.length === 0 && <p className='ViewTask__sub-noTask'>No subtasks.</p>}
-          {ModalDetail.subtasks.map((i: any, index: number) => (
+          {ModalDetail.subtasks.length === 0 && <p className='ViewTask__noSubTask'>No subtasks.</p>}
+          {ModalDetail.subtasks.map((i: ISubTask, index: number) => (
             <CheckBox key={index} task={i.title} />
           ))}
         </div>

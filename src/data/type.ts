@@ -26,15 +26,15 @@ export interface IModal {
  */
 
 export interface ISubTask {
-  title?: string;
-  isCompleted?: boolean;
+  title: string;
+  isCompleted: boolean;
 }
 
 export interface ITask {
   title?: string;
   description?: string;
   status?: string;
-  subtasks?: ISubTask[];
+  subtasks: ISubTask[];
 }
 
 export interface IColumn {

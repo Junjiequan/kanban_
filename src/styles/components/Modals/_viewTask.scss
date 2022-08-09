@@ -15,8 +15,6 @@
   margin-bottom: $margin-tiny;
 }
 
-
-
 .ViewTask__descWrapper {
   font-size: $font-13;
   color: $mediumGray;
@@ -36,6 +34,12 @@
   font-weight: bold;
   color: color(subTitle);
   margin-bottom: $margin-tiny;
+}
+
+.ViewTask__sub-noTask {
+  font-size: $font-13;
+  color: $mediumGray;
+  margin-bottom: $margin-small;
 }
 
 .ViewTask__statusWrapper {

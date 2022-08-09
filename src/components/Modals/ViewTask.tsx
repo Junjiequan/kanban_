@@ -35,6 +35,7 @@ const ViewTask = (props: IModal) => {
           <p className='ViewTask__sub-title'>
             Subtasks ({countCompleted?.length} of {ModalDetail.subtasks?.length})
           </p>
+          {ModalDetail.subtasks.length === 0 && <p className='ViewTask__sub-noTask'>No subtasks.</p>}
           {ModalDetail.subtasks.map((i: any, index: number) => (
             <CheckBox key={index} task={i.title} />
           ))}

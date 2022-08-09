@@ -15,9 +15,10 @@ const EditTask = (props: IModal) => {
   const [newTask, setNewTask] = useState({
     title: ModalDetail.title,
     description: ModalDetail.description,
-    subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
+    subtasks: [...ModalDetail.subtasks],
     status: ModalDetail.status,
   });
+
   const onSetCurrentStatus = (value: string) => {
     setNewTask({ ...newTask, status: value });
   };
@@ -29,7 +30,7 @@ const EditTask = (props: IModal) => {
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!newTask.title || !newTask.description) {
-      // alert('TODO - add form validation');
+      alert('TODO - add form validation');
       return;
     }
     dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
@@ -42,9 +43,7 @@ const EditTask = (props: IModal) => {
   };
 
   const handleDeleteSubTask = (index: number) => {
-    if (newTask.subtasks.length > 1) {
-      newTask.subtasks.splice(index, 1);
-    }
+    newTask.subtasks.splice(index, 1);
     setNewTask({ ...newTask, subtasks: newTask.subtasks });
   };
 
@@ -86,7 +85,7 @@ const EditTask = (props: IModal) => {
                     value={newTask.subtasks[index].title}
                     onChange={(e) => onSubtasksChange(e, index)}
                   />
-                  <button className='' onClick={() => handleDeleteSubTask(index)}>
+                  <button type='button' className='' onClick={() => handleDeleteSubTask(index)}>
                     <Cross />
                   </button>
                 </li>

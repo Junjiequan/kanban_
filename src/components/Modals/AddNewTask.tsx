@@ -16,10 +16,7 @@ const AddNewTask = (props: IModal) => {
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    subtasks: [
-      { title: '', isCompleted: false },
-      { title: '', isCompleted: false },
-    ],
+    subtasks: [{ title: '', isCompleted: false }],
     status: status[0],
   });
   const onSetCurrentStatus = (value: string) => {
@@ -46,9 +43,7 @@ const AddNewTask = (props: IModal) => {
   };
 
   const handleDeleteSubTask = (index: number) => {
-    if (newTask.subtasks.length > 1) {
-      newTask.subtasks.splice(index, 1);
-    }
+    newTask.subtasks.splice(index, 1);
     setNewTask({ ...newTask, subtasks: newTask.subtasks });
   };
 
@@ -90,7 +85,7 @@ const AddNewTask = (props: IModal) => {
                     value={newTask.subtasks[index].title}
                     onChange={(e) => onSubtasksChange(e, index)}
                   />
-                  <button className='' onClick={() => handleDeleteSubTask(index)}>
+                  <button type='button' className='' onClick={() => handleDeleteSubTask(index)}>
                     <Cross />
                   </button>
                 </li>

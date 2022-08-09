@@ -1,6 +1,5 @@
 import { AnyAction, current } from '@reduxjs/toolkit';
 import produce from 'immer';
-import { IBoard, IColumn } from '../../data/type';
 import { DataState } from '../dataSlice';
 
 export const onGetLocalData = (state: DataState, action: AnyAction) => {
@@ -8,14 +7,14 @@ export const onGetLocalData = (state: DataState, action: AnyAction) => {
 };
 
 export const onAddTask = (state: DataState, action: AnyAction) => {
-  const { board, newTask } = action.payload;
+  const { currentBoard, newTask } = action.payload;
   const data = current(state.data);
 
-  const exist = data.find((item) => item.name === board);
+  const exist = data.find((item) => item.name === currentBoard);
 
   if (exist) {
-    const targetBoardIndex = data.findIndex((item) => item.name === board);
-    const targetColumnIndex = exist?.columns!.findIndex(
+    const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
+    const targetColumnIndex = exist.columns!.findIndex(
       (item) => item.name!.toLowerCase() === newTask.status.toLowerCase()
     );
 

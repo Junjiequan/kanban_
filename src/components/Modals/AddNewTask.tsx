@@ -1,9 +1,8 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/useRedux';
 import { IModal } from '../../data/type';
 import SelectDropDown from '../../standard/SelectDropDown';
 import Modal from '../../standard/Modal';
-import { FormEvent } from 'react';
 import Button from '../../standard/Button';
 import { Cross } from '../../data/icons';
 
@@ -34,7 +33,7 @@ const AddNewTask = (props: IModal) => {
       alert('TODO - add form validation');
       return;
     }
-    dispatch(addTask({ board: boardTab, newTask: newTask }));
+    dispatch(addTask({ currentBoard: boardTab, newTask: newTask }));
   };
 
   const handleAddNewSubTask = () => {

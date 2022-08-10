@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Modal from '../../standard/Modal';
 import { IModal, ISubTask } from '../../data/type';
 import DropDown from '../../standard/DropDown';
@@ -21,8 +21,6 @@ const ViewTask = (props: IModal) => {
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
 
-  //TODO high priority - fix a way to refresh old task always
-
   const countCompleted = ModalDetail.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
 
   const onSetCurrentStatus = (value: string) => {
@@ -31,9 +29,15 @@ const ViewTask = (props: IModal) => {
     dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: newTask }));
   };
 
+  const onChangeSubtaskCheck = (index: number) => {
+    const subTask = newTask.subtasks.slice();
+    subTask[index] = { ...subTask[index], isCompleted: !subTask[index].isCompleted };
+    setNewTask({ ...newTask, subtasks: subTask });
+  };
+
   useEffect(() => {
     dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
-  }, [newTask.status]);
+  }, [newTask]);
 
   if (!Object.keys(ModalDetail).length) return null;
   return (
@@ -55,8 +59,14 @@ const ViewTask = (props: IModal) => {
             Subtasks ({countCompleted?.length} of {ModalDetail.subtasks?.length})
           </p>
           {ModalDetail.subtasks.length === 0 && <p className='ViewTask__noSubTask'>No subtasks.</p>}
-          {ModalDetail.subtasks.map((i: ISubTask, index: number) => (
-            <CheckBox key={index} task={i.title} />
+          {newTask.subtasks.map((i: ISubTask, index: number) => (
+            <CheckBox
+              key={index}
+              task={i.title}
+              checked={i.isCompleted}
+              index={index}
+              onChangeSubtaskCheck={onChangeSubtaskCheck}
+            />
           ))}
         </div>
         <div className='ViewTask__statusWrapper'>

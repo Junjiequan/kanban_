@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 interface CheckBoxProps {
   task: string;
+  checked: boolean;
+  index: number;
+  onChangeSubtaskCheck: (index: number) => void;
 }
 
 const CheckBox = (props: CheckBoxProps) => {
-  const { task } = props;
-  const [checked, setChecked] = useState(false);
-  const handleCheck = () => {
-    setChecked((prev) => !prev);
-  };
+  const { task, checked, onChangeSubtaskCheck, index } = props;
+
   return (
     <label className={`CheckBox ${checked ? 'CheckBox--checked' : ''}`}>
-      <input type='checkbox' checked={checked} onChange={handleCheck} />
+      <input type='checkbox' checked={checked} onChange={() => onChangeSubtaskCheck(index)} />
       {task}
     </label>
   );

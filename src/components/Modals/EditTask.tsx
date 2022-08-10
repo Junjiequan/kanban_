@@ -7,10 +7,12 @@ import { Cross } from '../../data/icons';
 import Button from '../../standard/Button';
 import SelectDropDown from '../../standard/SelectDropDown';
 import { openModal } from '../../reducer/modalSlice';
+
 const EditTask = (props: IModal) => {
   const { ModalDetail, boardTab } = props;
   const dispatch = useAppDispatch();
-  const boardStatus = useAppSelector((state) => state.data.currentBoardStatus);
+  const boardData = useAppSelector((state) => state.data);
+  const boardStatus = boardData.currentBoardStatus;
   const [newTask, setNewTask] = useState({
     title: ModalDetail.title,
     description: ModalDetail.description,
@@ -28,10 +30,22 @@ const EditTask = (props: IModal) => {
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    //TODO prevent edit in duplicated title
+    //Refactor below later start
+    const targetBoard = boardData.data.find((item) => item.name === boardTab);
+    const isDuplicated = targetBoard!.columns!.find((column) =>
+      column.tasks?.find((task) => task.title === newTask.title)
+    );
+    if (isDuplicated && newTask.title !== ModalDetail.title) {
+      alert('Same title is used');
+      return;
+    }
     if (!newTask.title || !newTask.description) {
       alert('TODO - add form validation');
       return;
     }
+    // end
     dispatch(openModal({ ModalType: 'EditTask', ModalDetail: newTask }));
     dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
   };

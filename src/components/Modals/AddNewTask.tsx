@@ -11,7 +11,8 @@ import { addTask } from '../../reducer/dataSlice';
 const AddNewTask = (props: IModal) => {
   const { boardTab } = props;
   const dispatch = useAppDispatch();
-  const boardStatus = useAppSelector((state) => state.data.currentBoardStatus);
+  const boardData = useAppSelector((state) => state.data);
+  const boardStatus = boardData.currentBoardStatus;
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
@@ -28,10 +29,22 @@ const AddNewTask = (props: IModal) => {
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    //TODO prevent creating duplicated task title
+    //Refactor below later start
+    const targetBoard = boardData.data.find((item) => item.name === boardTab);
+    const isDuplicated = targetBoard!.columns!.find((column) =>
+      column.tasks?.find((task) => task.title === newTask.title)
+    );
+    if (isDuplicated) {
+      alert('Same title is used');
+      return;
+    }
     if (!newTask.title || !newTask.description) {
       alert('TODO - add form validation');
       return;
     }
+    //end
     dispatch(addTask({ currentBoard: boardTab, newTask: newTask }));
   };
 

@@ -50,9 +50,7 @@ const EditTask = (props: IModal) => {
   const onSubtasksChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const subTask = newTask.subtasks.slice();
     subTask[index].title = e.target.value;
-    subTask[index].isCompleted = true;
-
-    console.log('subTask[index]', subTask[index]);
+    subTask[index].isCompleted = false;
 
     setNewTask({ ...newTask, subtasks: subTask });
   };

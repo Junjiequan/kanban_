@@ -49,7 +49,6 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
     (item) => item.title?.toLocaleLowerCase() === oldTask.title.toLocaleLowerCase()
   );
 
-  //TODO-URGENT  fix status change
   const newState = produce(data, (draftState: any) => {
     if (newTask.status.toLocaleLowerCase() !== oldTask.status.toLocaleLowerCase()) {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
@@ -60,28 +59,24 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
 };
 
 export const onChangeTaskStatus = (state: DataState, action: AnyAction) => {
-  const { currentBoard, newTask, oldTask } = action.payload;
-
-  const data = current(state.data);
-  const targetBoard = data.find((item) => item.name === currentBoard);
-  const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
-
-  const targetColumnIndex = targetBoard!.columns!.findIndex(
-    (item) => item.name!.toLowerCase() === oldTask.status.toLowerCase()
-  );
-  const newTargetColumnIndex = targetBoard!.columns!.findIndex(
-    (item) => item.name!.toLowerCase() === newTask.status.toLowerCase()
-  );
-  const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex(
-    (item) => item.title?.toLocaleLowerCase() === oldTask.title.toLocaleLowerCase()
-  );
-
-  //TODO-URGENT  fix status change
-  const newState = produce(data, (draftState: any) => {
-    if (newTask.status.toLocaleLowerCase() !== oldTask.status.toLocaleLowerCase()) {
-      draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
-      draftState[targetBoardIndex].columns[newTargetColumnIndex].tasks.push(newTask);
-    } else draftState[targetBoardIndex].columns[targetColumnIndex].tasks[targetTaskIndex] = newTask;
-  });
-  return { ...state, data: newState };
+  // const { currentBoard, newTask, oldTask } = action.payload;
+  // const data = current(state.data);
+  // const targetBoard = data.find((item) => item.name === currentBoard);
+  // const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
+  // const targetColumnIndex = targetBoard!.columns!.findIndex(
+  //   (item) => item.name!.toLowerCase() === oldTask.status.toLowerCase()
+  // );
+  // const newTargetColumnIndex = targetBoard!.columns!.findIndex(
+  //   (item) => item.name!.toLowerCase() === newTask.status.toLowerCase()
+  // );
+  // const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex(
+  //   (item) => item.title?.toLocaleLowerCase() === oldTask.title.toLocaleLowerCase()
+  // );
+  // const newState = produce(data, (draftState: any) => {
+  //   if (newTask.status.toLocaleLowerCase() !== oldTask.status.toLocaleLowerCase()) {
+  //     draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
+  //     draftState[targetBoardIndex].columns[newTargetColumnIndex].tasks.push(newTask);
+  //   } else draftState[targetBoardIndex].columns[targetColumnIndex].tasks[targetTaskIndex] = newTask;
+  // });
+  // return { ...state, data: newState };
 };

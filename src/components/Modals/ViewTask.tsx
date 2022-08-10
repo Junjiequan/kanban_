@@ -10,7 +10,6 @@ import SelectDropDown from '../../standard/SelectDropDown';
 
 const ViewTask = (props: IModal) => {
   const { ModalDetail, boardTab } = props;
-
   const dispatch = useAppDispatch();
   const [newTask, setNewTask] = useState({
     title: ModalDetail.title,
@@ -24,7 +23,7 @@ const ViewTask = (props: IModal) => {
 
   //TODO high priority - fix a way to refresh old task always
 
-  const countCompleted = ModalDetail.subtasks?.filter((item: any) => item.isCompleted === true);
+  const countCompleted = ModalDetail.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
 
   const onSetCurrentStatus = (value: string) => {
     //TODO change modal status  - add it with drag and drop

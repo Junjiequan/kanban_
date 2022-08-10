@@ -18,24 +18,22 @@ const ViewTask = (props: IModal) => {
     subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
     status: ModalDetail.status,
   });
+
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
 
   //TODO high priority - fix a way to refresh old task always
-  const taskDetail = boardData.data
-    .filter((board: any) => board.name === boardTab)[0]
-    .columns!.filter((column: any) => column.name.toLowerCase() === newTask.status.toLowerCase())[0]
-    .tasks!.filter((task: any) => task.title === newTask.title)[0];
 
   const countCompleted = ModalDetail.subtasks?.filter((item: any) => item.isCompleted === true);
 
   const onSetCurrentStatus = (value: string) => {
     //TODO change modal status  - add it with drag and drop
     setNewTask({ ...newTask, status: value });
+    dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: newTask }));
   };
 
   useEffect(() => {
-    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: taskDetail }));
+    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
   }, [newTask.status]);
 
   if (!Object.keys(ModalDetail).length) return null;

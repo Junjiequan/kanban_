@@ -35,6 +35,14 @@ export const onAddTask = (state: DataState, action: AnyAction) => {
 export const onEditTask = (state: DataState, action: AnyAction) => {
   const { currentBoard, newTask, oldTask } = action.payload;
 
+  //if a task move from one column to another, we need both oldTask and newTask's value
+  //in order to remove task from previous column and add it to new column
+
+  //if only value of a task changes, we don't really need oldTask.
+  //just make sure to send same value as payload for newTask and oldTask to prevent errors.
+
+  //###this block of code needs refactor and changes if the IDs are given. ###
+
   const data = current(state.data);
   const targetBoard = data.find((item) => item.name === currentBoard);
   const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
@@ -50,7 +58,10 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
   );
 
   const newState = produce(data, (draftState: any) => {
-    if (newTask.status.toLocaleLowerCase() !== oldTask.status.toLocaleLowerCase()) {
+    if (
+      newTask.status.toLocaleLowerCase() !== oldTask.status.toLocaleLowerCase() ||
+      targetColumnIndex !== newTargetColumnIndex
+    ) {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
       draftState[targetBoardIndex].columns[newTargetColumnIndex].tasks.push(newTask);
     } else draftState[targetBoardIndex].columns[targetColumnIndex].tasks[targetTaskIndex] = newTask;

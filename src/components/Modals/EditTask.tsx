@@ -6,7 +6,7 @@ import { editTask } from '../../reducer/dataSlice';
 import { Cross } from '../../data/icons';
 import Button from '../../standard/Button';
 import SelectDropDown from '../../standard/SelectDropDown';
-
+import { openModal } from '../../reducer/modalSlice';
 const EditTask = (props: IModal) => {
   const { ModalDetail, boardTab } = props;
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ const EditTask = (props: IModal) => {
       alert('TODO - add form validation');
       return;
     }
-
+    dispatch(openModal({ ModalType: 'EditTask', ModalDetail: newTask }));
     dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
   };
 
@@ -49,8 +49,7 @@ const EditTask = (props: IModal) => {
 
   const onSubtasksChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const subTask = newTask.subtasks.slice();
-    subTask[index].title = e.target.value;
-    subTask[index].isCompleted = false;
+    subTask[index] = { title: e.target.value, isCompleted: subTask[index].isCompleted };
 
     setNewTask({ ...newTask, subtasks: subTask });
   };

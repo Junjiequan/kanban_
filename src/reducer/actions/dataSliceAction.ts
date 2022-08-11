@@ -37,7 +37,6 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
 
   //if a task move from one column to another, we need both oldTask and newTask's value
   //in order to remove task from previous column and add it to new column
-
   //if only value of a task changes, we don't really need oldTask.
   //just make sure to send same value as payload for newTask and oldTask to prevent errors.
 

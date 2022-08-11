@@ -57,8 +57,9 @@ const EditTask = (props: IModal) => {
   };
 
   const handleDeleteSubTask = (index: number) => {
-    newTask.subtasks.splice(index, 1);
-    setNewTask({ ...newTask, subtasks: newTask.subtasks });
+    const subTask = newTask.subtasks.slice();
+    subTask.splice(index, 1);
+    setNewTask({ ...newTask, subtasks: subTask });
   };
 
   const onSubtasksChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
@@ -97,7 +98,7 @@ const EditTask = (props: IModal) => {
                   <input
                     className='AddNewTask__subtask__input'
                     type='text'
-                    value={newTask.subtasks[index].title}
+                    value={item.title}
                     onChange={(e) => onSubtasksChange(e, index)}
                   />
                   <button type='button' className='' onClick={() => handleDeleteSubTask(index)}>

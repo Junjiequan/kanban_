@@ -51,7 +51,7 @@ const ViewTask = (props: IModal) => {
           <h2>{ModalDetail.title} </h2>
           <DropDown
             text='task'
-            onEdit={() => dispatch(openModal({ ModalType: 'EditTask' }))}
+            onEdit={() => dispatch(openModal({ ModalType: 'EditTask', ModalDetail: newTask }))}
             onDelete={() => dispatch(openModal({ ModalType: 'DeleteTask' }))}
             direction={'right'}
           />

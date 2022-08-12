@@ -9,6 +9,7 @@ export type modalTypes =
   | 'ViewTask'
   | 'AddBoard'
   | 'AddNewTask'
+  | 'AddColumn'
   | 'EditTask'
   | 'EditBoard'
   | 'DeleteBoard'

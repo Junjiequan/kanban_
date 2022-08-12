@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from './Card';
 import type { IColumn } from '../../data/type';
+import { openModal } from '../../reducer/modalSlice';
+import { useAppDispatch } from '../../hooks/useRedux';
 
 interface ColumnProps {
   columnData: IColumn | undefined;
@@ -9,12 +11,15 @@ interface ColumnProps {
 
 const Column = (props: ColumnProps) => {
   const { columnData, ballColor } = props;
-
+  const dispatch = useAppDispatch();
   if (!columnData) {
     return (
       <div className='Column'>
         <div className='Column__title'>&nbsp;</div>
-        <button className='Column__addNewButton' onClick={() => console.log('clicked')}>
+        <button
+          className='Column__addNewButton'
+          onClick={() => dispatch(openModal({ ModalType: 'AddColumn', ModalDetail: {} }))}
+        >
           + New Column
         </button>
       </div>

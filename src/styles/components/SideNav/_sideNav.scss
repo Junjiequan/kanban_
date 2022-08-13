@@ -34,17 +34,24 @@
 .SideNav__tab {
   display: flex;
   align-items: center;
+  text-align: left;
   padding-left: $margin-large;
+  padding-bottom: $margin-tiny;
+  padding-top: $margin-tiny;
   width: 17.25rem;
-  height: 2.8rem;
+  min-height: 2.8rem;
+  height: fit-content;
+  word-break: break-word;
   margin-bottom:.2rem;
   position: relative;
   background: transparent;
   transition: color .2s ease;
   color: inherit;
   z-index:0;
+
   & > svg {
     margin-right:$margin-small;
+    min-width: 1rem;
   }
 
   &::after {
@@ -71,7 +78,6 @@
   }
   &--active {
     color: $white;
-
     &::after {
       content: '';
       background-color: $darkBlue;

@@ -11,6 +11,7 @@ interface ColumnProps {
 
 const Column = (props: ColumnProps) => {
   const { columnData, ballColor } = props;
+  //TODO do we need allColumns props?
   const dispatch = useAppDispatch();
   if (!columnData) {
     return (
@@ -18,7 +19,7 @@ const Column = (props: ColumnProps) => {
         <div className='Column__title'>&nbsp;</div>
         <button
           className='Column__addNewButton'
-          onClick={() => dispatch(openModal({ ModalType: 'AddColumn', ModalDetail: {} }))}
+          onClick={() => dispatch(openModal({ ModalType: 'EditBoard', ModalDetail: { type: 'AddNewColumn' } }))}
         >
           + New Column
         </button>

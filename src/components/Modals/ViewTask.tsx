@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../../standard/Modal';
 import { IModal, ISubTask } from '../../data/type';
 import DropDown from '../../standard/DropDown';
@@ -11,21 +11,20 @@ import SelectDropDown from '../../standard/SelectDropDown';
 const ViewTask = (props: IModal) => {
   const { ModalDetail, boardTab } = props;
   const dispatch = useAppDispatch();
+  const boardData = useAppSelector((state) => state.data);
+  const boardStatus = boardData.currentBoardStatus;
   const [newTask, setNewTask] = useState({
     title: ModalDetail.title,
     description: ModalDetail.description,
     subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
     status: ModalDetail.status,
+    statusId: ModalDetail.statusId,
   });
-
-  const boardData = useAppSelector((state) => state.data);
-  const boardStatus = boardData.currentBoardStatus;
-
   const countCompleted = ModalDetail.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
 
-  const onSetCurrentStatus = (value: string) => {
+  const onSetCurrentStatus = (value: string, index: number) => {
     //TODO change modal status  - add it with drag and drop
-    setNewTask({ ...newTask, status: value });
+    setNewTask({ ...newTask, status: value, statusId: index });
     dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: newTask }));
   };
 
@@ -78,7 +77,7 @@ const ViewTask = (props: IModal) => {
           <div className='ViewTask__status-dropdown'>
             <SelectDropDown
               status={boardStatus}
-              currentStatus={newTask.status ? newTask.status : boardStatus[0]}
+              currentStatus={newTask.statusId ? boardStatus[newTask.statusId] : boardStatus[0]}
               onSetCurrentStatus={onSetCurrentStatus}
             />
           </div>

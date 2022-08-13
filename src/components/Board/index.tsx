@@ -12,7 +12,6 @@ const Board = (props: BoardProps) => {
   const board = useAppSelector((state) => state.data.data);
   const currentTab = useAppSelector((state) => state.boardTab);
   const onHide = hideSideNav ? 'Board__full' : '';
-
   const data = currentTab ? board.find((item) => item.name === currentTab) : board[0];
   const columnsCount: number = data?.columns ? data?.columns?.length : 0;
 

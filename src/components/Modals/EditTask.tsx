@@ -18,10 +18,11 @@ const EditTask = (props: IModal) => {
     description: ModalDetail.description,
     subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
     status: ModalDetail.status,
+    statusId: ModalDetail.statusId,
   });
 
-  const onSetCurrentStatus = (value: string) => {
-    setNewTask({ ...newTask, status: value });
+  const onSetCurrentStatus = (value: string, index: number) => {
+    setNewTask({ ...newTask, status: value, statusId: index });
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -116,7 +117,7 @@ const EditTask = (props: IModal) => {
           <p className='AddNewTask__sub-title'>Status</p>
           <SelectDropDown
             status={boardStatus}
-            currentStatus={newTask.status ? newTask.status : boardStatus[0]}
+            currentStatus={newTask.statusId ? boardStatus[newTask.statusId] : boardStatus[0]}
             onSetCurrentStatus={onSetCurrentStatus}
           />
         </div>

@@ -12,6 +12,7 @@
   padding: $margin-medium $margin-small;
   margin-bottom: $margin-medium;
   transition: filter .2s ease;
+
   cursor: grab;
   &:hover {
     filter: opacity(45%);
@@ -27,6 +28,12 @@
   font-weight: bold;
   color: color(title);
   margin-bottom: $margin-tiny;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  overflow: hidden;
 }
 
 .Card__count {

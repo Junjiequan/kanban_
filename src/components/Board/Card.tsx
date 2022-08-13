@@ -9,6 +9,7 @@ interface CardProps {
 const Card = (props: CardProps) => {
   const dispatch = useAppDispatch();
   const { cardData } = props;
+
   const countCompleted = cardData.subtasks?.filter((item) => item.isCompleted === true);
 
   return (

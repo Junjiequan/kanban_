@@ -3,7 +3,7 @@ import Modal from '../../standard/Modal';
 import { IColumn, IModal } from '../../data/type';
 import { Cross } from '../../data/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { editBoard } from '../../reducer/dataSlice';
+import { editBoard, setBoardtStatus } from '../../reducer/dataSlice';
 import Button from '../../standard/Button';
 import { setTab } from '../../reducer/boardTabSlice';
 
@@ -30,6 +30,7 @@ const EditBoard = (props: IModal) => {
       return;
     }
     dispatch(editBoard({ currentBoardTab: boardTab, newBoard: newBoard }));
+    dispatch(setBoardtStatus(boardTab));
     dispatch(setTab(newBoard.name));
   };
 

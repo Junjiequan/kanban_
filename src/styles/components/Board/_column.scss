@@ -20,9 +20,16 @@
   color: $mediumGray;
 }
 
+.Column__title-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 .Column__title-ball {
   display: flex;
-  width: 15px;
+  min-width: 15px;
   height: 15px;
   border-radius: 100%;
   margin-right: 12px;

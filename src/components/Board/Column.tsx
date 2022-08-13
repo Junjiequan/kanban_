@@ -11,8 +11,8 @@ interface ColumnProps {
 
 const Column = (props: ColumnProps) => {
   const { columnData, ballColor } = props;
-  //TODO do we need allColumns props?
   const dispatch = useAppDispatch();
+
   if (!columnData) {
     return (
       <div className='Column'>
@@ -30,7 +30,9 @@ const Column = (props: ColumnProps) => {
     <div className='Column'>
       <div className='Column__title'>
         <span className={`Column__title-ball Column__title-ball--${ballColor}`}></span>
-        {columnData.name}({columnData.tasks?.length})
+        <span className='Column__title-text' title={columnData.name}>
+          {columnData.name}({columnData.tasks?.length})
+        </span>
       </div>
       <div className={`Column__container ${columnData.tasks?.length ? '' : 'Column__container--empty'}`}>
         {columnData.tasks?.map((cardData) => {

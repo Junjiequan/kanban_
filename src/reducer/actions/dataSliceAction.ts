@@ -32,7 +32,6 @@ export const onEditBoard = (state: DataState, action: AnyAction) => {
   const exist = data.find((item) => item.name === currentBoardTab);
   if (exist) {
     const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
-
     const newState = produce(data, (draftState: any) => {
       draftState[targetBoardIndex] = newBoard;
     });
@@ -73,12 +72,9 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
   const targetBoard = data.find((item) => item.name === currentBoard);
   const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
 
-  const targetColumnIndex = targetBoard!.columns!.findIndex(
-    (item) => item.name!.toLowerCase() === oldTask.status.toLowerCase()
-  );
-  const newTargetColumnIndex = targetBoard!.columns!.findIndex(
-    (item) => item.name!.toLowerCase() === newTask.status.toLowerCase()
-  );
+  const targetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === oldTask.statusId);
+  const newTargetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === newTask.statusId);
+
   const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex(
     (item) => item.title?.toLocaleLowerCase() === oldTask.title.toLocaleLowerCase()
   );

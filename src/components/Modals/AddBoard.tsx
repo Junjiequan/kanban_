@@ -5,6 +5,7 @@ import { Cross } from '../../data/icons';
 import Button from '../../standard/Button';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { addBoard } from '../../reducer/dataSlice';
+import { closeModal } from '../../reducer/modalSlice';
 
 const AddBoard = (props: IModal) => {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ const AddBoard = (props: IModal) => {
       return;
     }
     dispatch(addBoard(newBoard));
+    dispatch(closeModal());
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

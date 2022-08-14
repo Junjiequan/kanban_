@@ -34,6 +34,9 @@ const ViewTask = (props: IModal) => {
     setNewTask({ ...newTask, subtasks: subTask });
   };
 
+  console.log('ModalDetail', ModalDetail);
+  console.log('newTask', newTask);
+
   useEffect(() => {
     dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
   }, [newTask.status]);

@@ -19,6 +19,7 @@ const EditBoard = (props: IModal) => {
       { name: '', tasks: [] },
     ],
   });
+
   const isAddNewColumnModal = modalType.ModalDetail.type === 'AddNewColumn';
 
   const handleFormSubmit = (e: FormEvent) => {
@@ -29,8 +30,9 @@ const EditBoard = (props: IModal) => {
       alert('check form - empty name or duplicated name');
       return;
     }
+
     dispatch(editBoard({ currentBoardTab: boardTab, newBoard: newBoard }));
-    dispatch(setBoardtStatus(boardTab));
+    dispatch(setBoardtStatus(newBoard.name));
     dispatch(setTab(newBoard.name));
   };
 
@@ -63,7 +65,7 @@ const EditBoard = (props: IModal) => {
     <Modal {...props}>
       <form className='AddNewTask' onSubmit={handleFormSubmit}>
         <div className='AddNewTask__topWrapper'>
-          <h2>Edit Board</h2>
+          <h2>{isAddNewColumnModal ? 'Add New Column' : 'Edit Board'}</h2>
         </div>
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Name</p>
@@ -73,6 +75,7 @@ const EditBoard = (props: IModal) => {
             name='title'
             onChange={handleInputChange}
             disabled={isAddNewColumnModal}
+            style={isAddNewColumnModal ? { opacity: 0.3 } : {}}
           />
         </div>
 
@@ -95,14 +98,17 @@ const EditBoard = (props: IModal) => {
               );
             })}
           </ul>
-          <Button small colorTheme onClick={handleAddNewColumn} style={{ marginTop: '0.5rem' }}>
-            + Add New Column
-          </Button>
+
+          {newBoard.columns.length < 6 && (
+            <Button small colorTheme onClick={handleAddNewColumn} style={{ marginTop: '0.5rem' }}>
+              + Add New Column
+            </Button>
+          )}
         </div>
 
         <div className='AddNewTask__boxWrapper'>
           <Button small type='submit'>
-            {isAddNewColumnModal ? 'Save Changes' : 'Edit Board'}
+            Save Changes
           </Button>
         </div>
       </form>

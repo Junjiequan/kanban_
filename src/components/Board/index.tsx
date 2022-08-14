@@ -21,7 +21,7 @@ const Board = (props: BoardProps) => {
         <Column key={index} columnData={columnData} ballColor={index} />
       ))}
 
-      {columnsCount < 4 && <Column ballColor={3} columnData={undefined} />}
+      {columnsCount < 6 && <Column ballColor={3} columnData={undefined} />}
     </div>
   );
 };

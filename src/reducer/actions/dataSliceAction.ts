@@ -9,6 +9,7 @@ export const onSetBoardtStatus = (state: DataState, action: AnyAction) => {
   const data = current(state.data);
   const currentBoardName = action.payload;
   const targetBoard = data.find((item) => item.name === currentBoardName);
+  //TODO fix the code below. mayhbe return {name:item.name, tasks:item.tasks} ?
   const targetBoardStatusArr = targetBoard!.columns!.map((item) => item.name);
   return { ...state, currentBoardStatus: targetBoardStatusArr };
 };

@@ -5,10 +5,10 @@ import { DataState } from '../dataSlice';
 export const onGetLocalData = (state: DataState, action: AnyAction) => {
   return { ...state, data: action.payload };
 };
-export const onSetBoardtStatus = (state: DataState, action: AnyAction) => {
+export const onSetBoardStatus = (state: DataState, action: AnyAction) => {
   const data = current(state.data);
-  const currentBoardName = action.payload;
-  const targetBoard = data.find((item) => item.name === currentBoardName);
+  const currentBoardTab = action.payload;
+  const targetBoard = data.find((item) => item.name === currentBoardTab);
   //TODO fix the code below. mayhbe return {name:item.name, tasks:item.tasks} ?
   const targetBoardStatusArr = targetBoard!.columns!.map((item) => item.name);
   return { ...state, currentBoardStatus: targetBoardStatusArr };
@@ -90,4 +90,17 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
     } else draftState[targetBoardIndex].columns[targetColumnIndex].tasks[targetTaskIndex] = newTask;
   });
   return { ...state, data: newState };
+};
+
+export const onDeleteBoard = (state: DataState, action: AnyAction) => {
+  const currentBoardTab = action.payload;
+  const data = current(state.data);
+  const exist = data.find((item) => item.name === currentBoardTab);
+  if (exist) {
+    const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
+    const newState = produce(data, (draftState: any) => {
+      draftState.splice(targetBoardIndex, 1);
+    });
+    return { ...state, data: newState };
+  } else throw console.error('on delete board err');
 };

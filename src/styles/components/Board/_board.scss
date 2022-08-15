@@ -10,8 +10,15 @@
   padding: $margin-medium $margin-large;
   cursor: move;
 
+  &--noItem {
+    display:grid;
+    place-content: center;
+    color: color(title)
+  }
+
   &__full {
     left: 0;
   }
 }
+
 

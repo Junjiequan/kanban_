@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { type ITab } from '../../data/type';
 import { IconBoard } from '../../data/icons';
-import { setBoardtStatus } from '../../reducer/dataSlice';
+import { setBoardStatus } from '../../reducer/dataSlice';
 import { useAppSelector } from '../../hooks/useRedux';
 import { setTab } from '../../reducer/boardTabSlice';
 import { openModal } from '../../reducer/modalSlice';
@@ -16,7 +16,7 @@ const Tab = (props: ITab) => {
   const handleClickTab = (tab: string | undefined) => {
     if (!tab) return;
     dispatch(setTab(tab));
-    dispatch(setBoardtStatus(tab));
+    dispatch(setBoardStatus(tab));
   };
 
   if (addNew) {

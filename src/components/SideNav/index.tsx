@@ -32,9 +32,9 @@ const SideNav = (props: SideNavProps) => {
         <div className='SideNav__head'>ALL BOARDS ({board.length})</div>
 
         <div>
-          {board.map((tab, index) => (
-            <Tab key={index} tab={tab.name} defaultTab={index === 0} />
-          ))}
+          {board.map((tab, index) => {
+            return <Tab key={index} tab={tab.name} defaultTab={index === 0} />;
+          })}
         </div>
         <Tab addNew />
       </div>

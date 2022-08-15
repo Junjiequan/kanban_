@@ -4,8 +4,9 @@ import { IModal, IColumn } from '../../data/type';
 import { Cross } from '../../data/icons';
 import Button from '../../standard/Button';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { addBoard } from '../../reducer/dataSlice';
+import { addBoard, setBoardStatus } from '../../reducer/dataSlice';
 import { closeModal } from '../../reducer/modalSlice';
+import { setTab } from '../../reducer/boardTabSlice';
 
 const AddBoard = (props: IModal) => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,8 @@ const AddBoard = (props: IModal) => {
       return;
     }
     dispatch(addBoard(newBoard));
+    dispatch(setTab(newBoard.name));
+    dispatch(setBoardStatus(newBoard.name));
     dispatch(closeModal());
   };
 

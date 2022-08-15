@@ -1,0 +1,47 @@
+
+.DeleteBoard {
+  display: block;
+  text-align: left;
+}
+
+.DeleteBoard__topWrapper {
+  margin-bottom: $margin-medium;
+}
+
+.DeleteBoard__text-title {
+  color: $red;
+  margin-bottom: $margin-small;
+}
+
+.DeleteBoard__text-info {
+  font-size: $font-13;
+  color: $mediumGray;
+  line-height: 23px;
+}
+
+.DeleteBoard__btnWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  & > button:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+  
+  .DeleteBoard__btn--delete {
+    background-color: $red;
+
+    &:hover {
+      opacity: $hover;
+    }
+  }
+
+  .DeleteBoard__btn--cancel {
+    background-color: $veryLightBlue;
+    color: $darkBlue;
+
+    &:hover {
+      opacity: $hover;
+    }
+  }
+}
+

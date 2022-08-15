@@ -27,7 +27,7 @@
   }
 
 
-  &:hover:not(&--theme){
+  &:hover:not(&--theme, &--custom){
     background: $lightBlue;
   }
 }

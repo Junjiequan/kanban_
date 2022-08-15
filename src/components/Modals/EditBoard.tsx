@@ -3,7 +3,7 @@ import Modal from '../../standard/Modal';
 import { IColumn, IModal } from '../../data/type';
 import { Cross } from '../../data/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { editBoard, setBoardtStatus } from '../../reducer/dataSlice';
+import { editBoard, setBoardStatus } from '../../reducer/dataSlice';
 import Button from '../../standard/Button';
 import { setTab } from '../../reducer/boardTabSlice';
 
@@ -32,7 +32,7 @@ const EditBoard = (props: IModal) => {
     }
 
     dispatch(editBoard({ currentBoardTab: boardTab, newBoard: newBoard }));
-    dispatch(setBoardtStatus(newBoard.name));
+    dispatch(setBoardStatus(newBoard.name));
     dispatch(setTab(newBoard.name));
   };
 
@@ -91,9 +91,11 @@ const EditBoard = (props: IModal) => {
                     value={item.name}
                     onChange={(e) => onColumnsChange(e, index)}
                   />
-                  <button type='button' className='' onClick={() => handleDeleteColumn(index)}>
-                    <Cross />
-                  </button>
+                  {item.tasks!.length < 1 && (
+                    <button type='button' className='' onClick={() => handleDeleteColumn(index)}>
+                      <Cross />
+                    </button>
+                  )}
                 </li>
               );
             })}

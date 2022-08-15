@@ -35,11 +35,11 @@ const ViewTask = (props: IModal) => {
   };
 
   useEffect(() => {
-    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
-  }, [newTask.status]);
+    dispatch(editTask({ currentBoardTab: boardTab, newTask: newTask, oldTask: ModalDetail }));
+  }, [newTask.statusId]);
 
   useEffect(() => {
-    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: newTask }));
+    dispatch(editTask({ currentBoardTab: boardTab, newTask: newTask, oldTask: newTask }));
   }, [newTask.subtasks]);
 
   if (!Object.keys(ModalDetail).length) return null;

@@ -19,8 +19,10 @@ const AddBoard = (props: IModal) => {
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     const isDuplicated = boardData.data.find((item) => item.name === newBoard.name);
-    if (!newBoard.name || isDuplicated) {
-      alert('check form - empty name or duplicated name');
+    const columnHasEmptyName = newBoard.columns.some((item) => item.name.trim() === '');
+
+    if (!newBoard.name || isDuplicated || columnHasEmptyName) {
+      alert('check form - box cannot be empty');
       return;
     }
     dispatch(addBoard(newBoard));

@@ -6,7 +6,7 @@ import { editTask } from '../../reducer/dataSlice';
 import { Cross } from '../../data/icons';
 import Button from '../../standard/Button';
 import SelectDropDown from '../../standard/SelectDropDown';
-import { openModal } from '../../reducer/modalSlice';
+import { closeModal, openModal } from '../../reducer/modalSlice';
 
 const EditTask = (props: IModal) => {
   const { ModalDetail, boardTab } = props;
@@ -42,13 +42,14 @@ const EditTask = (props: IModal) => {
       alert('Same title is used');
       return;
     }
-    if (!newTask.title || !newTask.description) {
+    if (!newTask.title) {
       alert('TODO - add form validation');
       return;
     }
     // end
-    dispatch(openModal({ ModalType: 'EditTask', ModalDetail: newTask }));
-    dispatch(editTask({ currentBoard: boardTab, newTask: newTask, oldTask: ModalDetail }));
+
+    dispatch(editTask({ currentBoardTab: boardTab, newTask: newTask, oldTask: ModalDetail }));
+    dispatch(closeModal());
   };
 
   const handleAddNewSubTask = () => {
@@ -78,7 +79,7 @@ const EditTask = (props: IModal) => {
         </div>
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Title</p>
-          <input type='text' value={newTask.title} name='title' onChange={handleInputChange} />
+          <input type='text' value={newTask.title} name='title' onChange={handleInputChange} required />
         </div>
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Description</p>
@@ -101,6 +102,7 @@ const EditTask = (props: IModal) => {
                     type='text'
                     value={item.title}
                     onChange={(e) => onSubtasksChange(e, index)}
+                    required
                   />
                   <button type='button' className='' onClick={() => handleDeleteSubTask(index)}>
                     <Cross />

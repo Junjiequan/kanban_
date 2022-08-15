@@ -4,6 +4,8 @@ import type { IColumn } from '../../data/type';
 import { useEffect } from 'react';
 import { setTab } from '../../reducer/boardTabSlice';
 import { setBoardStatus } from '../../reducer/dataSlice';
+import Button from '../../standard/Button';
+import { openModal } from '../../reducer/modalSlice';
 
 interface BoardProps {
   hideSideNav: boolean;
@@ -23,12 +25,21 @@ const Board = (props: BoardProps) => {
       dispatch(setTab(data[0]?.name));
       dispatch(setBoardStatus(data[0].name));
     }
+    if (data.length === 0) {
+      dispatch(setTab('No Board Found'));
+    }
   }, [data]);
 
   if (!currentBoard)
     return (
       <div className={`Board ${onHide} Board--noItem`}>
-        <h2>Board is empty</h2>
+        <Button
+          onClick={() => {
+            dispatch(openModal({ ModalType: 'AddBoard' }));
+          }}
+        >
+          + Create New Board
+        </Button>
       </div>
     );
 

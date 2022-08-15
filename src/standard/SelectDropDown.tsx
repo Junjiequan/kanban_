@@ -18,8 +18,9 @@ const SelectDropDown = (props: SelectDropDownProps) => {
         type='button'
         className='SelectDropDown__btn'
         onClick={() => handleSetCurrentStatus(props.item, props.index)}
+        title={props.item}
       >
-        {props.item}
+        <span className='SelectDropDown__btn-text'>{props.item}</span>
       </button>
     );
   };
@@ -41,8 +42,8 @@ const SelectDropDown = (props: SelectDropDownProps) => {
 
   return (
     <div className='SelectDropDown' ref={selectDropDownRef}>
-      <button type='button' className='SelectDropDown__trigger' onClick={handleOpenDropDown}>
-        {currentStatus}
+      <button type='button' className='SelectDropDown__trigger' onClick={handleOpenDropDown} title={currentStatus}>
+        <span className='SelectDropDown__trigger-text'>{currentStatus}</span>
         <span className='SelectDropDown__trigger-icon' style={openDropDown ? { transform: 'rotate(180deg)' } : {}}>
           <ChevronDown />
         </span>
@@ -50,7 +51,7 @@ const SelectDropDown = (props: SelectDropDownProps) => {
       {openDropDown && (
         <div className='SelectDropDown__wrapper'>
           {status.map((item: string, index: number) => (
-            <DropDownItem key={item} item={item} index={index} />
+            <DropDownItem key={index} item={item} index={index} />
           ))}
         </div>
       )}

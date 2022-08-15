@@ -35,8 +35,8 @@ const Column = (props: ColumnProps) => {
         </span>
       </div>
       <div className={`Column__container ${columnData.tasks?.length ? '' : 'Column__container--empty'}`}>
-        {columnData.tasks?.map((cardData) => {
-          return <Card key={cardData.title} cardData={cardData} />;
+        {columnData.tasks?.map((cardData, index) => {
+          return <Card key={index} cardData={cardData} />;
         })}
       </div>
     </div>

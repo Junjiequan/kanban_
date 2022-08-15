@@ -15,6 +15,11 @@
     place-content: center;
     color: color(title);
     left: 9.375rem;
+    cursor: default;
+  
+    &:hover {
+      color: color($darkBlue);
+    }
   }
 
   &__full {

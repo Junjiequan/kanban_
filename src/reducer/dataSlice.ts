@@ -7,6 +7,7 @@ import {
   onEditTask,
   onEditBoard,
   onDeleteBoard,
+  onDeleteTask,
   onGetLocalData,
   onSetBoardStatus,
   onAddBoard,
@@ -38,10 +39,11 @@ export const dataSlice = createSlice({
     editTask: (state, action) => onEditTask(state, action),
     editBoard: (state, action) => onEditBoard(state, action),
     deleteBoard: (state, action) => onDeleteBoard(state, action),
-    deleteTask: (state) => state,
+    deleteTask: (state, action) => onDeleteTask(state, action),
   },
 });
 
-export const { getLocalData, setBoardStatus, addBoard, addTask, editBoard, editTask, deleteBoard } = dataSlice.actions;
+export const { getLocalData, setBoardStatus, addBoard, addTask, editBoard, editTask, deleteBoard, deleteTask } =
+  dataSlice.actions;
 
 export default dataSlice.reducer;

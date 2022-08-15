@@ -7,6 +7,7 @@ import Button from '../../standard/Button';
 import { Cross } from '../../data/icons';
 
 import { addTask } from '../../reducer/dataSlice';
+import { closeModal } from '../../reducer/modalSlice';
 
 const AddNewTask = (props: IModal) => {
   const { boardTab } = props;
@@ -41,12 +42,13 @@ const AddNewTask = (props: IModal) => {
       alert('Same title is used');
       return;
     }
-    if (!newTask.title || !newTask.description) {
+    if (!newTask.title) {
       alert('TODO - add form validation');
       return;
     }
     //end
     dispatch(addTask({ currentBoard: boardTab, newTask: newTask }));
+    dispatch(closeModal());
   };
 
   const handleAddNewSubTask = () => {
@@ -74,7 +76,7 @@ const AddNewTask = (props: IModal) => {
         </div>
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Title</p>
-          <input type='text' value={newTask.title} name='title' onChange={handleInputChange} />
+          <input type='text' value={newTask.title} name='title' onChange={handleInputChange} required />
         </div>
         <div className='AddNewTask__boxWrapper'>
           <p className='AddNewTask__sub-title'>Description</p>
@@ -97,6 +99,7 @@ const AddNewTask = (props: IModal) => {
                     type='text'
                     value={newTask.subtasks[index].title}
                     onChange={(e) => onSubtasksChange(e, index)}
+                    required
                   />
                   <button type='button' className='' onClick={() => handleDeleteSubTask(index)}>
                     <Cross />

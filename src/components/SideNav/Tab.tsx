@@ -14,7 +14,6 @@ const Tab = (props: ITab) => {
   const active = currentTab ? currentTab === tab : defaultTab;
 
   const handleClickTab = (tab: string | undefined) => {
-    if (!tab) return;
     dispatch(setTab(tab));
     dispatch(setBoardStatus(tab));
   };

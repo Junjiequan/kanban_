@@ -60,7 +60,7 @@ export const onAddTask = (state: DataState, action: AnyAction) => {
 };
 
 export const onEditTask = (state: DataState, action: AnyAction) => {
-  const { currentBoard, newTask, oldTask } = action.payload;
+  const { currentBoardTab, newTask, oldTask } = action.payload;
 
   //if a task move from one column to another, we need both oldTask and newTask's value
   //in order to remove task from previous column and add it to new column
@@ -70,8 +70,8 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
   //###this block of code needs refactor and changes if the IDs are given. ###
 
   const data = current(state.data);
-  const targetBoard = data.find((item) => item.name === currentBoard);
-  const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
+  const targetBoard = data.find((item) => item.name === currentBoardTab);
+  const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
 
   const targetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === oldTask.statusId);
   const newTargetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === newTask.statusId);
@@ -100,6 +100,25 @@ export const onDeleteBoard = (state: DataState, action: AnyAction) => {
     const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
     const newState = produce(data, (draftState: any) => {
       draftState.splice(targetBoardIndex, 1);
+    });
+    return { ...state, data: newState };
+  } else throw console.error('on delete board err');
+};
+
+export const onDeleteTask = (state: DataState, action: AnyAction) => {
+  const { currentBoardTab, task } = action.payload;
+
+  console.log('--action payload', action.payload);
+  const data = current(state.data);
+  const exist = data.find((item) => item.name === currentBoardTab);
+  if (exist) {
+    const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
+    const targetColumnIndex = exist.columns!.findIndex((item) => item.tasks?.find((item) => item.title === task.title));
+    const targetTaskIndex = exist.columns![targetColumnIndex].tasks!.findIndex(
+      (item) => item.title?.toLocaleLowerCase() === task.title.toLocaleLowerCase()
+    );
+    const newState = produce(data, (draftState: any) => {
+      draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
     });
     return { ...state, data: newState };
   } else throw console.error('on delete board err');

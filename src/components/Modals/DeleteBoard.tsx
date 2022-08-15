@@ -13,6 +13,7 @@ const DeleteBoard = (props: IModal) => {
     dispatch(deleteBoard(boardTab));
     dispatch(closeModal());
   };
+
   const handleCancel = () => {
     dispatch(closeModal());
   };

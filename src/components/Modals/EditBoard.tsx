@@ -90,6 +90,7 @@ const EditBoard = (props: IModal) => {
                     type='text'
                     value={item.name}
                     onChange={(e) => onColumnsChange(e, index)}
+                    required
                   />
                   {item.tasks!.length < 1 && (
                     <button type='button' className='' onClick={() => handleDeleteColumn(index)}>

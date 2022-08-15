@@ -11,9 +11,10 @@
   cursor: move;
 
   &--noItem {
-    display:grid;
+    display: grid;
     place-content: center;
-    color: color(title)
+    color: color(title);
+    left: 9.375rem;
   }
 
   &__full {

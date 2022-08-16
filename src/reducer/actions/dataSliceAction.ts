@@ -41,16 +41,14 @@ export const onEditBoard = (state: DataState, action: AnyAction) => {
 };
 
 export const onAddTask = (state: DataState, action: AnyAction) => {
-  const { currentBoard, newTask } = action.payload;
+  const { currentBoard, newTask, status } = action.payload;
 
   const data = current(state.data);
   const exist = data.find((item) => item.name === currentBoard);
 
   if (exist) {
     const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
-    const targetColumnIndex = exist.columns!.findIndex(
-      (item) => item.name!.toLowerCase() === newTask.status.toLowerCase()
-    );
+    const targetColumnIndex = exist.columns!.findIndex((item, index) => index === newTask.statusId);
 
     const newState = produce(data, (draftState: any) => {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.push(newTask);
@@ -67,8 +65,6 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
   //if only value of a task changes, we don't really need oldTask.
   //just make sure to send same value as payload for newTask and oldTask to prevent errors.
 
-  //###this block of code needs refactor and changes if the IDs are given. ###
-
   const data = current(state.data);
   const targetBoard = data.find((item) => item.name === currentBoardTab);
   const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
@@ -76,9 +72,7 @@ export const onEditTask = (state: DataState, action: AnyAction) => {
   const targetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === oldTask.statusId);
   const newTargetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === newTask.statusId);
 
-  const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex(
-    (item) => item.title?.toLocaleLowerCase() === oldTask.title.toLocaleLowerCase()
-  );
+  const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex((item) => item.id === oldTask.id);
 
   const newState = produce(data, (draftState: any) => {
     if (
@@ -108,15 +102,12 @@ export const onDeleteBoard = (state: DataState, action: AnyAction) => {
 export const onDeleteTask = (state: DataState, action: AnyAction) => {
   const { currentBoardTab, task } = action.payload;
 
-  console.log('--action payload', action.payload);
   const data = current(state.data);
   const exist = data.find((item) => item.name === currentBoardTab);
   if (exist) {
     const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
-    const targetColumnIndex = exist.columns!.findIndex((item) => item.tasks?.find((item) => item.title === task.title));
-    const targetTaskIndex = exist.columns![targetColumnIndex].tasks!.findIndex(
-      (item) => item.title?.toLocaleLowerCase() === task.title.toLocaleLowerCase()
-    );
+    const targetColumnIndex = exist.columns!.findIndex((item) => item.tasks?.find((item) => item.id === task.id));
+    const targetTaskIndex = exist.columns![targetColumnIndex].tasks!.findIndex((item) => item.id === task.id);
     const newState = produce(data, (draftState: any) => {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
     });

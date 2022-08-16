@@ -8,6 +8,7 @@ import { Cross } from '../../data/icons';
 
 import { addTask } from '../../reducer/dataSlice';
 import { closeModal } from '../../reducer/modalSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 const AddNewTask = (props: IModal) => {
   const { boardTab } = props;
@@ -15,6 +16,7 @@ const AddNewTask = (props: IModal) => {
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
   const [newTask, setNewTask] = useState({
+    id: nanoid(),
     title: '',
     description: '',
     subtasks: [{ title: '', isCompleted: false }],
@@ -36,7 +38,7 @@ const AddNewTask = (props: IModal) => {
     //Refactor below later start
     const targetBoard = boardData.data.find((item) => item.name === boardTab);
     const isDuplicated = targetBoard!.columns!.find((column) =>
-      column.tasks?.find((task) => task.title === newTask.title)
+      column.tasks?.find((task) => task.title?.toLocaleLowerCase() === newTask.title.toLocaleLowerCase())
     );
     if (isDuplicated) {
       alert('Same title is used');

@@ -1,36 +1,42 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import Column from './Column';
-import type { IColumn } from '../../data/type';
-import { useEffect } from 'react';
+import type { IBoard, IColumn } from '../../data/type';
+import { useEffect, useState } from 'react';
 import { setTab } from '../../reducer/boardTabSlice';
 import { setBoardStatus } from '../../reducer/dataSlice';
 import Button from '../../standard/Button';
 import { openModal } from '../../reducer/modalSlice';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 interface BoardProps {
   hideSideNav: boolean;
+  board?: IBoard;
+  allBoards: IBoard[];
 }
 
 const Board = (props: BoardProps) => {
+  const { hideSideNav, board, allBoards } = props;
   const dispatch = useAppDispatch();
-  const { hideSideNav } = props;
-  const data = useAppSelector((state) => state.data.data);
-  const currentTab = useAppSelector((state) => state.boardTab);
-  const currentBoard = data.find((item) => item.name === currentTab);
+  const [draggableData, setDraggableData] = useState(board);
+
   const onHide = hideSideNav ? 'Board__full' : '';
-  const columnsCount: number = currentBoard?.columns ? currentBoard.columns.length : 0;
+  const columnsCount: number = board?.columns ? board.columns.length : 0;
+
+  const onDragEnd = (result: any) => {
+    const { destination, source } = result;
+  };
 
   useEffect(() => {
-    if (!currentBoard && data.length !== 0) {
-      dispatch(setTab(data[0]?.name));
-      dispatch(setBoardStatus(data[0].name));
+    if (!board && allBoards.length !== 0) {
+      dispatch(setTab(allBoards[0].name));
+      dispatch(setBoardStatus(allBoards[0].name));
     }
-    if (data.length === 0) {
+    if (allBoards.length === 0) {
       dispatch(setTab('No Board Found'));
     }
-  }, [data]);
+  }, [board]);
 
-  if (!currentBoard)
+  if (!board)
     return (
       <div className={`Board ${onHide} Board--noItem`}>
         <Button
@@ -45,10 +51,11 @@ const Board = (props: BoardProps) => {
 
   return (
     <div className={`Board ${onHide}`}>
-      {currentBoard.columns?.map((columnData: IColumn, index: number) => (
-        <Column key={index} columnData={columnData} ballColor={index} />
-      ))}
-
+      <DragDropContext onDragEnd={onDragEnd}>
+        {board.columns?.map((columnData: IColumn, index: number) => (
+          <Column key={index} columnData={columnData} ballColor={index} />
+        ))}
+      </DragDropContext>
       {columnsCount < 6 && <Column ballColor={3} columnData={undefined} />}
     </div>
   );

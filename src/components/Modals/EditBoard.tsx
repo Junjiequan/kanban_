@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { editBoard, setBoardStatus } from '../../reducer/dataSlice';
 import Button from '../../standard/Button';
 import { setTab } from '../../reducer/boardTabSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 const EditBoard = (props: IModal) => {
   const dispatch = useAppDispatch();
@@ -14,10 +15,13 @@ const EditBoard = (props: IModal) => {
   const boardTab = useAppSelector((state) => state.boardTab);
   const currentBoardData = boardData.data.find((item) => item.name === boardTab);
   const [newBoard, setNewBoard] = useState({
+    id: currentBoardData?.id,
     name: currentBoardData?.name || '',
-    columns: currentBoardData?.columns?.map((item: IColumn) => ({ name: item.name, tasks: item.tasks })) || [
-      { name: '', tasks: [] },
-    ],
+    columns: currentBoardData?.columns?.map((item: IColumn) => ({
+      id: item.id,
+      name: item.name,
+      tasks: item.tasks,
+    })) || [{ id: nanoid(), name: '', tasks: [] }],
   });
 
   const isAddNewColumnModal = modalType.ModalDetail.type === 'AddNewColumn';
@@ -52,7 +56,7 @@ const EditBoard = (props: IModal) => {
       alert('too many columns');
       return;
     }
-    columns.push({ name: '', tasks: [] });
+    columns.push({ id: nanoid(), name: '', tasks: [] });
     setNewBoard({ ...newBoard, columns: columns });
   };
   const handleDeleteColumn = (index: number) => {

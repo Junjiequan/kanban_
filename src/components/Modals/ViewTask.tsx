@@ -14,6 +14,7 @@ const ViewTask = (props: IModal) => {
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
   const [newTask, setNewTask] = useState({
+    id: ModalDetail.id,
     title: ModalDetail.title,
     description: ModalDetail.description,
     subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),

@@ -6,7 +6,7 @@ import { editTask } from '../../reducer/dataSlice';
 import { Cross } from '../../data/icons';
 import Button from '../../standard/Button';
 import SelectDropDown from '../../standard/SelectDropDown';
-import { closeModal, openModal } from '../../reducer/modalSlice';
+import { closeModal } from '../../reducer/modalSlice';
 
 const EditTask = (props: IModal) => {
   const { ModalDetail, boardTab } = props;
@@ -14,6 +14,7 @@ const EditTask = (props: IModal) => {
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
   const [newTask, setNewTask] = useState({
+    id: ModalDetail.id,
     title: ModalDetail.title,
     description: ModalDetail.description,
     subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
@@ -36,7 +37,7 @@ const EditTask = (props: IModal) => {
     //Refactor below later start
     const targetBoard = boardData.data.find((item) => item.name === boardTab);
     const isDuplicated = targetBoard!.columns!.find((column) =>
-      column.tasks?.find((task) => task.title === newTask.title)
+      column.tasks?.find((task) => task.title?.toLocaleLowerCase() === newTask.title.toLocaleLowerCase())
     );
     if (isDuplicated && newTask.title !== ModalDetail.title) {
       alert('Same title is used');

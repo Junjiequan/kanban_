@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 import Modal from '../../standard/Modal';
 import { IModal, IColumn } from '../../data/type';
 import { Cross } from '../../data/icons';
@@ -13,7 +14,8 @@ const AddBoard = (props: IModal) => {
   const boardData = useAppSelector((state) => state.data);
   const [newBoard, setNewBoard] = useState({
     name: '',
-    columns: [{ name: '', tasks: [] }],
+    columns: [{ id: nanoid(), name: '', tasks: [] }],
+    id: nanoid(),
   });
 
   const handleFormSubmit = (e: FormEvent) => {
@@ -47,7 +49,7 @@ const AddBoard = (props: IModal) => {
       alert('too many columns');
       return;
     }
-    columns.push({ name: '', tasks: [] });
+    columns.push({ id: nanoid(), name: '', tasks: [] });
     setNewBoard({ ...newBoard, columns: columns });
   };
   const handleDeleteColumn = (index: number) => {

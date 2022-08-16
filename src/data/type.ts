@@ -33,6 +33,7 @@ export interface ISubTask {
 }
 
 export interface ITask {
+  id: string;
   title?: string;
   description?: string;
   status?: string;
@@ -40,11 +41,13 @@ export interface ITask {
 }
 
 export interface IColumn {
+  id: string;
   name?: string;
   tasks?: ITask[];
 }
 
 export interface IBoard {
+  id: string;
   name?: string;
   columns?: IColumn[];
 }

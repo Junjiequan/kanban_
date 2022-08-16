@@ -30,6 +30,7 @@ const App = () => {
         const response = await import('./data/data.json');
         const data = response.boards;
         dispatch(getLocalData(data));
+
         if (data[0]) {
           dispatch(setTab(data[0]?.name));
           dispatch(setBoardStatus(data[0]?.name));

@@ -3,6 +3,7 @@ import Card from './Card';
 import type { IColumn } from '../../data/type';
 import { openModal } from '../../reducer/modalSlice';
 import { useAppDispatch } from '../../hooks/useRedux';
+import { Droppable } from 'react-beautiful-dnd';
 
 interface ColumnProps {
   columnData: IColumn | undefined;
@@ -34,11 +35,13 @@ const Column = (props: ColumnProps) => {
           {columnData.name}({columnData.tasks?.length})
         </span>
       </div>
+      {/* <Droppable droppableId={null}> */}
       <div className={`Column__container ${columnData.tasks?.length ? '' : 'Column__container--empty'}`}>
         {columnData.tasks?.map((cardData, index) => {
           return <Card key={index} cardData={cardData} />;
         })}
       </div>
+      {/* </Droppable> */}
     </div>
   );
 };

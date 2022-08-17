@@ -22,7 +22,7 @@ const Main = (props: MainProps) => {
   return (
     <ScrollContainer className='Main' vertical={false} hideScrollbars={false} ignoreElements={'.Card'}>
       <SideNav themeChange={themeChange} toggleOnHide={toggleOnHide} hideSideNav={hideSideNav} />
-      <Board hideSideNav={hideSideNav} allBoards={data} board={currentBoard} />
+      <Board hideSideNav={hideSideNav} allBoards={data} board={currentBoard} currentTab={currentTab} />
       {hideSideNav && (
         <button className='Main__showSideNavButton' onClick={toggleOnHide}>
           <IconShow />

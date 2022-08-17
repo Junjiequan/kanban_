@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { addBoard, setBoardStatus } from '../../reducer/dataSlice';
 import { closeModal } from '../../reducer/modalSlice';
 import { setTab } from '../../reducer/boardTabSlice';
+import { hasDuplicates } from '../../helper/util';
 
 const AddBoard = (props: IModal) => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,11 @@ const AddBoard = (props: IModal) => {
 
     if (!newBoard.name || isDuplicated || columnHasEmptyName) {
       alert('check form - box cannot be empty');
+      return;
+    }
+
+    if (hasDuplicates(newBoard.columns)) {
+      alert('duplicated status name found');
       return;
     }
     dispatch(addBoard(newBoard));

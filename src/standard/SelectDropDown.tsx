@@ -5,19 +5,19 @@ import { ChevronDown } from '../data/icons';
 interface SelectDropDownProps {
   status: string[];
   currentStatus: string | '';
-  onSetCurrentStatus: (status: string, index: number) => void;
+  onSetCurrentStatus: (status: string) => void;
 }
 
 const SelectDropDown = (props: SelectDropDownProps) => {
   const { status, currentStatus, onSetCurrentStatus } = props;
   const [openDropDown, setOpenDropDown] = useState(false);
   const selectDropDownRef = useRef(null);
-  const DropDownItem = (props: { item: string; index: number }) => {
+  const DropDownItem = (props: { item: string }) => {
     return (
       <button
         type='button'
         className='SelectDropDown__btn'
-        onClick={() => handleSetCurrentStatus(props.item, props.index)}
+        onClick={() => handleSetCurrentStatus(props.item)}
         title={props.item}
       >
         <span className='SelectDropDown__btn-text'>{props.item}</span>
@@ -29,8 +29,8 @@ const SelectDropDown = (props: SelectDropDownProps) => {
     setOpenDropDown((prev) => !prev);
   };
 
-  const handleSetCurrentStatus = (status: string, index: number) => {
-    onSetCurrentStatus(status, index);
+  const handleSetCurrentStatus = (status: string) => {
+    onSetCurrentStatus(status);
     setOpenDropDown(false);
   };
 
@@ -51,7 +51,7 @@ const SelectDropDown = (props: SelectDropDownProps) => {
       {openDropDown && (
         <div className='SelectDropDown__wrapper'>
           {status.map((item: string, index: number) => (
-            <DropDownItem key={index} item={item} index={index} />
+            <DropDownItem key={index} item={item} />
           ))}
         </div>
       )}

@@ -10,6 +10,7 @@ import {
   onDeleteTask,
   onGetLocalData,
   onSetBoardStatus,
+  onDragDropTasks,
   onAddBoard,
 } from './actions/dataSliceAction';
 import type { IBoard } from '../data/type';
@@ -36,6 +37,7 @@ export const dataSlice = createSlice({
     addBoard: (state, action) => onAddBoard(state, action),
     addTask: (state, action) => onAddTask(state, action),
     addColumn: (state) => state,
+    dragDropTasks: (state, action) => onDragDropTasks(state, action),
     editTask: (state, action) => onEditTask(state, action),
     editBoard: (state, action) => onEditBoard(state, action),
     deleteBoard: (state, action) => onDeleteBoard(state, action),
@@ -43,7 +45,16 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { getLocalData, setBoardStatus, addBoard, addTask, editBoard, editTask, deleteBoard, deleteTask } =
-  dataSlice.actions;
+export const {
+  getLocalData,
+  setBoardStatus,
+  addBoard,
+  addTask,
+  editBoard,
+  editTask,
+  deleteBoard,
+  deleteTask,
+  dragDropTasks,
+} = dataSlice.actions;
 
 export default dataSlice.reducer;

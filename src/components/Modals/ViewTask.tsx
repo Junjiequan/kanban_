@@ -13,19 +13,20 @@ const ViewTask = (props: IModal) => {
   const dispatch = useAppDispatch();
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
+
   const [newTask, setNewTask] = useState({
     id: ModalDetail.id,
     title: ModalDetail.title,
     description: ModalDetail.description,
     subtasks: ModalDetail.subtasks.map((item: ISubTask) => ({ title: item.title, isCompleted: item.isCompleted })),
     status: ModalDetail.status,
-    statusId: ModalDetail.statusId,
+    // statusId: ModalDetail.statusId,
   });
   const countCompleted = ModalDetail.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
 
-  const onSetCurrentStatus = (value: string, index: number) => {
-    //TODO change modal status  - add it with drag and drop
-    setNewTask({ ...newTask, status: value, statusId: index });
+  const onSetCurrentStatus = (value: string) => {
+    //TODO remove statusID
+    setNewTask({ ...newTask, status: value });
     dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: newTask }));
   };
 
@@ -37,7 +38,7 @@ const ViewTask = (props: IModal) => {
 
   useEffect(() => {
     dispatch(editTask({ currentBoardTab: boardTab, newTask: newTask, oldTask: ModalDetail }));
-  }, [newTask.statusId]);
+  }, [newTask.status]);
 
   useEffect(() => {
     dispatch(editTask({ currentBoardTab: boardTab, newTask: newTask, oldTask: newTask }));
@@ -78,7 +79,7 @@ const ViewTask = (props: IModal) => {
           <div className='ViewTask__status-dropdown'>
             <SelectDropDown
               status={boardStatus}
-              currentStatus={newTask.statusId ? boardStatus[newTask.statusId] : boardStatus[0]}
+              currentStatus={newTask.status ? newTask.status : boardStatus[0]}
               onSetCurrentStatus={onSetCurrentStatus}
             />
           </div>

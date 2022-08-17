@@ -7,6 +7,7 @@ import { editBoard, setBoardStatus } from '../../reducer/dataSlice';
 import Button from '../../standard/Button';
 import { setTab } from '../../reducer/boardTabSlice';
 import { nanoid } from '@reduxjs/toolkit';
+import { hasDuplicates } from '../../helper/util';
 
 const EditBoard = (props: IModal) => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,9 @@ const EditBoard = (props: IModal) => {
     if ((!newBoard.name || isDuplicated) && !isAddNewColumnModal && newBoard.name !== currentBoardData!.name) {
       alert('check form - empty name or duplicated name');
       return;
+    }
+    if (hasDuplicates(newBoard.columns)) {
+      alert('duplicated status name found');
     }
 
     dispatch(editBoard({ currentBoardTab: boardTab, newBoard: newBoard }));

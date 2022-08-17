@@ -41,14 +41,14 @@ export const onEditBoard = (state: DataState, action: AnyAction) => {
 };
 
 export const onAddTask = (state: DataState, action: AnyAction) => {
-  const { currentBoard, newTask, status } = action.payload;
+  const { currentBoard, newTask } = action.payload;
 
   const data = current(state.data);
   const exist = data.find((item) => item.name === currentBoard);
 
   if (exist) {
     const targetBoardIndex = data.findIndex((item) => item.name === currentBoard);
-    const targetColumnIndex = exist.columns!.findIndex((item, index) => index === newTask.statusId);
+    const targetColumnIndex = exist.columns!.findIndex((item) => item.name == newTask.status);
 
     const newState = produce(data, (draftState: any) => {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.push(newTask);
@@ -60,19 +60,14 @@ export const onAddTask = (state: DataState, action: AnyAction) => {
 export const onEditTask = (state: DataState, action: AnyAction) => {
   const { currentBoardTab, newTask, oldTask } = action.payload;
 
-  //if a task move from one column to another, we need both oldTask and newTask's value
-  //in order to remove task from previous column and add it to new column
-  //if only value of a task changes, we don't really need oldTask.
-  //just make sure to send same value as payload for newTask and oldTask to prevent errors.
-
   const data = current(state.data);
   const targetBoard = data.find((item) => item.name === currentBoardTab);
   const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
 
-  const targetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === oldTask.statusId);
-  const newTargetColumnIndex = targetBoard!.columns!.findIndex((item, index) => index === newTask.statusId);
+  const targetColumnIndex = targetBoard!.columns!.findIndex((item) => item.name == oldTask.status);
+  const newTargetColumnIndex = targetBoard!.columns!.findIndex((item) => item.name == newTask.status);
 
-  const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex((item) => item.id === oldTask.id);
+  const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex((item) => item.id == oldTask.id);
 
   const newState = produce(data, (draftState: any) => {
     if (
@@ -113,4 +108,28 @@ export const onDeleteTask = (state: DataState, action: AnyAction) => {
     });
     return { ...state, data: newState };
   } else throw console.error('on delete board err');
+};
+
+export const onDragDropTasks = (state: DataState, action: AnyAction) => {
+  const { currentBoardId, newBoard, newTask, newColId } = action.payload;
+
+  const data = current(state.data);
+  const exist = data.find((item) => item.id === currentBoardId);
+
+  if (exist) {
+    const newState = produce(data, (draftState: any) => {
+      const boardCopy = { ...newBoard };
+      const boardIndex = data.findIndex((item: any) => item.id === currentBoardId);
+      const colIndex = boardCopy.columns.findIndex((item: any) => item.id == newColId);
+      const taskIndex = boardCopy.columns[colIndex].tasks.findIndex((item: any) => item.id == newTask.id);
+
+      boardCopy.columns[colIndex].tasks[taskIndex] = {
+        ...boardCopy.columns[colIndex].tasks[taskIndex],
+        status: boardCopy.columns[colIndex].name,
+      };
+
+      draftState[boardIndex] = boardCopy;
+    });
+    return { ...state, data: newState };
+  } else throw console.error('on drag drop err');
 };

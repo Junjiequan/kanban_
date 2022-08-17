@@ -3,21 +3,22 @@ import Column from './Column';
 import type { IBoard, IColumn } from '../../data/type';
 import { useEffect, useState } from 'react';
 import { setTab } from '../../reducer/boardTabSlice';
-import { setBoardStatus } from '../../reducer/dataSlice';
+import { dragDropTasks, setBoardStatus } from '../../reducer/dataSlice';
 import Button from '../../standard/Button';
 import { openModal } from '../../reducer/modalSlice';
 import { DragDropContext, resetServerContext } from '@hello-pangea/dnd';
-import { reorderColumnList } from './util/util';
+import { reorderInSameColumn, reorderInDiffColumn } from '../../helper/util';
 
 resetServerContext();
 interface BoardProps {
   hideSideNav: boolean;
   board?: any;
   allBoards: IBoard[];
+  currentTab: string;
 }
 
 const Board = (props: BoardProps) => {
-  const { hideSideNav, board, allBoards } = props;
+  const { hideSideNav, board, allBoards, currentTab } = props;
   const dispatch = useAppDispatch();
 
   const [draggableData, setDraggableData] = useState(board);
@@ -34,21 +35,42 @@ const Board = (props: BoardProps) => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     //same column different position
-    const sourceCol = draggableData!.columns![source.droppableId];
-    const destinationCol = draggableData!.columns![destination.droppableId];
+    const sourceCol = draggableData!.columns!.find((i: any) => i.id == source.droppableId);
+    const destinationCol = draggableData!.columns!.find((i: any) => i.id == destination.droppableId);
+    const task = sourceCol?.tasks[source.index];
+    const dataCol = draggableData.columns.reduce((acc: any, value: any) => {
+      return { ...acc, [value.id]: value };
+    }, {});
 
     if (sourceCol.id === destinationCol.id) {
-      const newColumn = reorderColumnList(sourceCol, source.index, destination.index);
+      const newColumn = reorderInSameColumn(sourceCol, source.index, destination.index);
       const newBoard = {
         ...draggableData,
-        columns: Object.values({ ...draggableData.columns, [newColumn.id]: newColumn }),
+        columns: Object.values({ ...dataCol, [newColumn.id]: newColumn }),
       };
 
+      dispatch(dragDropTasks({ currentBoardId: board.id, newBoard: newBoard, newTask: task, newColId: newColumn.id }));
       setDraggableData(newBoard);
-
       return;
     }
+
     //different column
+
+    const newStartEnd = reorderInDiffColumn(sourceCol, destinationCol, source.index, destination.index);
+
+    const newBoard = {
+      ...draggableData,
+      columns: Object.values({
+        ...dataCol,
+        [newStartEnd.newStartCol.id]: newStartEnd.newStartCol,
+        [newStartEnd.newEndCol.id]: newStartEnd.newEndCol,
+      }),
+    };
+
+    dispatch(
+      dragDropTasks({ currentBoardId: board.id, newBoard: newBoard, newTask: task, newColId: newStartEnd.newEndCol.id })
+    );
+    setDraggableData(newBoard);
   };
 
   useEffect(() => {

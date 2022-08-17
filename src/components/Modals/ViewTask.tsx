@@ -25,7 +25,6 @@ const ViewTask = (props: IModal) => {
   const countCompleted = ModalDetail.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
 
   const onSetCurrentStatus = (value: string) => {
-    //TODO remove statusID
     setNewTask({ ...newTask, status: value });
     dispatch(openModal({ ModalType: 'ViewTask', ModalDetail: newTask }));
   };

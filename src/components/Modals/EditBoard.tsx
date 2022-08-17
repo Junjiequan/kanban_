@@ -100,11 +100,13 @@ const EditBoard = (props: IModal) => {
                     onChange={(e) => onColumnsChange(e, index)}
                     required
                   />
-                  {item.tasks!.length < 1 && (
-                    <button type='button' className='' onClick={() => handleDeleteColumn(index)}>
-                      <Cross />
-                    </button>
-                  )}
+                  <button
+                    type='button'
+                    style={item.tasks!.length < 1 ? {} : { opacity: '0.2', pointerEvents: 'none' }}
+                    onClick={() => handleDeleteColumn(index)}
+                  >
+                    <Cross />
+                  </button>
                 </li>
               );
             })}

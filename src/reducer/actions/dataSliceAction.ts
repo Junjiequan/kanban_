@@ -33,8 +33,23 @@ export const onEditBoard = (state: DataState, action: AnyAction) => {
   const exist = data.find((item) => item.name === currentBoardTab);
   if (exist) {
     const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
+
     const newState = produce(data, (draftState: any) => {
-      draftState[targetBoardIndex] = newBoard;
+      const boardWithTaskStatusChanged = {
+        ...newBoard,
+        columns: newBoard.columns.map((i: any) => {
+          return {
+            ...i,
+            tasks: i.tasks.map((task: any) => {
+              return {
+                ...task,
+                status: i.name,
+              };
+            }),
+          };
+        }),
+      };
+      draftState[targetBoardIndex] = boardWithTaskStatusChanged;
     });
     return { ...state, data: newState };
   } else throw console.error('on edit board err');
@@ -59,12 +74,13 @@ export const onAddTask = (state: DataState, action: AnyAction) => {
 
 export const onEditTask = (state: DataState, action: AnyAction) => {
   const { currentBoardTab, newTask, oldTask } = action.payload;
-
   const data = current(state.data);
   const targetBoard = data.find((item) => item.name === currentBoardTab);
   const targetBoardIndex = data.findIndex((item) => item.name === currentBoardTab);
 
-  const targetColumnIndex = targetBoard!.columns!.findIndex((item) => item.name == oldTask.status);
+  const targetColumnIndex = targetBoard!.columns!.findIndex((item) =>
+    item.tasks?.find((task) => task.id == oldTask.id)
+  );
   const newTargetColumnIndex = targetBoard!.columns!.findIndex((item) => item.name == newTask.status);
 
   const targetTaskIndex = targetBoard!.columns![targetColumnIndex].tasks!.findIndex((item) => item.id == oldTask.id);

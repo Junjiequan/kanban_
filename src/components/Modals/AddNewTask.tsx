@@ -97,7 +97,7 @@ const AddNewTask = (props: IModal) => {
               return (
                 <li className='AddNewTask__subtaskLi' key={index}>
                   <input
-                    className='AddNewTask__subtask__input'
+                    className='AddNewTask__subtask-input'
                     type='text'
                     value={newTask.subtasks[index].title}
                     onChange={(e) => onSubtasksChange(e, index)}

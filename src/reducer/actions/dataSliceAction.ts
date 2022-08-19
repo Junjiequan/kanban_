@@ -1,5 +1,6 @@
 import { AnyAction, current } from '@reduxjs/toolkit';
 import produce from 'immer';
+import { IBoard, IColumn, ITask } from '../../data/type';
 import { DataState } from '../dataSlice';
 
 export const onGetLocalData = (state: DataState, action: AnyAction) => {
@@ -37,10 +38,10 @@ export const onEditBoard = (state: DataState, action: AnyAction) => {
     const newState = produce(data, (draftState: any) => {
       const boardWithTaskStatusChanged = {
         ...newBoard,
-        columns: newBoard.columns.map((i: any) => {
+        columns: newBoard.columns.map((i: IColumn) => {
           return {
             ...i,
-            tasks: i.tasks.map((task: any) => {
+            tasks: i?.tasks?.map((task: ITask) => {
               return {
                 ...task,
                 status: i.name,
@@ -123,7 +124,7 @@ export const onDeleteTask = (state: DataState, action: AnyAction) => {
       draftState[targetBoardIndex].columns[targetColumnIndex].tasks.splice(targetTaskIndex, 1);
     });
     return { ...state, data: newState };
-  } else throw console.error('on delete board err');
+  } else throw console.error('on delete task err');
 };
 
 export const onDragDropTasks = (state: DataState, action: AnyAction) => {
@@ -135,9 +136,9 @@ export const onDragDropTasks = (state: DataState, action: AnyAction) => {
   if (exist) {
     const newState = produce(data, (draftState: any) => {
       const boardCopy = { ...newBoard };
-      const boardIndex = data.findIndex((item: any) => item.id === currentBoardId);
-      const colIndex = boardCopy.columns.findIndex((item: any) => item.id == newColId);
-      const taskIndex = boardCopy.columns[colIndex].tasks.findIndex((item: any) => item.id == newTask.id);
+      const boardIndex = data.findIndex((item: IBoard) => item.id === currentBoardId);
+      const colIndex = boardCopy.columns.findIndex((item: IColumn) => item.id == newColId);
+      const taskIndex = boardCopy.columns[colIndex].tasks.findIndex((item: ITask) => item.id == newTask.id);
 
       boardCopy.columns[colIndex].tasks[taskIndex] = {
         ...boardCopy.columns[colIndex].tasks[taskIndex],

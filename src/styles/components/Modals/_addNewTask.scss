@@ -63,7 +63,36 @@
   justify-content: space-between;
 }
 
-.AddNewTask__subtask__input {
+.AddNewTask__label {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  & input {
+    width: 100%;
+  }
+
+  &--err input,
+  &--err input:focus,
+  &--err input:focus-visible {
+    border-color: $red;
+  }
+
+  &--errText {
+    position:absolute;
+    display: flex;
+    top:0;
+    bottom:0;
+    right: $margin-small;
+    align-items: center;
+    font-size: $font-12;
+    font-weight: bold;
+    color: $red;
+  }
+
+}
+
+.AddNewTask__subtask-input {
   display: flex;
   width: 100%;
   margin-bottom: $margin-tiny;

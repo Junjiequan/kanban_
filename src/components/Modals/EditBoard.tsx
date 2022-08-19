@@ -35,9 +35,9 @@ const EditBoard = (props: IModal) => {
       alert('check form - empty name or duplicated name');
       return;
     }
-    if (hasDuplicates(newBoard.columns)) {
-      alert('duplicated status name found');
-    }
+    // if (hasDuplicates(newBoard.columns)) {
+    //   alert('duplicated status name found');
+    // }
 
     dispatch(editBoard({ currentBoardTab: boardTab, newBoard: newBoard }));
     dispatch(setBoardStatus(newBoard.name));
@@ -94,7 +94,7 @@ const EditBoard = (props: IModal) => {
               return (
                 <li className='AddNewTask__subtaskLi' key={index}>
                   <input
-                    className='AddNewTask__subtask__input'
+                    className='AddNewTask__subtask-input'
                     type='text'
                     value={item.name}
                     onChange={(e) => onColumnsChange(e, index)}

@@ -1,6 +1,14 @@
-export const hasDuplicates = (array: any) => {
+export const hasDuplicates = (index: number, array: any) => {
   const arr = array.map((i: any) => i.name);
-  return new Set(arr).size !== arr.length;
+  const unique = new Set(arr);
+  const uniqueArr = Array.from(unique);
+  if (unique.size < arr.length) {
+    if (uniqueArr[index] && uniqueArr[index] == arr[index]) {
+      return true;
+    }
+    return false;
+  }
+  return true;
 };
 
 export const reorderInSameColumn = (sourceCol: any, startIndex: number, endIndex: number) => {

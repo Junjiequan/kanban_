@@ -99,7 +99,7 @@ const EditTask = (props: IModal) => {
               return (
                 <li className='AddNewTask__subtaskLi' key={index}>
                   <input
-                    className='AddNewTask__subtask__input'
+                    className='AddNewTask__subtask-input'
                     type='text'
                     value={item.title}
                     onChange={(e) => onSubtasksChange(e, index)}

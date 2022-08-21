@@ -43,6 +43,7 @@ const AddNewTask = (props: IModal) => {
       column.tasks?.find((task) => task.title?.toLowerCase() == value.toLowerCase())
     );
   };
+
   const onSetCurrentStatus = (value: string) => {
     setValue('status', value, { shouldValidate: true });
   };

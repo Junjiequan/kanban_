@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from './layout/Header';
 import Main from './layout/Main';
 import Modals from './components/Modals';
 import { getLocalData, setBoardStatus } from './reducer/dataSlice';
 import { closeModal } from './reducer/modalSlice';
-import { useAppDispatch } from './hooks/useRedux';
+import { toggleTheme } from './reducer/dataSlice';
+import { useAppDispatch, useAppSelector } from './hooks/useRedux';
 import { setTab } from './reducer/boardTabSlice';
 import './App.scss';
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const [colorTheme, setColorTheme] = useState('dark');
+  const colorTheme = useAppSelector((state) => state.data.colorTheme);
   const handleColorTheme = () => {
-    return colorTheme === 'dark' ? setColorTheme('light') : setColorTheme('dark');
+    return colorTheme === 'dark' ? dispatch(toggleTheme('light')) : dispatch(toggleTheme('dark'));
   };
   const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {

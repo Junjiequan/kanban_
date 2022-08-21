@@ -114,13 +114,16 @@ const EditBoard = (props: IModal) => {
                       <span className='AddNewTask__label--errText'>Required</span>
                     )}
                   </label>
-                  <button
-                    type='button'
-                    style={item.tasks!.length < 1 ? {} : { opacity: '0.2', pointerEvents: 'none' }}
-                    onClick={() => remove(index)}
-                  >
-                    <Cross />
-                  </button>
+
+                  {fields.length > 1 && (
+                    <button
+                      type='button'
+                      style={item.tasks!.length < 1 ? {} : { opacity: '0.2', pointerEvents: 'none' }}
+                      onClick={() => remove(index)}
+                    >
+                      <Cross />
+                    </button>
+                  )}
                 </li>
               );
             })}

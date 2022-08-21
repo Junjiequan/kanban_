@@ -18,11 +18,13 @@ import type { IBoard } from '../data/type';
 export interface DataState {
   data: IBoard[];
   currentBoardStatus: string[] | any;
+  colorTheme: 'light' | 'dark';
   err?: any;
 }
 
 const initialState: DataState = {
   data: [],
+  colorTheme: 'dark',
   currentBoardStatus: [],
   err: {},
 };
@@ -32,6 +34,7 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     //example: (state, action) => return {...state, action.payload}
+    toggleTheme: (state, action) => ({ ...state, colorTheme: action.payload }),
     getLocalData: (state, action) => onGetLocalData(state, action),
     setBoardStatus: (state, action) => onSetBoardStatus(state, action),
     addBoard: (state, action) => onAddBoard(state, action),
@@ -46,6 +49,7 @@ export const dataSlice = createSlice({
 });
 
 export const {
+  toggleTheme,
   getLocalData,
   setBoardStatus,
   addBoard,

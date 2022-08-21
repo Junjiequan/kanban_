@@ -16,6 +16,7 @@ const AddNewTask = (props: IModal) => {
   const boardData = useAppSelector((state) => state.data);
   const boardStatus = boardData.currentBoardStatus;
   const targetBoard = boardData.data.find((item) => item.name === boardTab);
+
   const {
     register,
     setValue,

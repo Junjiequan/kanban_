@@ -99,10 +99,11 @@ const AddBoard = (props: IModal) => {
                       <span className='AddNewTask__label--errText'>Required</span>
                     )}
                   </label>
-
-                  <button type='button' className='' onClick={() => remove(index)}>
-                    <Cross />
-                  </button>
+                  {fields.length > 1 && (
+                    <button type='button' className='' onClick={() => remove(index)}>
+                      <Cross />
+                    </button>
+                  )}
                 </li>
               );
             })}

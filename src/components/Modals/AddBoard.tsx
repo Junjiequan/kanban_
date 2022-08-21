@@ -15,7 +15,7 @@ const AddBoard = (props: IModal) => {
   const {
     register,
     watch,
-    clearErrors,
+    // clearErrors,
     control,
     formState: { errors },
     handleSubmit,
@@ -50,9 +50,7 @@ const AddBoard = (props: IModal) => {
   };
 
   const handleAddNewColumn = () => {
-    if (fields.length > 5) {
-      return;
-    }
+    if (fields.length > 5) return;
     append({ id: nanoid(), name: '', tasks: [] });
   };
 
@@ -88,10 +86,10 @@ const AddBoard = (props: IModal) => {
                       className='AddNewTask__subtask-input'
                       defaultValue={`${item.name}`}
                       {...register(`columns.${index}.name`, {
-                        validate: () => hasDuplicates(index, watchFieldArray),
+                        validate: (value) => hasDuplicates(value, index, watchFieldArray),
                         required: true,
                       })}
-                      onClick={() => clearErrors(['columns'])}
+                      // onClick={() => clearErrors(['columns'])}
                     />
                     {errors.columns?.[index]?.name?.type == 'validate' && (
                       <span className='AddNewTask__label--errText'>Used</span>
@@ -109,7 +107,7 @@ const AddBoard = (props: IModal) => {
               );
             })}
           </ul>
-          {fields.length <= 5 && (
+          {fields.length < 6 && (
             <Button small colorTheme onClick={handleAddNewColumn} style={{ marginTop: '0.5rem' }}>
               + Add New Column
             </Button>

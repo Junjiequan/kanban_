@@ -1,11 +1,9 @@
-export const hasDuplicates = (index: number, array: any) => {
-  const arr = array.map((i: any) => i.name);
-  const unique = new Set(arr);
-  const uniqueArr = Array.from(unique);
-  if (unique.size < arr.length) {
-    if (uniqueArr[index] && uniqueArr[index] == arr[index]) {
-      return true;
-    }
+import { IColumn } from '../data/type';
+
+export const hasDuplicates = (value = '', index: number, array: IColumn[] | undefined) => {
+  if (!array) return;
+  const arr = array.map((i) => i.name);
+  if (arr.indexOf(value) !== index) {
     return false;
   }
   return true;
@@ -42,3 +40,6 @@ export const reorderInDiffColumn = (
 
   return { newStartCol, newEndCol };
 };
+
+const testArr = [1, 2, 3, 3, 4, 4, 5];
+const uniqueArr = [1, 2, 3, 4, 5];

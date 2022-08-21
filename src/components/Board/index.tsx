@@ -55,7 +55,6 @@ const Board = (props: BoardProps) => {
     }
 
     //different column
-
     const newStartEnd = reorderInDiffColumn(sourceCol, destinationCol, source.index, destination.index);
 
     const newBoard = {

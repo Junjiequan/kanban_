@@ -17,7 +17,7 @@ const EditBoard = (props: IModal) => {
   const boardTab = useAppSelector((state) => state.boardTab);
   const currentBoardData = boardData.data.find((item) => item.name === boardTab);
   //TODO add a error page?
-  if (!currentBoardData) return;
+  if (!currentBoardData) return null;
 
   const {
     register,

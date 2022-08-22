@@ -22,7 +22,13 @@ const Main = (props: MainProps) => {
   };
 
   return (
-    <ScrollContainer className='Main' vertical={false} hideScrollbars={false} ignoreElements={'.Card'}>
+    <ScrollContainer
+      className='Main'
+      nativeMobileScroll
+      vertical={false}
+      hideScrollbars={false}
+      ignoreElements={'.Card'}
+    >
       {!mobileQuery && <SideNav themeChange={themeChange} toggleOnHide={toggleOnHide} hideSideNav={hideSideNav} />}
       <Board hideSideNav={hideSideNav} allBoards={data} board={currentBoard} currentTab={currentTab} />
       {hideSideNav && (

@@ -28,9 +28,11 @@
   color: color(title);
   padding: $margin-large;
   animation: fadeIn .3s ease; 
+
   @include mobile {
     overflow-y: auto;
-    max-width: 21rem;
+    width: 100%;
+    height: 100%;
   }
 }
 

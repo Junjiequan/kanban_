@@ -3,6 +3,10 @@
   display: flex;
   width: 100%;
   position: relative;
+  @include mobile {
+    margin-bottom: 2rem;
+
+  }
 }
 
 .SelectDropDown__trigger{
@@ -54,6 +58,8 @@
   text-overflow: ellipsis;
   overflow: hidden;
   @include boxShadow;
+
+
 }
 
 .SelectDropDown__btn {

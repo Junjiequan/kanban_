@@ -46,6 +46,10 @@
     background:$darkBlue;
   }
 
+  &::-webkit-scrollbar-corner {
+    background: color(bg);
+  }
+
   @include tablet {
   }
 

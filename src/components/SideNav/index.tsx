@@ -46,7 +46,7 @@ const SideNav = (props: SideNavProps) => {
           <IconMoon />
         </div>
 
-        {hideSideNav && (
+        {!hideSideNav && (
           <button className='SideNav__hideButton' onClick={toggleOnHide}>
             <IconHide />
             Hide Sidebar

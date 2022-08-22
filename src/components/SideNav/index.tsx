@@ -16,7 +16,6 @@ const SideNav = (props: SideNavProps) => {
   const [toggled, setToggled] = useState<boolean>(false);
 
   const board = useAppSelector((state) => state.data.data);
-
   const mobileQuery = useMediaQuery('(max-width: 480px)');
 
   const handleThemeToggle = () => {
@@ -29,7 +28,7 @@ const SideNav = (props: SideNavProps) => {
   return (
     <div className={`SideNav ${isMobile} ${onHide}`}>
       <div className='SideNav__top'>
-        <div className='SideNav__head'>ALL BOARDS ({board.length})</div>
+        <div className='SideNav__head'>ALL BOARDS ({board ? board.length : 0})</div>
 
         <div>
           {board.map((tab, index) => {

@@ -14,7 +14,7 @@ const Main = (props: MainProps) => {
   const [hideSideNav, setHideSideNav] = useState<boolean>(false);
   const data = useAppSelector((state) => state.data.data);
   const currentTab = useAppSelector((state) => state.boardTab);
-  const currentBoard = data.find((item) => item.name === currentTab);
+  const currentBoard = data?.find((item) => item.name === currentTab);
   const toggleOnHide = () => {
     setHideSideNav((prev) => !prev);
   };

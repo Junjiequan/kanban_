@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import Header from './layout/Header';
 import Main from './layout/Main';
 import Modals from './components/Modals';
-import { getLocalData, setBoardStatus } from './reducer/dataSlice';
-import { closeModal } from './reducer/modalSlice';
+import { getLocalData, hydrate, setBoardStatus } from './reducer/dataSlice';
+import { closeModal, openModal } from './reducer/modalSlice';
 import { toggleTheme } from './reducer/dataSlice';
 import { useAppDispatch, useAppSelector } from './hooks/useRedux';
 import { setTab } from './reducer/boardTabSlice';
 import './App.scss';
+import { loadState, store } from './store';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -26,21 +27,24 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const persistedState = loadState();
     const fetchData = async () => {
       try {
         const response = await import('./data/data.json');
         const data = response.boards;
         dispatch(getLocalData(data));
-
-        if (data[0]) {
-          dispatch(setTab(data[0]?.name));
-          dispatch(setBoardStatus(data[0]?.name));
-        }
+        dispatch(setTab(data[0].name));
+        dispatch(setBoardStatus(data[0].name));
       } catch (err) {
         console.error(err);
       }
     };
-    fetchData();
+    if (persistedState) {
+      store.dispatch(hydrate(persistedState.data));
+    }
+    if (persistedState && persistedState.data.data.length === 0) {
+      fetchData();
+    }
   }, []);
 
   return (

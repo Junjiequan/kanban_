@@ -3,7 +3,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  overflow-x: hidden !important;
   overflow-y: auto ;
   position: relative;
   background: color(bg);
@@ -49,5 +48,7 @@
   }
 
   @include mobile {
+    overflow-x: auto !important;
+
   }
 }

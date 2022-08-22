@@ -24,7 +24,7 @@ const Main = (props: MainProps) => {
   return (
     <ScrollContainer
       className='Main'
-      nativeMobileScroll
+      nativeMobileScroll={true}
       vertical={false}
       hideScrollbars={false}
       ignoreElements={'.Card'}

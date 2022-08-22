@@ -12,7 +12,7 @@
 }
 
 .Modal {
-  position: fixed;
+  position: relative;
   display: flex;
   justify-content: center;
   left: 0;
@@ -22,13 +22,27 @@
   width: 100%;
   margin: auto;
   max-width: 30rem;
-  height: fit-content;
+  max-height: 100%;
   border-radius: 10px;
   background: color(main);
   color: color(title);
   padding: $margin-large;
   animation: fadeIn .3s ease; 
+  overflow-y: auto;
   @include mobile {
     max-width: 21rem;
+  }
+}
+
+.Modal--close {
+  display: none;
+  position: absolute;
+  top: .4rem;
+  right: .2rem;
+  border-radius: 4px;
+  padding: .15rem .35rem ;
+  background: rgb(8, 8, 8, 0.1);
+  @include mobile {
+    display:block;
   }
 }

@@ -4,7 +4,7 @@ Your challenge is to build out this task management app and get it looking as cl
 
 Your users should be able to:
 
-- [ ] View the optimal layout for the app depending on their device's screen size
+- [x] View the optimal layout for the app depending on their device's screen size
 - [x] See hover states for all interactive elements on the page
 - [x] Create, read, update, and delete boards and tasks
 - [x] Receive form validations when trying to create/edit boards and tasks

@@ -22,7 +22,7 @@ const ViewTask = (props: IModal) => {
     status: ModalDetail.status,
     // statusId: ModalDetail.statusId,
   });
-  const countCompleted = ModalDetail.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
+  const countCompleted = newTask.subtasks?.filter((item: ISubTask) => item.isCompleted === true);
 
   const onSetCurrentStatus = (value: string) => {
     setNewTask({ ...newTask, status: value });

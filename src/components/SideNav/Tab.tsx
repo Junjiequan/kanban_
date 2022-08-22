@@ -8,7 +8,7 @@ import { setTab } from '../../reducer/boardTabSlice';
 import { openModal } from '../../reducer/modalSlice';
 
 const Tab = (props: ITab) => {
-  const { tab, addNew, defaultTab } = props;
+  const { tab, addNew, defaultTab, setToggleNav } = props;
   const dispatch = useAppDispatch();
   const currentTab = useAppSelector((state) => state.boardTab);
   const active = currentTab ? currentTab === tab : defaultTab;
@@ -16,14 +16,17 @@ const Tab = (props: ITab) => {
   const handleClickTab = (tab: string | undefined) => {
     dispatch(setTab(tab));
     dispatch(setBoardStatus(tab));
+    setToggleNav && setToggleNav(false);
+  };
+
+  const handleClickAddNew = () => {
+    dispatch(openModal({ ModalType: 'AddBoard' }));
+    setToggleNav && setToggleNav(false);
   };
 
   if (addNew) {
     return (
-      <button
-        className='SideNav__tab SideNav__tab--addNew'
-        onClick={() => dispatch(openModal({ ModalType: 'AddBoard' }))}
-      >
+      <button className='SideNav__tab SideNav__tab--addNew' onClick={handleClickAddNew}>
         <IconBoard />+ Create New Board
       </button>
     );

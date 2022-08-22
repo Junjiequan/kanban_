@@ -20,6 +20,20 @@
     &:hover {
       color: color($darkBlue);
     }
+
+    &__txt {
+      margin-bottom: $margin-small;
+      text-align: center;
+    }
+
+    &__btn {
+      display: flex;
+      justify-content: center;
+  
+      & > button {
+        max-width: fit-content;
+      }
+    }
   }
 
   &__full {

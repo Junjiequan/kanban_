@@ -5,8 +5,8 @@
   width: 100%;
   height: auto;
   background: $darkBlue;
-  padding: .75rem $margin-large;
-  border-radius: 30px;
+  padding: .75rem $margin-small;
+  border-radius: 24px;
   color: $white;
   font-size: $font-15;
   font-weight: bold;
@@ -14,7 +14,7 @@
 
   &--small {
     font-size: $font-13;
-    padding:$margin-tiny $margin-large;
+    padding:$margin-tiny $margin-small;
   }
 
   &--theme {

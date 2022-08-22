@@ -14,7 +14,7 @@ $font-15: 0.9375rem;
 $font-18: 1.125rem; 
 $font-19: 1.1875rem;
 $font-23: 1.4375rem; 
-$font-24: 1.5rem; 
+$font-24: clamp(1.2rem, 3vw, 1.5rem); 
 $font-30: 1.875rem; 
 
 //color 
@@ -68,8 +68,8 @@ $dark:(
 
 
 //device width
-$mobile-width: 480px;
-$tablet-width: 768px;
+$mobile-width: 767px;
+$tablet-width: 1023px;
 $desktop-width: 1024px;
 
 @mixin tablet {

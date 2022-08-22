@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import { useState } from 'react';
 import { IconHide, IconMoon, IconSun } from '../../data/icons';
 
 import Tab from './Tab';
@@ -7,35 +6,36 @@ import { useAppSelector } from '../../hooks/useRedux';
 
 interface SideNavProps {
   themeChange: () => void;
-  toggleOnHide: () => void;
-  hideSideNav: boolean;
+  toggleOnHide?: () => void;
+  hideSideNav?: boolean;
+  setToggleNav?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SideNav = (props: SideNavProps) => {
-  const { themeChange, hideSideNav, toggleOnHide } = props;
-  const [toggled, setToggled] = useState<boolean>(false);
+  const { themeChange, hideSideNav, toggleOnHide, setToggleNav } = props;
+  const colorTheme = useAppSelector((state) => state.data.colorTheme);
+  const [toggled, setToggled] = useState<boolean>(colorTheme === 'light');
 
   const board = useAppSelector((state) => state.data.data);
-  const mobileQuery = useMediaQuery('(max-width: 480px)');
 
   const handleThemeToggle = () => {
     themeChange();
     setToggled((prev) => !prev);
   };
 
-  const isMobile = mobileQuery ? 'SideNav__isMobile' : '';
-  const onHide = hideSideNav ? 'SideNav__hide' : '';
+  const onHide = hideSideNav && toggleOnHide ? 'SideNav__hide' : '';
+
   return (
-    <div className={`SideNav ${isMobile} ${onHide}`}>
+    <div className={`SideNav ${onHide}`}>
       <div className='SideNav__top'>
         <div className='SideNav__head'>ALL BOARDS ({board ? board.length : 0})</div>
 
         <div>
           {board.map((tab, index) => {
-            return <Tab key={index} tab={tab.name} defaultTab={index === 0} />;
+            return <Tab key={index} tab={tab.name} defaultTab={index === 0} setToggleNav={setToggleNav} />;
           })}
         </div>
-        <Tab addNew />
+        <Tab addNew setToggleNav={setToggleNav} />
       </div>
       <div className='SideNav__bottom'>
         <div className='SideNav__theme-mode'>
@@ -45,10 +45,13 @@ const SideNav = (props: SideNavProps) => {
           </button>
           <IconMoon />
         </div>
-        <button className='SideNav__hideButton' onClick={toggleOnHide}>
-          <IconHide />
-          Hide Sidebar
-        </button>
+
+        {hideSideNav && (
+          <button className='SideNav__hideButton' onClick={toggleOnHide}>
+            <IconHide />
+            Hide Sidebar
+          </button>
+        )}
       </div>
     </div>
   );

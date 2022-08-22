@@ -1,5 +1,3 @@
-import { ChangeEvent, useState } from 'react';
-
 interface CheckBoxProps {
   task: string;
   checked: boolean;

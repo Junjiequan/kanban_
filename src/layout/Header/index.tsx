@@ -2,7 +2,6 @@ import Launch from '../../components/Launch';
 import LogoDark from '../../assets/logo-dark.svg';
 import LogoLight from '../../assets/logo-light.svg';
 import LogoMobile from '../../assets/logo-mobile.svg';
-import type { IModal } from '../../data/type';
 
 interface HeaderProps {
   colorTheme: string;
@@ -16,7 +15,7 @@ const Header = (props: HeaderProps) => {
   return (
     <div className='Header'>
       <picture className='Header__Logo'>
-        <source srcSet={LogoMobile} media='(max-width: 480px)' />
+        <source srcSet={LogoMobile} media='(max-width: 767px)' />
         <img src={LogoImg} />
       </picture>
       <Launch />

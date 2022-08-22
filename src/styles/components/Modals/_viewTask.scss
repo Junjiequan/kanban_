@@ -14,12 +14,35 @@
   width: 100%;
   justify-content: space-between;
   margin-bottom: $margin-tiny;
+  word-break: break-word;
 }
 
 .ViewTask__descWrapper {
   font-size: $font-13;
   color: $mediumGray;
   line-height: 23px;
+  max-height: 10rem;
+  overflow-x: hidden;
+  word-break: break-word;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: .5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background:rgba($color: #000000, $alpha: 0.3); 
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: color(scroll); 
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background:$darkBlue;
+  }
 }
 
 .ViewTask__subtaskWrapper {

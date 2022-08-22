@@ -8,6 +8,7 @@ import Button from '../../standard/Button';
 import { openModal } from '../../reducer/modalSlice';
 import { DragDropContext, resetServerContext } from '@hello-pangea/dnd';
 import { reorderInSameColumn, reorderInDiffColumn } from '../../helper/util';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 resetServerContext();
 interface BoardProps {
@@ -20,9 +21,9 @@ interface BoardProps {
 const Board = (props: BoardProps) => {
   const { hideSideNav, board, allBoards, currentTab } = props;
   const dispatch = useAppDispatch();
-
+  const mobileQuery = useMediaQuery('mobile');
   const [draggableData, setDraggableData] = useState(board);
-  const onHide = hideSideNav ? 'Board__full' : '';
+  const onHide = hideSideNav || mobileQuery ? 'Board__full' : '';
   const columnsCount: number = board?.columns ? board.columns.length : 0;
 
   const onDragEnd = (result: any) => {
@@ -87,13 +88,17 @@ const Board = (props: BoardProps) => {
   if (!draggableData)
     return (
       <div className={`Board ${onHide} Board--noItem`}>
-        <Button
-          onClick={() => {
-            dispatch(openModal({ ModalType: 'AddBoard' }));
-          }}
-        >
-          + Create New Board
-        </Button>
+        <p className='Board--noItem__txt'>This board is empty. Create a new column to get started.</p>
+        <div className='Board--noItem__btn'>
+          <Button
+            small={mobileQuery}
+            onClick={() => {
+              dispatch(openModal({ ModalType: 'AddBoard' }));
+            }}
+          >
+            &nbsp; + Create New Board &nbsp;
+          </Button>
+        </div>
       </div>
     );
 

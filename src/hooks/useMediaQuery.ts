@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
-function useMediaQuery(query: string): boolean {
+function useMediaQuery(value: string): boolean {
+  const query = value === 'mobile' ? '(max-width: 767px)' : value;
+
   const getMatches = (query: string): boolean => {
     // Prevents SSR issues
     if (typeof window !== 'undefined') {

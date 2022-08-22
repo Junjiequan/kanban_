@@ -19,7 +19,8 @@
 
   @include mobile {
     &__Logo{
-      min-width: 0;
+      min-width: 4.5rem;
+      border-right: 0;
     }
   }
 }

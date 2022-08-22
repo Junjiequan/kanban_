@@ -23,6 +23,11 @@
   &--right {
     left:-150%;
   }
+  @include mobile {
+    &--right {
+      left:-450%;
+    }
+  }
 }
 
 .DropDown__text {
@@ -54,7 +59,13 @@
   color: $mediumGray;
   transition: background-color .2s ease,color .2s ease;
   cursor: pointer;
+
   &:hover {
     background: color(ellipsis);
+  }
+
+  @include mobile {
+    margin-left: $margin-tiny;
+    transform: scale(0.8);
   }
 }

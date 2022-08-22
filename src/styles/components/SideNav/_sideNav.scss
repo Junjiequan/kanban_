@@ -16,11 +16,23 @@
   border-right: 1px solid color(borderLine);
   transition: transform .2s ease;
   cursor: default;
-  &__isMobile {
-    visibility:hidden;
-  }
+  overflow-x: hidden;
+
   &__hide {
     transform: translateX(-100%);
+  }
+
+  @include mobile {
+    display: flex;
+    position: relative;
+    align-items: center;
+    border-radius: 8px;
+    margin: 0 auto;
+    top:5rem;
+    left:0;
+    right:0;
+    height: fit-content;
+    width: fit-content;
   }
 }
 
@@ -29,12 +41,17 @@
   font-size: $font-12;
   padding-left: $margin-large;
   margin-bottom: $margin-small;
+
+  @include mobile {
+    padding-left: 0;
+  }
 }
 
 .SideNav__tab {
   display: flex;
   align-items: center;
   text-align: left;
+  
   padding-left: $margin-large;
   padding-bottom: $margin-tiny;
   padding-top: $margin-tiny;
@@ -93,6 +110,10 @@
       opacity: $hover;
     }
   }
+
+  @include mobile {
+    margin-left:-2rem;
+  }
 }
 
 .SideNav__theme-mode {
@@ -104,6 +125,10 @@
   height: 48px;
   margin-left: $margin-medium;
   border-radius: 6px;
+
+  @include mobile {
+    margin-left: 0;
+  }
 }
 .SideNav__theme-toggle {
   display: flex;

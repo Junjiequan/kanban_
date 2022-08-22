@@ -9,6 +9,20 @@
   padding: 0 $margin-large;
   border-bottom: 1px solid color(borderLine);
   color: color(title);
+
+  @include mobile {
+    padding: 0 $margin-large;
+    padding-left: 0;
+    padding-right: $margin-small;
+  }
+}
+
+.Launch__title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  max-width: 16rem;
 }
 
 .Launch__buttons {
@@ -16,3 +30,40 @@
   align-items: center;
 }
 
+.Launch__mobile-sideNav {
+  z-index: 9;
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  animation: fadeIn .3s ease-in;
+  background: $overlay;
+  overflow-x:hidden;
+
+}
+
+
+.Launch__mobile-btn {
+  display: flex;
+  justify-content: space-between;
+  min-width: fit-content;
+  font-weight: bold;
+  font-size: $font-24;
+  color: color(title);
+  
+
+}
+.Launch__mobile-btn-icon {
+  width: .5rem;
+  margin-left: $margin-tiny;
+  transition: all .2s ease;
+}
+.Launch__mobile-btn-title {
+  display: flex;
+  max-width: 10rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align:left;
+}

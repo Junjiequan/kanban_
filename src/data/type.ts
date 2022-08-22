@@ -3,6 +3,7 @@ export interface ITab {
   tab?: string;
   addNew?: boolean;
   defaultTab?: boolean;
+  setToggleNav?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type modalTypes =

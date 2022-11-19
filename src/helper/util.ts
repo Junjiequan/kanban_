@@ -40,6 +40,3 @@ export const reorderInDiffColumn = (
 
   return { newStartCol, newEndCol };
 };
-
-const testArr = [1, 2, 3, 3, 4, 4, 5];
-const uniqueArr = [1, 2, 3, 4, 5];
